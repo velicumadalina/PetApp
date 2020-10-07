@@ -18,7 +18,7 @@ namespace PetApp.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-        
+
         public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
@@ -52,11 +52,11 @@ namespace PetApp.Controllers
                     string apiResponse = await response.Content.ReadAsStringAsync();
                     var json = JObject.Parse(apiResponse);
                     shelterList = JsonConvert.DeserializeObject<List<Shelter>>(JsonConvert.SerializeObject(json.GetValue("organizations")));
-                    foreach (var shelter in shelterList) 
+                    foreach (var shelter in shelterList)
                     {
                         var photoLinks = JsonConvert.SerializeObject(shelter.Photos);
                         var photoArray = JArray.Parse(photoLinks);
-                        foreach (var photo in photoArray) 
+                        foreach (var photo in photoArray)
                         {
                             var smallerList = JsonConvert.SerializeObject(photo);
                             shelter.Photo = JObject.Parse(smallerList).GetValue("medium").ToString();
@@ -110,6 +110,35 @@ namespace PetApp.Controllers
                 }
             }
             return View(animalsList);
+        }
+
+
+        [Route("Animal/{id}")]
+        public async Task<IActionResult> Animal(int id)
+        {
+            string token = GetAccessToken();
+            Animal animal;
+            List<String> photosList = new List<String>();
+            using (var httpClient = new HttpClient())
+            {
+                httpClient.DefaultRequestHeaders.Authorization
+                         = new AuthenticationHeaderValue("Bearer", token);
+                using (var response = await httpClient.GetAsync("https://api.petfinder.com/v2/animals/" + id))
+                {
+                    string apiResponse = await response.Content.ReadAsStringAsync();
+                    var json = JObject.Parse(apiResponse);
+                    animal = JsonConvert.DeserializeObject<Animal>(JsonConvert.SerializeObject(json.GetValue("animal")));
+                    var photoLinks = JsonConvert.SerializeObject(animal.Photos);
+                    var photoArray = JArray.Parse(photoLinks);
+                    foreach (var photo in photoArray)
+                    {
+                        var smallerList = JsonConvert.SerializeObject(photo);
+                        animal.Photo = JObject.Parse(smallerList).GetValue("medium").ToString();
+                    }
+
+                }
+            }
+            return View(animal);
         }
     }
 }
