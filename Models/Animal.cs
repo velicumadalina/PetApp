@@ -9,8 +9,8 @@ namespace PetApp.Models
     {
        public int Id { get; set; }
         public string Species { get; set; }
-        //public RestSharp.JsonArray Breeds { get; set; }
-        //public RestSharp.JsonArray Colors { get; set; }
+        public Dictionary<string, string> Breeds { get; set; }
+        public Dictionary<string, string> Colors { get; set; }
         public string Age { get; set; }
         public string Gender { get; set; }
         public string Size { get; set; }
@@ -20,9 +20,9 @@ namespace PetApp.Models
         public string Photo { get; set; }
         public RestSharp.JsonArray Photos { get; set; }
         public string Status { get; set; }
-        //public RestSharp.JsonArray Attributes { get; set; }
-        //public RestSharp.JsonArray Tags { get; set; }
-        //public RestSharp.JsonArray ContactInfo { get; set; }
+        public Dictionary<string, string> Attributes { get; set; }
+        public RestSharp.JsonArray Tags { get; set; }
+        public Dictionary<string, string> ContactInfo { get; set; }
 
 
 
