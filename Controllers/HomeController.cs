@@ -65,7 +65,6 @@ namespace PetApp.Controllers
                     }
                 }
             }
-            Console.WriteLine(shelterList);
             return View(shelterList);
         }
 
@@ -80,6 +79,37 @@ namespace PetApp.Controllers
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+
+        [Route("Shelter/{id}")]
+        public async Task<IActionResult> Shelter(string id)
+        {
+            string token = GetAccessToken();
+            List<Animal> animalsList = new List<Animal>();
+            List<String> photosList = new List<String>();
+            using (var httpClient = new HttpClient())
+            {
+                httpClient.DefaultRequestHeaders.Authorization
+                         = new AuthenticationHeaderValue("Bearer", token);
+                using (var response = await httpClient.GetAsync("https://api.petfinder.com/v2/animals?organization=" + id))
+                {
+                    string apiResponse = await response.Content.ReadAsStringAsync();
+                    var json = JObject.Parse(apiResponse);
+                    animalsList = JsonConvert.DeserializeObject<List<Animal>>(JsonConvert.SerializeObject(json.GetValue("animals")));
+                    foreach (var animal in animalsList)
+                    {
+                        var photoLinks = JsonConvert.SerializeObject(animal.Photos);
+                        var photoArray = JArray.Parse(photoLinks);
+                        foreach (var photo in photoArray)
+                        {
+                            var smallerList = JsonConvert.SerializeObject(photo);
+                            animal.Photo = JObject.Parse(smallerList).GetValue("medium").ToString();
+                        }
+
+                    }
+                }
+            }
+            return View(animalsList);
         }
     }
 }
