@@ -42,6 +42,7 @@ namespace PetApp.Controllers
         {
             string token = GetAccessToken();
             List<Shelter> shelterList = new List<Shelter>();
+            List<String> photosList = new List<String>();
             using (var httpClient = new HttpClient())
             {
                 httpClient.DefaultRequestHeaders.Authorization
@@ -51,6 +52,17 @@ namespace PetApp.Controllers
                     string apiResponse = await response.Content.ReadAsStringAsync();
                     var json = JObject.Parse(apiResponse);
                     shelterList = JsonConvert.DeserializeObject<List<Shelter>>(JsonConvert.SerializeObject(json.GetValue("organizations")));
+                    foreach (var shelter in shelterList) 
+                    {
+                        var photoLinks = JsonConvert.SerializeObject(shelter.Photos);
+                        var photoArray = JArray.Parse(photoLinks);
+                        foreach (var photo in photoArray) 
+                        {
+                            var smallerList = JsonConvert.SerializeObject(photo);
+                            shelter.Photo = JObject.Parse(smallerList).GetValue("medium").ToString();
+                        }
+
+                    }
                 }
             }
             Console.WriteLine(shelterList);

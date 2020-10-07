@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace PetApp.Models
@@ -14,8 +15,8 @@ namespace PetApp.Models
 
         public string URL { get; set; }
 
-        //public string Photo { get; set; }
+        public RestSharp.JsonArray Photos { get; set; }
 
-        //public string LinkToAnimals { get; set; }
+        public string Photo { get; set; }
     }
 }
