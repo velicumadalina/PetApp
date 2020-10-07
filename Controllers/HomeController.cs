@@ -103,7 +103,7 @@ namespace PetApp.Controllers
                         foreach (var photo in photoArray)
                         {
                             var smallerList = JsonConvert.SerializeObject(photo);
-                            animal.Photo = JObject.Parse(smallerList).GetValue("medium").ToString();
+                            animal.Photo = JObject.Parse(smallerList).GetValue("large").ToString();
                         }
 
                     }
