@@ -18,5 +18,12 @@ namespace PetApp.Models
         public RestSharp.JsonArray Photos { get; set; }
 
         public string Photo { get; set; }
+
+        public string LinkToAnimals { 
+            get 
+            {
+                return "https://api.petfinder.com/v2/animals?organization=" + Id;
+            }
+        }
     }
 }
