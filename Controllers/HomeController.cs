@@ -89,32 +89,37 @@ namespace PetApp.Controllers
         [Route("Shelter/{id}")]
         public async Task<IActionResult> Shelter(string id)
         {
-            //string token = GetAccessToken();
             List<Animal> animalsList = new List<Animal>();
-            //List<String> photosList = new List<String>();
             using (var httpClient = new HttpClient())
             {
-                //httpClient.DefaultRequestHeaders.Authorization
-                //         = new AuthenticationHeaderValue("Bearer", token);
                 using (var response = await httpClient.GetAsync("https://localhost:44306/animals/shelter/" + id))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
-                    //var json = JObject.Parse(apiResponse);
                     animalsList = JsonConvert.DeserializeObject<List<Animal>>(apiResponse);
-                    //foreach (var animal in animalsList)
-                    //{
-                    //    var photoLinks = JsonConvert.SerializeObject(animal.Photos);
-                    //    var photoArray = JArray.Parse(photoLinks);
-                    //    foreach (var photo in photoArray)
-                    //    {
-                    //        var smallerList = JsonConvert.SerializeObject(photo);
-                    //        animal.Photo = JObject.Parse(smallerList).GetValue("large").ToString();
-                    //    }
+                    foreach (var animal in animalsList)
+                    {
+                        Dictionary<string, bool> _getsAlongWith = new Dictionary<string, bool>(){
+            { "Dogs", animal.FriendlyWithDogs },
+            { "Cats", animal.FriendlyWithCats },
+            { "Kids", animal.FriendlyWithKids }
+        };
 
-                    //}
+
+                        var str = new List<string>();
+                        foreach (KeyValuePair<string, bool> kv in _getsAlongWith)
+                        {
+                            if (kv.Value == true)
+                            {
+                                str.Add(kv.Key);
+                            }
+                        }
+                        animal.GetsAlongWith = String.Join(",", str);
+                    }
+
                 }
             }
             return View(animalsList);
+
         }
 
         [Route("/Animals")]
@@ -127,6 +132,25 @@ namespace PetApp.Controllers
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
                     animals = JsonConvert.DeserializeObject<List<Animal>>(apiResponse);
+                    foreach (var animal in animals)
+                    {
+                        Dictionary<string, bool> _getsAlongWith = new Dictionary<string, bool>(){
+            { "Dogs", animal.FriendlyWithDogs },
+            { "Cats", animal.FriendlyWithCats },
+            { "Kids", animal.FriendlyWithKids }
+        };
+
+
+                        var str = new List<string>();
+                        foreach (KeyValuePair<string, bool> kv in _getsAlongWith)
+                        {
+                            if (kv.Value == true)
+                            {
+                                str.Add(kv.Key);
+                            }
+                        }
+                        animal.GetsAlongWith = String.Join(",", str);
+                    }
                 }
             }
             return View(animals);
@@ -148,13 +172,22 @@ namespace PetApp.Controllers
                     string apiResponse = await response.Content.ReadAsStringAsync();
                     //var json = JObject.Parse(apiResponse);
                     animal = JsonConvert.DeserializeObject<Animal>(apiResponse);
-                    //var photoLinks = JsonConvert.SerializeObject(animal.Photos);
-                    //var photoArray = JArray.Parse(photoLinks);
-                    //foreach (var photo in photoArray)
-                    //{
-                    //    var smallerList = JsonConvert.SerializeObject(photo);
-                    //    animal.Photo = JObject.Parse(smallerList).GetValue("medium").ToString();
-                    //}
+                    Dictionary<string, bool> _getsAlongWith = new Dictionary<string, bool>(){
+            { "Dogs", animal.FriendlyWithDogs },
+            { "Cats", animal.FriendlyWithCats },
+            { "Kids", animal.FriendlyWithKids }
+        };
+
+
+                    var str = new List<string>();
+                    foreach (KeyValuePair<string, bool> kv in _getsAlongWith)
+                    {
+                        if (kv.Value == true)
+                        {
+                            str.Add(kv.Key);
+                        }
+                    }
+                    animal.GetsAlongWith = String.Join(",", str);
 
                 }
             }

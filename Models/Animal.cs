@@ -25,25 +25,8 @@ namespace PetApp.Models
         public bool FriendlyWithCats { get; set; }
         public bool FriendlyWithKids { get; set; }
         public bool SpecialNeeds { get; set; }
-        //public string GetsAlongWith { get
-        //    {
-        //        var str = new List<string>();
-        //        foreach (KeyValuePair<string, bool> kv in _getsAlongWith) 
-        //        {
-        //            if (kv.Value == true) 
-        //            {
-        //                str.Add(kv.Key);
-        //            }
-        //        }
-        //        return String.Join(",", str);
+        public string GetsAlongWith { get; set; }
 
-        //    } }
-        //private Dictionary<string, bool> _getsAlongWith = new Dictionary<string, bool>() 
-        //{
-        //    { "Dogs", FriendlyWithDogs },
-        //    { "Dogs", FriendlyWithCats },
-        //    { "Dogs", FriendlyWithKids }
-        //};
 
     }
 }
