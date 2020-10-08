@@ -1,0 +1,72 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<script src="~/js/quiz.js"></script>
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+@section css{
+    <link rel="stylesheet" href="~/css/quiz.css" />
+}<!-- Check out https://github.com/thekristin/randomized-quiz-sets for details -->
+<h1 style="margin-left:340px;margin-bottom:40px; padding:25px">Find your perfect pet!</h1>
+<div class="quiz-container">
+    <!-- start Version 1 of quiz - only show if random number is 1 -->
+    <div id="quiz1" class="quiz" style="display:block">
+        <div class="questions">
+            <h3>Are you looking for a dog or a cat?</h3>
+            <div class="options">
+                <div class="answer three">Dog</div>
+                <div class="answer three">Cat</div>
+                <div class="answer three">Both</div>
+            </div>
+        </div>
+        <div class="questions">
+            <h3>Are you looking for a purebred animal?</h3>
+            <div class="options">
+                <div class="answer two">Yes</div>
+                <div class="answer two">It doesn't matter to me.</div>
+            </div>
+        </div>
+        <div class="questions">
+            <h3>What about the age of the animal?</h3>
+            <div class="options">
+                <div class="answer four">Junior(0-1.5 years old)</div>
+                <div class="answer four">Adult(1.5-7 years old)</div>
+                <div class="answer four">Senior(+7 years old)</div>
+                <div class="answer four">Age doesn't really matter to me.</div>
+            </div>
+        </div>
+        <div class="questions">
+            <h3>What size is your perfect pet?</h3>
+            <div class="options">
+                <div class="answer four">Small</div>
+                <div class="answer four">Medium</div>
+                <div class="answer four">Large</div>
+                <div class="answer four">Any size is fine</div>
+            </div>
+        </div><div class="questions">
+            <h3>What about gender?</h3>
+            <div class="options">
+                <div class="answer three">Female</div>
+                <div class="answer three">Male</div>
+                <div class="answer three">Doesn't matter.</div>
+            </div>
+        </div><div class="questions">
+            <h3>Do you have other dogs?</h3>
+            <div class="options">
+                <div class="answer two">Yes</div>
+                <div class="answer two">No</div>
+            </div>
+            <h3>Do you have other cats?</h3>
+            <div class="options">
+                <div class="answer two">Yes</div>
+                <div class="answer two">No</div>
+            </div><h3>Do you have small children?</h3>
+            <div class="options">
+                <div class="answer two">Yes</div>
+                <div class="answer two">No</div>
+            </div>
+        </div>
+               <div class="submit"><a href="/animals">Find my pet!</a></div>
+
+    </div>

@@ -75,6 +75,11 @@ namespace PetApp.Controllers
             return View();
         }
 
+        public IActionResult Quiz()
+        {
+            return View();
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
@@ -110,6 +115,21 @@ namespace PetApp.Controllers
                 }
             }
             return View(animalsList);
+        }
+
+        [Route("/Animals")]
+        public async Task<IActionResult> AllAnimals()
+        {
+            List<Animal> animals = new List<Animal>();
+            using (var httpClient = new HttpClient())
+            {
+                using (var response = await httpClient.GetAsync("https://localhost:44306/animals"))
+                {
+                    string apiResponse = await response.Content.ReadAsStringAsync();
+                    animals = JsonConvert.DeserializeObject<List<Animal>>(apiResponse);
+                }
+            }
+            return View(animals);
         }
 
 

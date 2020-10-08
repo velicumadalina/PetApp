@@ -30,7 +30,7 @@ namespace Api_PetApp.Controllers
             FriendlyWithDogs = true,
             FriendlyWithKids = false,
             SpecialNeeds = false,
-            Description = "very nice"
+            Description = "very nice",
             Breed = "mixed"
             });
         }
