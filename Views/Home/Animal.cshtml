@@ -10,13 +10,13 @@
         <br><br>
         <div class="row">
             <img class="" style="float: left" width="450" height="485"
-                 src="@Model.Photo" />
+                 src="@Model.Image" />
             <div class="col col-twothird" style="  padding-top: 87px;
     padding-left: 60px;
     width: 35%;">
                 <h2>@Model.Name</h2>
                 <p class="small grayed">
-                    @Model.Breeds["primary"]<span class="separator">|</span>
+                    @Model.Breed<span class="separator">|</span>
                     @Model.Age<span class="separator">|</span>
                     @Model.Gender
                 </p>
@@ -24,36 +24,12 @@
                 <h3>About</h3>
                 <h4>Size:</h4>
                 <h5>@Model.Size</h5>
-                @if (@Model.Coat != null)
-                {
-                    <h4>Coat length:</h4>
-                    <h5>@Model.Coat</h5>
-                }
-                @if (@Model.Tags.Count > 0)
-                {
-                    <h4>Characteristics:</h4>
-                    <h5>@String.Join(", ", Model.Tags)</h5>
-                }
-                @if (@Model.GetsAlongWith != null)
-                {
-                    <h4>Gets along with:</h4>
-                    <h5>@String.Join(", ", Model.GetsAlongWith)</h5>
-
-                }
-                @if (@Model.Attributes != null)
-                {
-
-                    @foreach (KeyValuePair<string, string> entry in Model.Attributes)
-                    {
-                        <h4>@entry.Key</h4>
-                        @if (entry.Value == "true")
-                        {
-                            <h5>Yes</h5>
-                        }
-                        else
-                        { <h5>No</h5>}
-                    }
-                }
+                <h4>Coat length:</h4>
+                <h5>@Model.Hair</h5>
+                <h4>Characteristics:</h4>
+                <h5>@String.Join(", ", Model.Characteristics)</h5>
+                @*<h4>Gets along with: </h4>
+                <h5>@String.Join(", ", Model.GetsAlongWith)</h5>*@
             </div>
         </div>
     </div>

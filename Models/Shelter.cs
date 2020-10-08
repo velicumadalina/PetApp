@@ -9,21 +9,22 @@ namespace PetApp.Models
     public class Shelter
     {
         public string Id { get; set; }
+
         public string Name { get; set; }
 
-        public string Email { get; set; }
-
-        public string URL { get; set; }
-
-        public RestSharp.JsonArray Photos { get; set; }
-
-        public string Photo { get; set; }
-
-        public string LinkToAnimals { 
-            get 
+        public string Animals
+        {
+            get
             {
-                return "https://api.petfinder.com/v2/animals?organization=" + Id;
+                return "https://api/animals?shelter=" + Id;
             }
+            set { }
         }
+
+        public string Image { get; set; }
+        public string URL { get; set; }
+        public string Email { get; set; }
+        public int Capacity { get; set; }
+        public string City { get; set; }
     }
 }

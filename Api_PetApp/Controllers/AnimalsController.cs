@@ -18,7 +18,20 @@ namespace Api_PetApp.Controllers
             animals.Add(new Animal {
             Id = 1,
             Name = "an1",
-            ShelterId = "a"
+            ShelterId = "a",
+            Characteristics = new string[] { "very", "nice" } ,
+            Gender = "female",
+            Type = "Cat",
+            Age = "Junior",
+            EnergyLevel = "High",
+            Size="small",
+            Hair ="long",
+            FriendlyWithCats = true,
+            FriendlyWithDogs = true,
+            FriendlyWithKids = false,
+            SpecialNeeds = false,
+            Description = "very nice"
+            Breed = "mixed"
             });
         }
 
