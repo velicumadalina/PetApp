@@ -17,7 +17,8 @@ namespace Api_PetApp.Controllers
         {
             animals.Add(new Animal {
             Id = 1,
-            Name = "an1"
+            Name = "an1",
+            ShelterId = "a"
             });
         }
 
