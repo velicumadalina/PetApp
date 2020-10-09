@@ -21,15 +21,25 @@
                     @Model.Gender
                 </p>
                 <h6>@Model.Description</h6>
-                <h3>About</h3>
-                <h4>Size:</h4>
-                <h5>@Model.Size</h5>
-                <h4>Coat length:</h4>
-                <h5>@Model.Hair</h5>
-                <h4>Characteristics:</h4>
-                <h5>@String.Join(", ", Model.Characteristics)</h5>
-                <h4>Gets along with: </h4>
-                <h5>@String.Join(", ", Model.GetsAlongWith)</h5>
+                <h4>About</h4>
+                <table style="width:100%">
+                    <tr>
+                        <td>Size:</td>
+                        <td>@Model.Size</td>
+                    </tr>
+                    <tr>
+                        <td>Coat length:</td>
+                        <td>@Model.Hair</td>
+                    </tr>
+                    <tr>
+                        <td>Characteristics:</td>
+                        <td>@String.Join(", ", Model.Characteristics)</td>
+                    </tr>
+                    <tr>
+                        <td>Gets along with:</td>
+                        <td>@String.Join(", ", Model.GetsAlongWith)</td>
+                    </tr>
+                </table>
             </div>
         </div>
     </div>
