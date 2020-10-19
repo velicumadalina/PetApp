@@ -12,6 +12,100 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Remove="wwwroot\Images\Animals\adonis.jpg" />
+    <Content Remove="wwwroot\Images\Animals\aubie.jpg" />
+    <Content Remove="wwwroot\Images\Animals\aurora.jpg" />
+    <Content Remove="wwwroot\Images\Animals\azula.jpg" />
+    <Content Remove="wwwroot\Images\Animals\bacon.jpg" />
+    <Content Remove="wwwroot\Images\Animals\blue.jpg" />
+    <Content Remove="wwwroot\Images\Animals\brandy.jpg" />
+    <Content Remove="wwwroot\Images\Animals\broadway.jpg" />
+    <Content Remove="wwwroot\Images\Animals\brown.jpg" />
+    <Content Remove="wwwroot\Images\Animals\cheerios.jpg" />
+    <Content Remove="wwwroot\Images\Animals\cooper.jpg" />
+    <Content Remove="wwwroot\Images\Animals\elena.jpg" />
+    <Content Remove="wwwroot\Images\Animals\elizabeth.jpg" />
+    <Content Remove="wwwroot\Images\Animals\elliot.jpg" />
+    <Content Remove="wwwroot\Images\Animals\estee.jpg" />
+    <Content Remove="wwwroot\Images\Animals\fiona.jpg" />
+    <Content Remove="wwwroot\Images\Animals\franji.jpg" />
+    <Content Remove="wwwroot\Images\Animals\george.jpg" />
+    <Content Remove="wwwroot\Images\Animals\jake.jpg" />
+    <Content Remove="wwwroot\Images\Animals\jojo.jpg" />
+    <Content Remove="wwwroot\Images\Animals\luna.jpg" />
+    <Content Remove="wwwroot\Images\Animals\maple.jpg" />
+    <Content Remove="wwwroot\Images\Animals\midge.jpg" />
+    <Content Remove="wwwroot\Images\Animals\nino.jpg" />
+    <Content Remove="wwwroot\Images\Animals\party.jpg" />
+    <Content Remove="wwwroot\Images\Animals\pearl.jpg" />
+    <Content Remove="wwwroot\Images\Animals\prince.jpg" />
+    <Content Remove="wwwroot\Images\Animals\raj.jpg" />
+    <Content Remove="wwwroot\Images\Animals\rhapsody.jpg" />
+    <Content Remove="wwwroot\Images\Animals\samuel.jpg" />
+    <Content Remove="wwwroot\Images\Animals\shae.jpg" />
+    <Content Remove="wwwroot\Images\Animals\snowy.jpg" />
+    <Content Remove="wwwroot\Images\Animals\sodium.jpg" />
+    <Content Remove="wwwroot\Images\Animals\steven.jpg" />
+    <Content Remove="wwwroot\Images\Animals\sticky.jpg" />
+    <Content Remove="wwwroot\Images\Animals\sugar.jpg" />
+    <Content Remove="wwwroot\Images\Animals\warlock.jpg" />
+    <Content Remove="wwwroot\Images\Animals\witch.jpg" />
+    <Content Remove="wwwroot\Images\Shelters\Gimmie_Shelter.jpg" />
+    <Content Remove="wwwroot\Images\Shelters\Happy_Tails_Rescue.jpg" />
+    <Content Remove="wwwroot\Images\Shelters\Lake_County.jpg" />
+    <Content Remove="wwwroot\Images\Shelters\Last_Hope.jpg" />
+    <Content Remove="wwwroot\Images\Shelters\Safe_Hands.jpg" />
+    <Content Remove="wwwroot\Images\Shelters\Wollies.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\Images\Animals\adonis.jpg" />
+    <None Include="wwwroot\Images\Animals\aubie.jpg" />
+    <None Include="wwwroot\Images\Animals\aurora.jpg" />
+    <None Include="wwwroot\Images\Animals\azula.jpg" />
+    <None Include="wwwroot\Images\Animals\bacon.jpg" />
+    <None Include="wwwroot\Images\Animals\blue.jpg" />
+    <None Include="wwwroot\Images\Animals\brandy.jpg" />
+    <None Include="wwwroot\Images\Animals\broadway.jpg" />
+    <None Include="wwwroot\Images\Animals\brown.jpg" />
+    <None Include="wwwroot\Images\Animals\cheerios.jpg" />
+    <None Include="wwwroot\Images\Animals\cooper.jpg" />
+    <None Include="wwwroot\Images\Animals\elena.jpg" />
+    <None Include="wwwroot\Images\Animals\elizabeth.jpg" />
+    <None Include="wwwroot\Images\Animals\elliot.jpg" />
+    <None Include="wwwroot\Images\Animals\estee.jpg" />
+    <None Include="wwwroot\Images\Animals\fiona.jpg" />
+    <None Include="wwwroot\Images\Animals\franji.jpg" />
+    <None Include="wwwroot\Images\Animals\george.jpg" />
+    <None Include="wwwroot\Images\Animals\jake.jpg" />
+    <None Include="wwwroot\Images\Animals\jojo.jpg" />
+    <None Include="wwwroot\Images\Animals\luna.jpg" />
+    <None Include="wwwroot\Images\Animals\maple.jpg" />
+    <None Include="wwwroot\Images\Animals\midge.jpg" />
+    <None Include="wwwroot\Images\Animals\nino.jpg" />
+    <None Include="wwwroot\Images\Animals\party.jpg" />
+    <None Include="wwwroot\Images\Animals\pearl.jpg" />
+    <None Include="wwwroot\Images\Animals\prince.jpg" />
+    <None Include="wwwroot\Images\Animals\raj.jpg" />
+    <None Include="wwwroot\Images\Animals\rhapsody.jpg" />
+    <None Include="wwwroot\Images\Animals\samuel.jpg" />
+    <None Include="wwwroot\Images\Animals\shae.jpg" />
+    <None Include="wwwroot\Images\Animals\snowy.jpg" />
+    <None Include="wwwroot\Images\Animals\sodium.jpg" />
+    <None Include="wwwroot\Images\Animals\steven.jpg" />
+    <None Include="wwwroot\Images\Animals\sticky.jpg" />
+    <None Include="wwwroot\Images\Animals\sugar.jpg" />
+    <None Include="wwwroot\Images\Animals\warlock.jpg" />
+    <None Include="wwwroot\Images\Animals\witch.jpg" />
+    <None Include="wwwroot\Images\Shelters\Gimmie_Shelter.jpg" />
+    <None Include="wwwroot\Images\Shelters\Happy_Tails_Rescue.jpg" />
+    <None Include="wwwroot\Images\Shelters\Lake_County.jpg" />
+    <None Include="wwwroot\Images\Shelters\Last_Hope.jpg" />
+    <None Include="wwwroot\Images\Shelters\Safe_Hands.jpg" />
+    <None Include="wwwroot\Images\Shelters\Wollies.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
     <PackageReference Include="RestSharp" Version="106.11.7" />
   </ItemGroup>
