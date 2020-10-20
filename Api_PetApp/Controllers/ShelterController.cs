@@ -21,6 +21,9 @@ namespace Api_PetApp.Controllers
             _context = context;
         }
 
+        /// <summary>
+        /// Gets all shelters.
+        /// </summary>
         // GET: api/Shelter
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Shelter>>> GetShelter()
@@ -28,6 +31,10 @@ namespace Api_PetApp.Controllers
             return await _context.Shelter.ToListAsync();
         }
 
+        /// <summary>
+        /// Gets an specific shelter.
+        /// </summary>
+        /// <param name="id"></param>
         // GET: api/Shelter/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Shelter>> GetShelter(string id)
@@ -42,6 +49,10 @@ namespace Api_PetApp.Controllers
             return shelter;
         }
 
+        /// <summary>
+        /// Edit an specific shelter.
+        /// </summary>
+        /// <param name="id"></param>
         // PUT: api/Shelter/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
@@ -74,6 +85,9 @@ namespace Api_PetApp.Controllers
             return NoContent();
         }
 
+        /// <summary>
+        /// Adds shelter.
+        /// </summary>
         // POST: api/Shelter
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
@@ -101,6 +115,10 @@ namespace Api_PetApp.Controllers
             return Ok();
         }
 
+        /// <summary>
+        /// Deletes an specific shelter.
+        /// </summary>
+        /// <param name="id"></param>
         // DELETE: api/Shelter/5
         [HttpDelete("{id}")]
         public async Task<ActionResult<Shelter>> DeleteShelter(string id)
