@@ -3,6 +3,10 @@
     "mssql1": {
       "type": "mssql.local",
       "connectionId": "Api_PetAppShelterContext"
+    },
+    "mssql2": {
+      "type": "mssql.local",
+      "connectionId": "Api_PetAppAnimalsContext"
     }
   }
 }

@@ -46,6 +46,9 @@ namespace Api_PetApp
                 var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
                 c.IncludeXmlComments(xmlPath);
             });
+
+            services.AddDbContext<Api_PetAppAnimalsContext>(options =>
+                    options.UseSqlServer(Configuration.GetConnectionString("Api_PetAppAnimalsContext")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

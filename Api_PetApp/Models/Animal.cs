@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.SignalR;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -8,8 +9,11 @@ namespace WebApi_PetApp.Models
 {
     public class Animal
     {
-        public int Id { get; set; }
+        public string Id { get; set; }
+        [ForeignKey("Shelter")]
         public string ShelterId { get; set; }
+
+        public Shelter Shelter { get; set; }
         public string Name { get; set; }
         public string Image { get; set; }
         public string Breed { get; set; }
