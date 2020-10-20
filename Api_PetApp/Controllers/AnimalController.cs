@@ -21,6 +21,9 @@ namespace Api_PetApp.Controllers
             _context = context;
         }
 
+        /// <summary>
+        /// Gets all animals.
+        /// </summary>
         // GET: api/Animal
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Animal>>> GetAnimal()
@@ -28,6 +31,10 @@ namespace Api_PetApp.Controllers
             return await _context.Animal.ToListAsync();
         }
 
+        /// <summary>
+        /// Gets an specific animal.
+        /// </summary>
+        /// <param name="id"></param>
         // GET: api/Animal/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Animal>> GetAnimal(string id)
@@ -42,6 +49,10 @@ namespace Api_PetApp.Controllers
             return animal;
         }
 
+        /// <summary>
+        /// Edits an specific animal.
+        /// </summary>
+        /// <param name="id"></param>
         // PUT: api/Animal/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
@@ -74,6 +85,9 @@ namespace Api_PetApp.Controllers
             return NoContent();
         }
 
+        /// <summary>
+        /// Creates a new animal.
+        /// </summary>
         // POST: api/Animal
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
@@ -97,9 +111,13 @@ namespace Api_PetApp.Controllers
                 }
             }
 
-            return CreatedAtAction("GetAnimal", new { id = animal.Id }, animal);
+            return Ok();
         }
 
+        /// <summary>
+        /// Deletes an specific animal.
+        /// </summary>
+        /// <param name="id"></param>
         // DELETE: api/Animal/5
         [HttpDelete("{id}")]
         public async Task<ActionResult<Animal>> DeleteAnimal(string id)

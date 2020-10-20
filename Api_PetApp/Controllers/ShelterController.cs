@@ -50,7 +50,7 @@ namespace Api_PetApp.Controllers
         }
 
         /// <summary>
-        /// Edit an specific shelter.
+        /// Edits an specific shelter.
         /// </summary>
         /// <param name="id"></param>
         // PUT: api/Shelter/5
@@ -86,7 +86,7 @@ namespace Api_PetApp.Controllers
         }
 
         /// <summary>
-        /// Adds shelter.
+        /// Creates a new shelter.
         /// </summary>
         // POST: api/Shelter
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
@@ -110,8 +110,6 @@ namespace Api_PetApp.Controllers
                     throw;
                 }
             }
-
-            //return CreatedAtAction("GetShelter", new { id = shelter.Id }, shelter);
             return Ok();
         }
 
