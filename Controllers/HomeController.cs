@@ -47,7 +47,7 @@ namespace PetApp.Controllers
             {
                 //httpClient.DefaultRequestHeaders.Authorization
                 //         = new AuthenticationHeaderValue("Bearer", token);
-                using (var response = await httpClient.GetAsync("https://localhost:44306/shelters"))
+                using (var response = await httpClient.GetAsync("https://localhost:44306/api/Shelter"))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
                     //var json = JObject.Parse(apiResponse);
@@ -92,7 +92,7 @@ namespace PetApp.Controllers
             List<Animal> animalsList = new List<Animal>();
             using (var httpClient = new HttpClient())
             {
-                using (var response = await httpClient.GetAsync("https://localhost:44306/animals/shelter/" + id))
+                using (var response = await httpClient.GetAsync("https://localhost:44306/animals/api/Shelter/" + id))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
                     animalsList = JsonConvert.DeserializeObject<List<Animal>>(apiResponse);
@@ -128,7 +128,7 @@ namespace PetApp.Controllers
             List<Animal> animals = new List<Animal>();
             using (var httpClient = new HttpClient())
             {
-                using (var response = await httpClient.GetAsync("https://localhost:44306/animals"))
+                using (var response = await httpClient.GetAsync("https://localhost:44306/api/Animal/"))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
                     animals = JsonConvert.DeserializeObject<List<Animal>>(apiResponse);
@@ -167,7 +167,7 @@ namespace PetApp.Controllers
             {
                 //httpClient.DefaultRequestHeaders.Authorization
                 //         = new AuthenticationHeaderValue("Bearer", token);
-                using (var response = await httpClient.GetAsync("https://localhost:44306/animals/" + id))
+                using (var response = await httpClient.GetAsync("https://localhost:44306/api/Animal/" + id))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
                     //var json = JObject.Parse(apiResponse);

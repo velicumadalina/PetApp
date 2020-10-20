@@ -14,8 +14,8 @@
 //        public SheltersController()
 //        {
 //            shelters.Add(new Shelter
-//            {
-//                Id = "a",
+//{
+//    Id = "a",
 //                Name = "Lake County",
 //                Image = "Lake_County.jpg",
 //                Email = "lake_county@gmail.com",
