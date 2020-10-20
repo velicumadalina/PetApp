@@ -19,7 +19,7 @@ namespace WebApi_PetApp.Controllers
                 Name = "Lake County",
                 Image = "Lake_County.jpg",
                 Email = "lake_county@gmail.com",
-                Capacity = 100,
+                Capacity = "100",
                 City = "Bucharest"
             });
             shelters.Add(new Shelter
@@ -28,7 +28,7 @@ namespace WebApi_PetApp.Controllers
                 Name = "Safe Hands",
                 Image = "Safe_Hands.jpg",
                 Email = "safe_hands@gmail.com",
-                Capacity = 100,
+                Capacity = "100",
                 City = "Cluj"
             });
             shelters.Add(new Shelter
@@ -37,7 +37,7 @@ namespace WebApi_PetApp.Controllers
                 Name = "Last Hope",
                 Image = "Last_Hope.jpg",
                 Email = "last_hope@gmail.com",
-                Capacity = 100,
+                Capacity = "100",
                 City = "Iasi"
             });
             shelters.Add(new Shelter
@@ -46,7 +46,7 @@ namespace WebApi_PetApp.Controllers
                 Name = "Happy Tails Rescue",
                 Image = "Happy_Tails_Rescue.jpg",
                 Email = "happy_tails_rescue@gmail.com",
-                Capacity = 100,
+                Capacity = "100",
                 City = "Brasov"
             });
             shelters.Add(new Shelter
@@ -55,7 +55,7 @@ namespace WebApi_PetApp.Controllers
                 Name = "Gimmie Shelter",
                 Image = "Gimmie_Shelter.jpg",
                 Email = "gimmie_shelter@gmail.com",
-                Capacity = 100,
+                Capacity = "100",
                 City = "Constanta"
             });
             shelters.Add(new Shelter
@@ -64,7 +64,7 @@ namespace WebApi_PetApp.Controllers
                 Name = "Wollies",
                 Image = "Wollies.png",
                 Email = "wollies@gmail.com",
-                Capacity = 100,
+                Capacity = "100",
                 City = "Bucharest"
             });
         }

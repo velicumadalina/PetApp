@@ -11,19 +11,10 @@ namespace WebApi_PetApp.Models
 
         public string Name { get; set; }
 
-        public string Animals
-        {
-            get
-            {
-                return "https://api/animals?shelter=" + Id;
-            }
-            set { }
-        }
-
         public string Image { get; set; }
         public string URL { get; set; }
         public string Email { get; set; }
-        public int Capacity { get; set; }
+        public string Capacity { get; set; }
         public string City { get; set; }
     }
 }

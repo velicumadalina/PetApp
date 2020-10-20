@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.SignalR;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -13,7 +14,7 @@ namespace WebApi_PetApp.Models
         public string Image { get; set; }
         public string Breed { get; set; }
         public string Gender { get; set; }
-        public string[] Characteristics { get; set; }
+        public string Characteristics { get; set; }
         public string EnergyLevel { get; set; }
         public string Age { get; set; }
         public string Size { get; set; }
@@ -24,6 +25,7 @@ namespace WebApi_PetApp.Models
         public bool FriendlyWithCats { get; set; }
         public bool FriendlyWithKids { get; set; }
         public bool SpecialNeeds { get; set; }
+        public bool IsAdopted { get; set; }
 
 
 
