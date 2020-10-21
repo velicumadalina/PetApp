@@ -212,3 +212,63 @@ h3 {
         width: 100%;
     }
 }
+input.toggle {
+  display: none;
+}
+input.toggle + label {
+  display: inline-block;
+  position: relative;
+  box-sizing: border-box;
+  background: #C1C1C1;
+  height: 1em;
+  line-height: 1em;
+  width: 2em;
+  border-radius: 0.2em;
+  padding: 0;
+  -webkit-transition: all 250ms linear;
+  transition: all 250ms linear;
+  cursor: pointer;
+}
+input.toggle + label:before {
+  position: relative;
+  display: inline-block;
+  font-size: 0.8em;
+  width: 1.1em;
+  height: 1.1em;
+  text-align: center;
+  color: #C1C1C1;
+  margin-left: 1.25em;
+  top: -1px;
+}
+input.toggle + label:after {
+  display: inline-block;
+  box-sizing: border-box;
+  content: "";
+  border: solid 1px #b55;
+  border-radius: 0.2em;
+  background: #C1C1C1;
+  -webkit-transition: all 250ms linear;
+  transition: all 250ms linear;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1em;
+  height: 1em;
+}
+    input.toggle:checked + label {
+        background-color: #76C6C5;
+       
+    }
+input.toggle:checked +label:before {
+  content: "✔";
+  margin-left: 0.075em;
+}
+input.toggle:checked +label:after {
+  left: calc(100% - 1em);
+  border-color: #7eb302;
+}
+input.toggle[disabled] + label,
+input.toggle[readonly] + label {
+  opacity: 0.5;
+  cursor: default;
+}

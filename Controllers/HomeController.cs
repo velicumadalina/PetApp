@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
@@ -38,6 +39,8 @@ namespace PetApp.Controllers
         //    string token = json.GetValue("access_token").ToString();
         //    return token;
         //}
+
+
         public async Task<IActionResult> Index()
         {
             //string token = GetAccessToken();
@@ -122,13 +125,14 @@ namespace PetApp.Controllers
 
         }
 
-        [Route("/Animals")]
-        public async Task<IActionResult> AllAnimals()
+        [Route("/my-perfect-pet")]
+        public async Task<IActionResult> AllAnimals(Dictionary<string, string[]> answers)
         {
+           
             List<Animal> animals = new List<Animal>();
             using (var httpClient = new HttpClient())
             {
-                using (var response = await httpClient.GetAsync("https://localhost:44306/api/Animal/"))
+                using (var response = await httpClient.GetAsync("https://localhost:44306/api/Animal"))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
                     animals = JsonConvert.DeserializeObject<List<Animal>>(apiResponse);
@@ -152,6 +156,65 @@ namespace PetApp.Controllers
                         animal.GetsAlongWith = String.Join(",", str);
                     }
                 }
+            }
+
+            if (answers.Values.ToList()[0][0] != "null")
+            {
+                foreach (var answer in answers.Values.ToList()[0])
+                {
+                    animals = animals.Where(x => x.Type == answer).ToList();
+                }
+            }
+            if (answers.Values.ToList()[1][0] != "null")
+            {
+                foreach (var answer in answers.Values.ToList()[1])
+                {
+                    animals = animals.Where(x => x.Breed != "Mixed").ToList();
+                }
+            }
+            if (answers.Values.ToList()[2][0] != "null")
+            {
+                foreach (var answer in answers.Values.ToList()[2])
+                {
+                    animals = animals.Where(x => x.Age == answer).ToList();
+                }
+            }
+            if (answers.Values.ToList()[3][0] != "null")
+            {
+                foreach (var answer in answers.Values.ToList()[3])
+                {
+                    animals = animals.Where(x => x.EnergyLevel == answer).ToList();
+                }
+            }
+            if (answers.Values.ToList()[4][0] != "null")
+            {
+                foreach (var answer in answers.Values.ToList()[4])
+                {
+                    animals = animals.Where(x => x.Size == answer).ToList();
+                }
+            }
+            if (answers.Values.ToList()[5][0] != "null")
+            {
+                foreach (var answer in answers.Values.ToList()[5])
+                {
+                    animals = animals.Where(x => x.Gender == answer).ToList();
+                }
+            }
+            if (answers.Values.ToList()[6][0] != "null")
+            {
+                    animals = animals.Where(x => x.FriendlyWithDogs == true).ToList();
+            }
+            if (answers.Values.ToList()[7][0] != "null")
+            {
+                    animals = animals.Where(x => x.FriendlyWithCats == true).ToList();
+            }
+            if (answers.Values.ToList()[8][0] != "null")
+            {
+                    animals = animals.Where(x => x.FriendlyWithKids == true).ToList();
+            }
+            if (answers.Values.ToList()[9][0] != "null")
+            {
+                    animals = animals.Where(x => x.SpecialNeeds == true).ToList();
             }
             return View(animals);
         }
