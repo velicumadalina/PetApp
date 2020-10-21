@@ -18,6 +18,9 @@ namespace PetApp.Controllers
 {
     public class HomeController : Controller
     {
+        private static List<Animal> filteredAnimals = new List<Animal>();
+        private bool x;
+
         private readonly ILogger<HomeController> _logger;
 
         public HomeController(ILogger<HomeController> logger)
@@ -25,47 +28,15 @@ namespace PetApp.Controllers
             _logger = logger;
         }
 
-        //public string GetAccessToken()
-        //{
-        //    var client = new RestClient("https://api.petfinder.com/v2/oauth2/token");
-        //    client.Timeout = -1;
-        //    var request = new RestRequest(Method.POST);
-        //    request.AddHeader("Content-Type", "application/x-www-form-urlencoded");
-        //    request.AddParameter("grant_type", "client_credentials");
-        //    request.AddParameter("client_id", "F30u0MQ5a5l02c1twWg8WobIz3c4mHwGrzrgVJY7qcx2XijKO9");
-        //    request.AddParameter("client_secret", "vYqdi2iayMYBhUt84R6uod5pnYkN52ElGxKWK2cP");
-        //    IRestResponse response = client.Execute(request);
-        //    var json = JObject.Parse(response.Content);
-        //    string token = json.GetValue("access_token").ToString();
-        //    return token;
-        //}
-
-
         public async Task<IActionResult> Index()
         {
-            //string token = GetAccessToken();
             List<Shelter> shelterList = new List<Shelter>();
-            //List<String> photosList = new List<String>();
             using (var httpClient = new HttpClient())
             {
-                //httpClient.DefaultRequestHeaders.Authorization
-                //         = new AuthenticationHeaderValue("Bearer", token);
                 using (var response = await httpClient.GetAsync("https://localhost:44306/api/Shelter"))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
-                    //var json = JObject.Parse(apiResponse);
                     shelterList = JsonConvert.DeserializeObject<List<Shelter>>(apiResponse);
-                    //foreach (var shelter in shelterList)
-                    //{
-                    //    var photoLinks = JsonConvert.SerializeObject(shelter.Photos);
-                    //    var photoArray = JArray.Parse(photoLinks);
-                    //    foreach (var photo in photoArray)
-                    //    {
-                    //        var smallerList = JsonConvert.SerializeObject(photo);
-                    //        shelter.Photo = JObject.Parse(smallerList).GetValue("medium").ToString();
-                    //    }
-
-                    //}
                 }
             }
             return View(shelterList);
@@ -95,7 +66,7 @@ namespace PetApp.Controllers
             List<Animal> animalsList = new List<Animal>();
             using (var httpClient = new HttpClient())
             {
-                using (var response = await httpClient.GetAsync("https://localhost:44306/animals/api/Shelter/" + id))
+                using (var response = await httpClient.GetAsync("https://localhost:44306/Shelter/" + id + "/Animals"))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
                     animalsList = JsonConvert.DeserializeObject<List<Animal>>(apiResponse);
@@ -125,8 +96,19 @@ namespace PetApp.Controllers
 
         }
 
+        [Route("/my-perfect-pets")]
+        [HttpGet]
+        public ActionResult<IEnumerable<Animal>> AllAnimals()
+        {
+            var animals = filteredAnimals;
+            Console.WriteLine(x);
+            return View(filteredAnimals);
+        }
+
+        [HttpPost]
+        [Consumes("application/json")]
         [Route("/my-perfect-pet")]
-        public async Task<IActionResult> AllAnimals(Dictionary<string, string[]> answers)
+        public async Task<ActionResult<List<Animal>>> FilterAllAnimals([FromBody] FilteringItem filteringItem)
         {
            
             List<Animal> animals = new List<Animal>();
@@ -143,8 +125,6 @@ namespace PetApp.Controllers
             { "Cats", animal.FriendlyWithCats },
             { "Kids", animal.FriendlyWithKids }
         };
-
-
                         var str = new List<string>();
                         foreach (KeyValuePair<string, bool> kv in _getsAlongWith)
                         {
@@ -157,79 +137,72 @@ namespace PetApp.Controllers
                     }
                 }
             }
-
-            if (answers.Values.ToList()[0][0] != "null")
+            Console.WriteLine(animals);
+            if (filteringItem.Type[0] != "null")
             {
-                foreach (var answer in answers.Values.ToList()[0])
+                foreach (var type in filteringItem.Type)
                 {
-                    animals = animals.Where(x => x.Type == answer).ToList();
+                    animals = animals.Where(x => x.Type == type).ToList();
                 }
             }
-            if (answers.Values.ToList()[1][0] != "null")
+            if (filteringItem.Breed[0] != "true")
             {
-                foreach (var answer in answers.Values.ToList()[1])
-                {
                     animals = animals.Where(x => x.Breed != "Mixed").ToList();
-                }
             }
-            if (answers.Values.ToList()[2][0] != "null")
+            if (filteringItem.Age[0] != "null")
             {
-                foreach (var answer in answers.Values.ToList()[2])
+                foreach (var age in filteringItem.Age)
                 {
-                    animals = animals.Where(x => x.Age == answer).ToList();
+                    animals = animals.Where(x => x.Age == age).ToList();
                 }
             }
-            if (answers.Values.ToList()[3][0] != "null")
+            if (filteringItem.EnergyLevel[0] != "null")
             {
-                foreach (var answer in answers.Values.ToList()[3])
+                foreach (var energy in filteringItem.EnergyLevel)
                 {
-                    animals = animals.Where(x => x.EnergyLevel == answer).ToList();
+                    animals = animals.Where(x => x.EnergyLevel == energy).ToList();
                 }
             }
-            if (answers.Values.ToList()[4][0] != "null")
+            if (filteringItem.Size[0] != "null")
             {
-                foreach (var answer in answers.Values.ToList()[4])
+                foreach (var size in filteringItem.Size)
                 {
-                    animals = animals.Where(x => x.Size == answer).ToList();
+                    animals = animals.Where(x => x.Size == size).ToList();
                 }
             }
-            if (answers.Values.ToList()[5][0] != "null")
+            if (filteringItem.Gender[0] != "null")
             {
-                foreach (var answer in answers.Values.ToList()[5])
+                foreach (var gender in filteringItem.Gender)
                 {
-                    animals = animals.Where(x => x.Gender == answer).ToList();
+                    animals = animals.Where(x => x.Gender == gender).ToList();
                 }
             }
-            if (answers.Values.ToList()[6][0] != "null")
+            if (filteringItem.FriendlyWithDogs[0] != "false")
             {
                     animals = animals.Where(x => x.FriendlyWithDogs == true).ToList();
             }
-            if (answers.Values.ToList()[7][0] != "null")
+            if (filteringItem.FriendlyWithCats[0] != "false")
             {
                     animals = animals.Where(x => x.FriendlyWithCats == true).ToList();
+
             }
-            if (answers.Values.ToList()[8][0] != "null")
+            if (filteringItem.FriendlyWithKids[0] != "false")
             {
-                    animals = animals.Where(x => x.FriendlyWithKids == true).ToList();
+                    animals = animals.Where(x => x.FriendlyWithDogs == true).ToList();
             }
-            if (answers.Values.ToList()[9][0] != "null")
-            {
-                    animals = animals.Where(x => x.SpecialNeeds == true).ToList();
-            }
-            return View(animals);
+            filteredAnimals = animals;
+            x = true;
+
+            return Ok(animals);
         }
 
 
         [Route("Animal/{id}")]
-        public async Task<IActionResult> Animal(int id)
+        public async Task<IActionResult> Animal(string id)
         {
-            //string token = GetAccessToken();
             Animal animal;
-            //List<String> photosList = new List<String>();
             using (var httpClient = new HttpClient())
             {
-                //httpClient.DefaultRequestHeaders.Authorization
-                //         = new AuthenticationHeaderValue("Bearer", token);
                 using (var response = await httpClient.GetAsync("https://localhost:44306/api/Animal/" + id))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();

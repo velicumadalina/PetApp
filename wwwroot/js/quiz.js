@@ -52,7 +52,7 @@ $(document).ready(function () {
 
 
 $("#subBtn").click(function () {
-    let vals = [];
+    let vals = {"Id": 1};
     let keyNames = ["Type", "Breed", "Age", "EnergyLevel", "Size", "Gender", "FriendlyWithDogs", "FriendlyWithCats", "FriendlyWithKids", "SpecialNeeds"]
     let selected = $(".clicked");
     for (let i = 0; i < keyNames.length; i++) {
@@ -64,8 +64,13 @@ $("#subBtn").click(function () {
         {
             divValues.push(val.dataset.val);
         }
-        vals[keyNames[i]] = divValues;
-
+        if (divValues.length < 1) {
+            vals[keyNames[i]] = ["false"];
+ }
+        else {
+            vals[keyNames[i]] = divValues;
+}
+        console.log(vals);
     }
     sendData("https://localhost:44335/my-perfect-pet", vals);
     
@@ -76,11 +81,12 @@ function sendData(endpoint, data) {
         {
             headers: {
                 'Accept': 'application/json',
-                'Content-Type': 'text/plain',
+                'Content-Type': 'application/json',
             },
             method: "POST",
-            body: data
+            body: data,
         })
-        .then(function (res) { console.log(res) })
+        .then(function (res) { console.log(res); window.location.href = "https://localhost:44335/my-perfect-pets"})
         .catch(function (res) { console.log(res) })
+
 }

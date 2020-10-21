@@ -15,7 +15,7 @@ namespace PetApp.Models
 
         public string Breed { get; set; }
         public string Gender { get; set; }
-        public string[] Characteristics { get; set; }
+        public string Characteristics { get; set; }
         public string Age { get; set; }
         public string Size { get; set; }
         public string Type { get; set; }

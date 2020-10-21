@@ -16,38 +16,48 @@ namespace Api_PetApp.Controllers
     {
         private readonly Api_PetAppAnimalsContext _context;
 
+        private List<Animal> filteredAnimals;
         public AnimalController(Api_PetAppAnimalsContext context)
         {
             _context = context;
         }
 
-        /// <summary>
-        /// Gets all animals.
-        /// </summary>
+
+
+
         // GET: api/Animal
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Animal>>> GetAnimal()
+        public async Task<ActionResult<IEnumerable<Animal>>> GetAnimals()
         {
             return await _context.Animal.ToListAsync();
         }
-
         /// <summary>
         /// Gets an specific animal.
         /// </summary>
         /// <param name="id"></param>
         // GET: api/Animal/5
+        [Route("/api/Animal/{id}")]
         [HttpGet("{id}")]
         public async Task<ActionResult<Animal>> GetAnimal(string id)
         {
-            var animal = await _context.Animal.FindAsync(id);
-
-            if (animal == null)
-            {
-                return NotFound();
-            }
-
-            return animal;
+            var animal = await _context.Animal.ToListAsync();
+            return animal.Where(x => x.Id == id).First();
         }
+
+        /// <summary>
+        /// Gets an specific animal.
+        /// </summary>
+        /// <param name="shelterId"></param>
+        // GET: api/Shelter/5/Animals
+        [Route("/Shelter/{shelterId}/Animals")]
+        [HttpGet("{shelterId}")]
+        public ActionResult<List<Animal>> GetShelterAnimals(string shelterId)
+        {
+            var animals = _context.Animal.Where(x => x.ShelterId == shelterId).ToList();
+            return animals;
+        }
+
+
 
         /// <summary>
         /// Edits an specific animal.
@@ -113,7 +123,74 @@ namespace Api_PetApp.Controllers
 
             return Ok();
         }
+        //[Route("/")]
+        //[HttpPost]
+        //public async Task<ActionResult<Animal>> FilterAnimal(ICollection<KeyValuePair<string,string[]>> dict)
+        //{
+        //    return Ok();
+        //}
 
+        //[Route("/my-perfect-pet")]
+        //[HttpPost]
+        //public ActionResult<List<Animal>> AllAnimals([FromBody] FilteringItem filteringItem)
+        //{
+
+        //    var animals = _context.Animal.ToList();
+        //    if (filteringItem.Type[0] != "null")
+        //    {
+        //        foreach (var type in filteringItem.Type)
+        //        {
+        //            animals = animals.Where(x => x.Type == type).ToList();
+        //        }
+        //    }
+        //    if (filteringItem.Breed[0]!= "true")
+        //    {
+        //        animals = animals.Where(x => x.Breed != "Mixed").ToList();
+        //    }
+        //    if (filteringItem.Age[0] != "null")
+        //    {
+        //        foreach (var age in filteringItem.Age)
+        //        {
+        //            animals = animals.Where(x => x.Age == age).ToList();
+        //        }
+        //    }
+        //    if (filteringItem.EnergyLevel[0] != "null")
+        //    {
+        //        foreach (var energy in filteringItem.EnergyLevel)
+        //        {
+        //            animals = animals.Where(x => x.EnergyLevel == energy).ToList();
+        //        }
+        //    }
+        //    if (filteringItem.Size[0] != "null")
+        //    {
+        //        foreach (var size in filteringItem.Size)
+        //        {
+        //            animals = animals.Where(x => x.Size == size).ToList();
+        //        }
+        //    }
+        //    if (filteringItem.Gender[0] != "null")
+        //    {
+        //        foreach (var gender in filteringItem.Gender)
+        //        {
+        //            animals = animals.Where(x => x.Gender == gender).ToList();
+        //        }
+        //    }
+        //    if (filteringItem.FriendlyWithDogs[0] != null)
+        //    {
+        //        animals = animals.Where(x => x.FriendlyWithDogs == true).ToList();
+        //    }
+        //    if (filteringItem.FriendlyWithCats[0] != "null")
+        //    {
+        //        animals = animals.Where(x => x.FriendlyWithCats == true).ToList();
+
+        //    }
+        //    if (filteringItem.FriendlyWithKids[0] != "null")
+        //    {
+        //        animals = animals.Where(x => x.FriendlyWithDogs == true).ToList();
+        //    }
+
+        //    return animals;
+        //}
         /// <summary>
         /// Deletes an specific animal.
         /// </summary>
