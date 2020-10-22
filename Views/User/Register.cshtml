@@ -3,11 +3,14 @@
     ViewData["Title"] = "Register";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+@section css
+{
+    <link rel="stylesheet" href="~/css/register.css" />
 
-<h1>Register</h1>
+}
 
 <form action="/register-user" method="post">
-    <div class="container">
+    <div class="container" style="width: 700px;">
         <h1>Register</h1>
         <p>Please fill in this form to create an account.</p>
         <hr>

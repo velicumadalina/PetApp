@@ -1,46 +1,154 @@
 ﻿@model PetApp.Models.Animal
-@{
-    ViewData["Title"] = "Home page";
-}
+    <!--Section: Block Content-->
+<section class="mb-5" style="margin-top:75px;">
 
-<div class="text-center">
-</div>
-<section>
-    <div style="padding:0px 300px;" class="card detailed-view">
-        <br><br>
-        <div class="row">
-            <img class="" style="float: left" width="450" height="485"
-                 src="@Model.Image" />
-            <div class="col col-twothird" style="  padding-top: 87px;
-    padding-left: 60px;
-    width: 35%;">
-                <h2>@Model.Name</h2>
-                <p class="small grayed">
-                    @Model.Breed<span class="separator">|</span>
-                    @Model.Age<span class="separator">|</span>
-                    @Model.Gender
-                </p>
-                <h6>@Model.Description</h6>
-                <h4>About</h4>
-                <table style="width:100%">
-                    <tr>
-                        <td>Size:</td>
-                        <td>@Model.Size</td>
-                    </tr>
-                    <tr>
-                        <td>Coat length:</td>
-                        <td>@Model.Hair</td>
-                    </tr>
-                    <tr>
-                        <td>Characteristics:</td>
-                        <td>@String.Join(", ", Model.Characteristics)</td>
-                    </tr>
-                    <tr>
-                        <td>Gets along with:</td>
-                        <td>@String.Join(", ", Model.GetsAlongWith)</td>
-                    </tr>
-                </table>
+    <div class="row">
+        <div class="col-md-6 mb-4 mb-md-0">
+
+            <div id="mdb-lightbox-ui"></div>
+
+            <div class="mdb-lightbox">
+
+                <div class="row product-gallery mx-1">
+
+                    <div class="col-12 mb-0">
+                        <figure class="view overlay rounded z-depth-1 main-img" style="width: 400px;">
+                            <img src="~/Images/Animals/@Model.Image"
+                                 class="img-fluid z-depth-1" width="400">
+                        </figure>
+                        @*<figure class="view overlay rounded z-depth-1" style="visibility: hidden;">
+                                    <a href="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/12a.jpg"
+                                       data-size="710x823">
+                                        <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/12a.jpg"
+                                             class="img-fluid z-depth-1">
+                                    </a>
+                                </figure>
+                                <figure class="view overlay rounded z-depth-1" style="visibility: hidden;">
+                                    <a href="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/13a.jpg"
+                                       data-size="710x823">
+                                        <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/13a.jpg"
+                                             class="img-fluid z-depth-1">
+                                    </a>
+                                </figure>
+                                <figure class="view overlay rounded z-depth-1" style="visibility: hidden;">
+                                    <a href="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/14a.jpg"
+                                       data-size="710x823">
+                                        <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/14a.jpg"
+                                             class="img-fluid z-depth-1">
+                                    </a>
+                                </figure>
+                            </div>
+                            <div class="col-12">*@
+                        @*<div class="row">
+                                <div class="col-3">
+                                    <div class="view overlay rounded z-depth-1 gallery-item">
+                                        <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/12a.jpg"
+                                             class="img-fluid">
+                                        <div class="mask rgba-white-slight"></div>
+                                    </div>
+                                </div>
+                                <div class="col-3">
+                                    <div class="view overlay rounded z-depth-1 gallery-item">
+                                        <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/13a.jpg"
+                                             class="img-fluid">
+                                        <div class="mask rgba-white-slight"></div>
+                                    </div>
+                                </div>
+                                <div class="col-3">
+                                    <div class="view overlay rounded z-depth-1 gallery-item">
+                                        <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/14a.jpg"
+                                             class="img-fluid">
+                                        <div class="mask rgba-white-slight"></div>
+                                    </div>
+                                </div>
+                                <div class="col-3">
+                                    <div class="view overlay rounded z-depth-1 gallery-item">
+                                        <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/15a.jpg"
+                                             class="img-fluid">
+                                        <div class="mask rgba-white-slight"></div>
+                                    </div>
+                                </div>
+                            </div>*@
+                    </div>
+                </div>
+
             </div>
+
+        </div>
+        <div class="col-md-6">
+
+            <h3>@Model.Name</h3>
+
+            <p class="mb-2 text-muted text-uppercase small">@Model.Type</p>
+            <p>
+                <span class="mr-1">
+                    <strong>
+                        @Model.Breed<span class="separator">|</span>
+                        @Model.Age<span class="separator">|</span>
+                        @Model.Gender
+                    </strong>
+                </span>
+            </p>
+            <p class="pt-1">
+                @Model.Description
+            </p>
+            <p class="pt-1">
+                Size: @Model.Size
+            </p>
+            <p class="pt-1">
+                Coat Length: @Model.Hair
+            </p>
+            <p class="pt-1">
+                Characteristics: @String.Join(", ", Model.Characteristics)
+            </p>
+            <p class="pt-1">
+                Gets along with: @String.Join(", ", Model.GetsAlongWith)
+            </p>
+            <br />
+            <button type="button" class="btn btn-primary btn-md mr-1 mb-2">Adopt Me!</button>
         </div>
     </div>
+
 </section>
+<!--Section: Block Content-->
+@*<div class="text-center">
+    </div>
+    <section>
+        <div style="padding:0px 300px;" class="card detailed-view">
+            <br><br>
+            <div class="row">
+                <img class="" style="float: left" width="450" height="485"
+                     src="@Model.Image" />
+                <div class="col col-twothird" style="  padding-top: 87px;
+        padding-left: 60px;
+        width: 35%;">
+                    <h2>@Model.Name</h2>
+                    <p class="small grayed">
+                        @Model.Breed<span class="separator">|</span>
+                        @Model.Age<span class="separator">|</span>
+                        @Model.Gender
+                    </p>
+                    <h6>@Model.Description</h6>
+                    <h4>About</h4>
+                    <table style="width:100%">
+                        <tr>
+                            <td>Size:</td>
+                            <td>@Model.Size</td>
+                        </tr>
+                        <tr>
+                            <td>Coat length:</td>
+                            <td>@Model.Hair</td>
+                        </tr>
+                        <tr>
+                            <td>Characteristics:</td>
+                            <td>@String.Join(", ", Model.Characteristics)</td>
+                        </tr>
+                        <tr>
+                            <td>Gets along with:</td>
+                            <td>@String.Join(", ", Model.GetsAlongWith)</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>*@
