@@ -17,23 +17,23 @@
 //        {
 //            animals.Add(new Animal
 //            {
-//                Id = 1,
-//                ShelterId = "a",
-//                Name = "Elliot",
-//                Image = "https://www.strayrescue.org/media/k2/items/cache/elliot-4130-L.jpg",
-//                Breed = "Mixed",
-//                Gender = "Male",
-//                Characteristics = "shy",
-//                EnergyLevel = "High",
-//                Age = "Junior",
-//                Size = "small",
-//                Type = "Cat",
-//                Hair = "short",
-//                Description = "Elliot is a fun loving guy who enjoys playing with toys and getting cuddles.",
-//                FriendlyWithDogs = true,
-//                FriendlyWithCats = true,
-//                FriendlyWithKids = true,
-//                SpecialNeeds = false
+//                "Id" = 1,
+//                "ShelterId" = "a",
+//                "Name" = "Elliot",
+//                "Image" = "https://www.strayrescue.org/media/k2/items/cache/elliot-4130-L.jpg",
+//                "Breed" = "Mixed",
+//                "Gender" = "Male",
+//                "Characteristics" = "shy",
+//                "EnergyLevel" = "High",
+//                "Age" = "Junior",
+//                "Size" = "small",
+//                "Type" = "Cat",
+//                "Hair" = "short",
+//                "Description" = "Elliot is a fun loving guy who enjoys playing with toys and getting cuddles.",
+//                "FriendlyWithDogs" = true,
+//                "FriendlyWithCats" = true,
+//                "FriendlyWithKids" = true,
+//                "SpecialNeeds" = false
 //            });
 //            animals.Add(new Animal
 //            {

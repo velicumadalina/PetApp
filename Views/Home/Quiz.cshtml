@@ -3,8 +3,6 @@
 *@
 @{
 }
-<script src="~/js/quiz.js"></script>
-<script src="~/lib/jquery/dist/jquery.min.js"></script>
 @section css{
     <link rel="stylesheet" href="~/css/quiz.css" />
 }<!-- Check out https://github.com/thekristin/randomized-quiz-sets for details -->
@@ -81,15 +79,17 @@
                 <label for="test3"></label>
             </p>
         </div>
-        </div><div class="questions row" style="margin-left:40px">
-            <h3>Would you take care of a special needs animal?</h3>
-            <p style="margin-left: 25px; font-size: 2em;">
-                <input type="checkbox" id="test5" data-val="true" data-title="10" class="toggle" />
-                <label for="test5"></label>
-            </p>
-        </div>
+    </div><div class="questions row" style="margin-left:40px">
+        <h3>Would you take care of a special needs animal?</h3>
+        <p style="margin-left: 25px; font-size: 2em;">
+            <input type="checkbox" id="test5" data-val="true" data-title="10" class="toggle" />
+            <label for="test5"></label>
+        </p>
+    </div>
 
     <div id="subBtn" class="submit">Find my pet!</div>
 
 </div>
-</div>
+@section Scripts{
+    <script src="~/js/quiz.js"></script>
+}

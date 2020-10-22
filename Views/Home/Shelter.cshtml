@@ -17,7 +17,7 @@
                         <div class="prod mbr-gallery-item">
                             @if (animal.Image == null)
                             {
-                                <a href="/Animal/@animal.Id">
+                                <a href="/Animal/@int.Parse(@animal.Id.ToString())">
                                     <img src="~/Images/Animals/@animal.Image" /></a>
                             }
                             else

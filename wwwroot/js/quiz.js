@@ -52,7 +52,14 @@ $(document).ready(function () {
 
 
 $("#subBtn").click(function () {
-    let vals = {"Id": 1};
+    turnToObject();
+    sendData("/my-perfect-pet", turnToObject());
+    
+})
+
+function turnToObject()
+{
+    let vals = { "Id": 1 };
     let keyNames = ["Type", "Breed", "Age", "EnergyLevel", "Size", "Gender", "FriendlyWithDogs", "FriendlyWithCats", "FriendlyWithKids", "SpecialNeeds"]
     let selected = $(".clicked");
     for (let i = 0; i < keyNames.length; i++) {
@@ -60,21 +67,19 @@ $("#subBtn").click(function () {
             return $(this).data("title") == i + 1;
         })
         let divValues = []
-        for (val of divs)
-        {
+        for (val of divs) {
             divValues.push(val.dataset.val);
         }
         if (divValues.length < 1) {
             vals[keyNames[i]] = ["false"];
- }
+        }
         else {
             vals[keyNames[i]] = divValues;
-}
+        }
         console.log(vals);
     }
-    sendData("https://localhost:44335/my-perfect-pet", vals);
-    
-})
+    return vals;
+}
 
 function sendData(endpoint, data) {
     fetch(endpoint,
@@ -84,9 +89,9 @@ function sendData(endpoint, data) {
                 'Content-Type': 'application/json',
             },
             method: "POST",
-            body: data,
+            body: JSON.stringify(data),
         })
         .then(function (res) { console.log(res); window.location.href = "https://localhost:44335/my-perfect-pets"})
         .catch(function (res) { console.log(res) })
-
+    //$.post(endpoint, data).then(function (res) { console.log(res); })
 }

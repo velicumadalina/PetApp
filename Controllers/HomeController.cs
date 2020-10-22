@@ -22,10 +22,11 @@ namespace PetApp.Controllers
         private bool x;
 
         private readonly ILogger<HomeController> _logger;
-
+        private readonly string _apiPath;
         public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
+            _apiPath = "https://localhost:44306/";
         }
 
         public async Task<IActionResult> Index()
@@ -33,7 +34,7 @@ namespace PetApp.Controllers
             List<Shelter> shelterList = new List<Shelter>();
             using (var httpClient = new HttpClient())
             {
-                using (var response = await httpClient.GetAsync("https://localhost:44306/api/Shelter"))
+                using (var response = await httpClient.GetAsync(_apiPath + "api/Shelter"))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
                     shelterList = JsonConvert.DeserializeObject<List<Shelter>>(apiResponse);
@@ -66,7 +67,7 @@ namespace PetApp.Controllers
             List<Animal> animalsList = new List<Animal>();
             using (var httpClient = new HttpClient())
             {
-                using (var response = await httpClient.GetAsync("https://localhost:44306/Shelter/" + id + "/Animals"))
+                using (var response = await httpClient.GetAsync(_apiPath + "Shelter/"  + id + "/Animals"))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
                     animalsList = JsonConvert.DeserializeObject<List<Animal>>(apiResponse);
@@ -114,7 +115,7 @@ namespace PetApp.Controllers
             List<Animal> animals = new List<Animal>();
             using (var httpClient = new HttpClient())
             {
-                using (var response = await httpClient.GetAsync("https://localhost:44306/api/Animal"))
+                using (var response = await httpClient.GetAsync(_apiPath + "api/Animal"))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
                     animals = JsonConvert.DeserializeObject<List<Animal>>(apiResponse);
@@ -145,7 +146,7 @@ namespace PetApp.Controllers
                     animals = animals.Where(x => x.Type == type).ToList();
                 }
             }
-            if (filteringItem.Breed[0] != "true")
+            if (filteringItem.Breed[0] != "false")
             {
                     animals = animals.Where(x => x.Breed != "Mixed").ToList();
             }
@@ -190,20 +191,23 @@ namespace PetApp.Controllers
             {
                     animals = animals.Where(x => x.FriendlyWithDogs == true).ToList();
             }
+            if (filteringItem.SpecialNeeds[0] != "false")
+            {
+                animals = animals.Where(x => x.SpecialNeeds == true).ToList();
+            }
             filteredAnimals = animals;
-            x = true;
 
             return Ok(animals);
         }
 
 
         [Route("Animal/{id}")]
-        public async Task<IActionResult> Animal(string id)
+        public async Task<IActionResult> Animal(int id)
         {
             Animal animal;
             using (var httpClient = new HttpClient())
             {
-                using (var response = await httpClient.GetAsync("https://localhost:44306/api/Animal/" + id))
+                using (var response = await httpClient.GetAsync(_apiPath + "api/Animal/" + id))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
                     //var json = JObject.Parse(apiResponse);
