@@ -67,7 +67,7 @@ namespace PetApp.Controllers
             List<Animal> animalsList = new List<Animal>();
             using (var httpClient = new HttpClient())
             {
-                using (var response = await httpClient.GetAsync(_apiPath + "Shelter/"  + id + "/Animals"))
+                using (var response = await httpClient.GetAsync(_apiPath + "Shelters/"  + id + "/Animals"))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
                     animalsList = JsonConvert.DeserializeObject<List<Animal>>(apiResponse);
@@ -115,7 +115,7 @@ namespace PetApp.Controllers
             List<Animal> animals = new List<Animal>();
             using (var httpClient = new HttpClient())
             {
-                using (var response = await httpClient.GetAsync(_apiPath + "api/Animal"))
+                using (var response = await httpClient.GetAsync(_apiPath + "api/Animals"))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
                     animals = JsonConvert.DeserializeObject<List<Animal>>(apiResponse);
@@ -152,24 +152,49 @@ namespace PetApp.Controllers
             }
             if (filteringItem.Age[0] != "null")
             {
+                var animalsByAge = new List<Animal>();
+                var filteredByAge = new List<Animal>();
                 foreach (var age in filteringItem.Age)
                 {
-                    animals = animals.Where(x => x.Age == age).ToList();
+                    animalsByAge = animals.Where(x => x.Age == age).ToList();
+                    
+                    foreach (var animal in animalsByAge)
+                    {
+                        filteredByAge.Add(animal);
+                    }
                 }
+                animals = filteredByAge;
+                
             }
             if (filteringItem.EnergyLevel[0] != "null")
             {
+                var animalsByEnergy = new List<Animal>();
+                var filteredByEnergy = new List<Animal>();
                 foreach (var energy in filteringItem.EnergyLevel)
                 {
-                    animals = animals.Where(x => x.EnergyLevel == energy).ToList();
+                    animalsByEnergy = animals.Where(x => x.EnergyLevel == energy).ToList();
+
+                    foreach (var animal in animalsByEnergy)
+                    {
+                        filteredByEnergy.Add(animal);
+                    }
                 }
+                animals = filteredByEnergy;
             }
             if (filteringItem.Size[0] != "null")
             {
+                var animalsBySize = new List<Animal>();
+                var filteredBySize = new List<Animal>();
                 foreach (var size in filteringItem.Size)
                 {
-                    animals = animals.Where(x => x.Size == size).ToList();
+                    animalsBySize = animals.Where(x => x.Size == size).ToList();
+
+                    foreach (var animal in animalsBySize)
+                    {
+                        filteredBySize.Add(animal);
+                    }
                 }
+                animals = filteredBySize;
             }
             if (filteringItem.Gender[0] != "null")
             {
@@ -207,7 +232,7 @@ namespace PetApp.Controllers
             Animal animal;
             using (var httpClient = new HttpClient())
             {
-                using (var response = await httpClient.GetAsync(_apiPath + "api/Animal/" + id))
+                using (var response = await httpClient.GetAsync(_apiPath + "api/Animals/" + id))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
                     //var json = JObject.Parse(apiResponse);
