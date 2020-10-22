@@ -43,8 +43,7 @@ namespace PetApp.Controllers
             return View(shelterList);
         }
 
-
-
+        [Microsoft.AspNetCore.Authorization.Authorize]
         public IActionResult Privacy()
         {
             return View();
