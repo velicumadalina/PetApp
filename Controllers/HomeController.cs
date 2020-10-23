@@ -237,7 +237,6 @@ namespace PetApp.Controllers
                 using (var response = await httpClient.GetAsync(_apiPath + "api/Animals/" + id))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
-                    //var json = JObject.Parse(apiResponse);
                     animal = JsonConvert.DeserializeObject<Animal>(apiResponse);
                     Dictionary<string, bool> _getsAlongWith = new Dictionary<string, bool>()
                     {

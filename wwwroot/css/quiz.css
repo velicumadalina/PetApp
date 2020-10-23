@@ -32,7 +32,7 @@
 body {
     font-family: "Abel", sans-serif;
     font-size: medium;
-    color: #75654d;
+    color: #ff4500cf;
     text-align: center;
     background-color: #f9f3e8;
 }
@@ -95,7 +95,7 @@ h3 {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #122e4e;
+    background-color: #ff4500cf;
 }
 
 .answer {
@@ -155,16 +155,16 @@ h3 {
 
 /* Set colors */
 .answer {
-    background-color: #76C6C5; /* default color for quiz answers before clicking */
+    background-color: #ff45005e;
 }
 
     .answer:hover {
-        background-color: #d1edf3;
+        background-color: orangered;
     }
 
     .answer.disable:hover,
     .disable.wrong:hover {
-        background-color: #d3c5ac; /* keep same as default color to preven color change if question has already been answered correctly */
+        background-color: #ff4500a8; /* keep same as default color to preven color change if question has already been answered correctly */
     }
 
 /*.clicked.answer,
@@ -175,7 +175,7 @@ h3 {
 
 .clicked.answer,
 .disable.answer:hover {
-    background-color: #678fa2;  
+    background-color: #ff5a1df0;
     color: white;
 }
 /* Winner Modal */
@@ -222,12 +222,13 @@ input.toggle + label {
   background: #C1C1C1;
   height: 1em;
   line-height: 1em;
-  width: 2em;
+  width: 55px;
   border-radius: 0.2em;
   padding: 0;
   -webkit-transition: all 250ms linear;
   transition: all 250ms linear;
   cursor: pointer;
+  border-radius: 30px;
 }
 input.toggle + label:before {
   position: relative;
@@ -236,36 +237,35 @@ input.toggle + label:before {
   width: 1.1em;
   height: 1.1em;
   text-align: center;
-  color: #C1C1C1;
+  color: #ff4500cf;
   margin-left: 1.25em;
   top: -1px;
+  border-radius: 30px;
 }
 input.toggle + label:after {
   display: inline-block;
   box-sizing: border-box;
   content: "";
-  border: solid 1px #b55;
+
   border-radius: 0.2em;
-  background: #C1C1C1;
+  background: #ffffff;
   -webkit-transition: all 250ms linear;
   transition: all 250ms linear;
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 1em;
-  height: 1em;
+  top: 1px;
+  left: 2px;
+  width: 28px;
+  height: 28px;
+  border-radius: 30px;
 }
     input.toggle:checked + label {
-        background-color: #76C6C5;
-       
+        background-color: #ff5a1df0;
     }
 input.toggle:checked +label:before {
-  content: "✔";
   margin-left: 0.075em;
 }
 input.toggle:checked +label:after {
   left: calc(100% - 1em);
-  border-color: #7eb302;
 }
 input.toggle[disabled] + label,
 input.toggle[readonly] + label {
