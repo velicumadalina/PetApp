@@ -10,7 +10,6 @@ using WebApi_PetApp.Models;
 
 namespace Api_PetApp.Controllers
 {
-    //[Route("api/[controller]")]
     [ApiController]
     public class AnimalController : ControllerBase
     {
@@ -22,15 +21,18 @@ namespace Api_PetApp.Controllers
         }
 
 
-
-
-        // GET: api/Animal
+        /// <summary>
+        /// Gets all animals.
+        /// </summary>
+        // GET: api/Animals
         [Route("/api/Animals")]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Animal>>> GetAnimals()
         {
             return await _context.Animal.ToListAsync();
         }
+
+
         /// <summary>
         /// Gets an specific animal.
         /// </summary>
@@ -44,11 +46,12 @@ namespace Api_PetApp.Controllers
             return animal.Where(x => x.Id == id.ToString()).First();
         }
 
+
         /// <summary>
         /// Gets an specific animal.
         /// </summary>
         /// <param name="shelterId"></param>
-        //GET: api/Shelter/5/Animals
+        //GET: api/Shelters/5/Animals
        [Route("/Shelters/{shelterId}/Animals")]
        [HttpGet]
         public ActionResult<List<Animal>> GetShelterAnimals(string shelterId)
@@ -58,16 +61,14 @@ namespace Api_PetApp.Controllers
         }
 
 
-
-        ///// <summary>
-        ///// Edits an specific animal.
-        ///// </summary>
-        ///// <param name="id"></param>
-        //// PUT: api/Animal/5
-        //// To protect from overposting attacks, enable the specific properties you want to bind to, for
-        //// more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
+        /// <summary>
+        /// Edits an specific animal.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="animal"></param>
+        /// PUT: api/Animals/5
         [Route("/api/Animals/{id}")]
-        [HttpPut("{id}")]
+        [HttpPut]
         public async Task<IActionResult> PutAnimal(string id, Animal animal)
         {
             if (id != animal.Id)
@@ -96,12 +97,11 @@ namespace Api_PetApp.Controllers
             return NoContent();
         }
 
+
         /// <summary>
         /// Creates a new animal.
         /// </summary>
-        // POST: api/Animal
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for
-        // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
+        // POST: api/Animals
         [Route("/api/Animals")]
         [HttpPost]
         public async Task<ActionResult<Animal>> PostAnimal(Animal animal)
@@ -126,11 +126,12 @@ namespace Api_PetApp.Controllers
             return Ok();
         }
 
+
         /// <summary>
         /// Deletes an specific animal.
         /// </summary>
         /// <param name="id"></param>
-        // DELETE: api/Animal/5
+        // DELETE: api/Animals/5
         [Route("/api/Animals/{id}")]
         [HttpDelete]
         public async Task<ActionResult<Animal>> DeleteAnimal(string id)

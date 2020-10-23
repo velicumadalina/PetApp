@@ -21,6 +21,7 @@ namespace Api_PetApp.Controllers
             _context = context;
         }
 
+
         /// <summary>
         /// Gets all shelters.
         /// </summary>
@@ -30,6 +31,7 @@ namespace Api_PetApp.Controllers
         {
             return await _context.Shelter.ToListAsync();
         }
+
 
         /// <summary>
         /// Gets an specific shelter.
@@ -49,13 +51,13 @@ namespace Api_PetApp.Controllers
             return shelter;
         }
 
+
         /// <summary>
         /// Edits an specific shelter.
         /// </summary>
         /// <param name="id"></param>
+        /// <param name="shelter"></param>
         // PUT: api/Shelter/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for
-        // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPut("{id}")]
         public async Task<IActionResult> PutShelter(string id, Shelter shelter)
         {
@@ -85,12 +87,11 @@ namespace Api_PetApp.Controllers
             return NoContent();
         }
 
+
         /// <summary>
         /// Creates a new shelter.
         /// </summary>
         // POST: api/Shelter
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for
-        // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPost]
         public async Task<ActionResult<Shelter>> PostShelter(Shelter shelter)
         {
@@ -113,6 +114,7 @@ namespace Api_PetApp.Controllers
             return Ok();
         }
 
+
         /// <summary>
         /// Deletes an specific shelter.
         /// </summary>
@@ -132,6 +134,7 @@ namespace Api_PetApp.Controllers
 
             return shelter;
         }
+
 
         private bool ShelterExists(string id)
         {
