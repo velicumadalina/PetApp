@@ -13,9 +13,9 @@ namespace Api_PetApp.Controllers
     [ApiController]
     public class AnimalController : ControllerBase
     {
-        private readonly Api_PetAppAnimalsContext _context;
+        private readonly PetAppContext _context;
 
-        public AnimalController(Api_PetAppAnimalsContext context)
+        public AnimalController(PetAppContext context)
         {
             _context = context;
         }
@@ -43,7 +43,7 @@ namespace Api_PetApp.Controllers
         public async Task<ActionResult<Animal>> GetAnimal(int id)
         {
             var animal = await _context.Animal.ToListAsync();
-            return animal.Where(x => x.Id == id.ToString()).First();
+            return animal.Where(x => x.Id == id).First();
         }
 
 
@@ -54,7 +54,7 @@ namespace Api_PetApp.Controllers
         //GET: api/Shelters/5/Animals
        [Route("/Shelters/{shelterId}/Animals")]
        [HttpGet]
-        public ActionResult<List<Animal>> GetShelterAnimals(string shelterId)
+        public ActionResult<List<Animal>> GetShelterAnimals(int shelterId)
         {
             var animals = _context.Animal.Where(x => x.ShelterId == shelterId).ToList();
             return animals;
@@ -69,7 +69,7 @@ namespace Api_PetApp.Controllers
         /// PUT: api/Animals/5
         [Route("/api/Animals/{id}")]
         [HttpPut]
-        public async Task<IActionResult> PutAnimal(string id, Animal animal)
+        public async Task<IActionResult> PutAnimal(int id, Animal animal)
         {
             if (id != animal.Id)
             {
@@ -134,7 +134,7 @@ namespace Api_PetApp.Controllers
         // DELETE: api/Animals/5
         [Route("/api/Animals/{id}")]
         [HttpDelete]
-        public async Task<ActionResult<Animal>> DeleteAnimal(string id)
+        public async Task<ActionResult<Animal>> DeleteAnimal(int id)
         {
             var animal = await _context.Animal.FindAsync(id);
             if (animal == null)
@@ -148,7 +148,7 @@ namespace Api_PetApp.Controllers
             return animal;
         }
 
-        private bool AnimalExists(string id)
+        private bool AnimalExists(int id)
         {
             return _context.Animal.Any(e => e.Id == id);
         }

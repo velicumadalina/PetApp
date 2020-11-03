@@ -14,9 +14,9 @@ namespace Api_PetApp.Controllers
     [ApiController]
     public class ShelterController : ControllerBase
     {
-        private readonly Api_PetAppShelterContext _context;
+        private readonly PetAppContext _context;
 
-        public ShelterController(Api_PetAppShelterContext context)
+        public ShelterController(PetAppContext context)
         {
             _context = context;
         }
@@ -39,7 +39,7 @@ namespace Api_PetApp.Controllers
         /// <param name="id"></param>
         // GET: api/Shelter/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Shelter>> GetShelter(string id)
+        public async Task<ActionResult<Shelter>> GetShelter(int id)
         {
             var shelter = await _context.Shelter.FindAsync(id);
 
@@ -59,7 +59,7 @@ namespace Api_PetApp.Controllers
         /// <param name="shelter"></param>
         // PUT: api/Shelter/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutShelter(string id, Shelter shelter)
+        public async Task<IActionResult> PutShelter(int id, Shelter shelter)
         {
             if (id != shelter.Id)
             {
@@ -136,7 +136,7 @@ namespace Api_PetApp.Controllers
         }
 
 
-        private bool ShelterExists(string id)
+        private bool ShelterExists(int id)
         {
             return _context.Shelter.Any(e => e.Id == id);
         }

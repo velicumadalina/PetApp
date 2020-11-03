@@ -5,10 +5,10 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace Api_PetApp.Migrations.Api_PetAppAnimals
+namespace Api_PetApp.Migrations
 {
-    [DbContext(typeof(Api_PetAppAnimalsContext))]
-    partial class Api_PetAppAnimalsContextModelSnapshot : ModelSnapshot
+    [DbContext(typeof(PetAppContext))]
+    partial class PetAppContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
@@ -20,8 +20,10 @@ namespace Api_PetApp.Migrations.Api_PetAppAnimals
 
             modelBuilder.Entity("WebApi_PetApp.Models.Animal", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Age")
                         .HasColumnType("nvarchar(max)");
@@ -62,8 +64,8 @@ namespace Api_PetApp.Migrations.Api_PetAppAnimals
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("ShelterId")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("ShelterId")
+                        .HasColumnType("int");
 
                     b.Property<string>("Size")
                         .HasColumnType("nvarchar(max)");
@@ -83,13 +85,12 @@ namespace Api_PetApp.Migrations.Api_PetAppAnimals
 
             modelBuilder.Entity("WebApi_PetApp.Models.Shelter", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Capacity")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("City")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Email")
@@ -101,9 +102,6 @@ namespace Api_PetApp.Migrations.Api_PetAppAnimals
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("URL")
-                        .HasColumnType("nvarchar(max)");
-
                     b.HasKey("Id");
 
                     b.ToTable("Shelter");
@@ -112,8 +110,10 @@ namespace Api_PetApp.Migrations.Api_PetAppAnimals
             modelBuilder.Entity("WebApi_PetApp.Models.Animal", b =>
                 {
                     b.HasOne("WebApi_PetApp.Models.Shelter", "Shelter")
-                        .WithMany()
-                        .HasForeignKey("ShelterId");
+                        .WithMany("Animals")
+                        .HasForeignKey("ShelterId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

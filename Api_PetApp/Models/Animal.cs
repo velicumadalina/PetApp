@@ -9,9 +9,9 @@ namespace WebApi_PetApp.Models
 {
     public class Animal
     {
-        public string Id { get; set; }
+        public int Id { get; set; }
         [ForeignKey("Shelter")]
-        public string ShelterId { get; set; }
+        public int ShelterId { get; set; }
 
         public Shelter Shelter { get; set; }
         public string Name { get; set; }

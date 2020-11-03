@@ -31,9 +31,8 @@ namespace Api_PetApp
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-
-            services.AddDbContext<Api_PetAppShelterContext>(options =>
-                    options.UseSqlServer(Configuration.GetConnectionString("Api_PetAppShelterContext")));
+            services.AddDbContext<PetAppContext>(options =>
+                    options.UseSqlServer(Configuration.GetConnectionString("PetAppContext")));
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo
@@ -47,8 +46,7 @@ namespace Api_PetApp
                 c.IncludeXmlComments(xmlPath);
             });
 
-            services.AddDbContext<Api_PetAppAnimalsContext>(options =>
-                    options.UseSqlServer(Configuration.GetConnectionString("Api_PetAppAnimalsContext")));
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -1,17 +1,34 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace Api_PetApp.Migrations.Api_PetAppAnimals
+namespace Api_PetApp.Migrations
 {
-    public partial class AddAnimal : Migration
+    public partial class InitialCreate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
+                name: "Shelter",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(nullable: true),
+                    Image = table.Column<string>(nullable: true),
+                    Email = table.Column<string>(nullable: true),
+                    Capacity = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Shelter", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Animal",
                 columns: table => new
                 {
-                    Id = table.Column<string>(nullable: false),
-                    ShelterId = table.Column<string>(nullable: true),
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ShelterId = table.Column<int>(nullable: false),
                     Name = table.Column<string>(nullable: true),
                     Image = table.Column<string>(nullable: true),
                     Breed = table.Column<string>(nullable: true),
@@ -37,7 +54,7 @@ namespace Api_PetApp.Migrations.Api_PetAppAnimals
                         column: x => x.ShelterId,
                         principalTable: "Shelter",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
