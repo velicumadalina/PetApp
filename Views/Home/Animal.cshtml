@@ -4,7 +4,10 @@
 
 @inject SignInManager<PetAppUser> SignInManager
 @inject UserManager<PetAppUser> UserManager
-    <!--Section: Block Content-->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+<!--Section: Block Content-->
 <section class="mb-5" style="margin-top:75px;">
 
     <div class="row">
@@ -110,7 +113,16 @@
                 Gets along with: @String.Join(", ", Model.GetsAlongWith)
             </p>
             <br />
-            <button type="button" id="adoptPet" onclick="showDiv()" class="btn btn-primary btn-md mr-1 mb-2">Adopt Me!</button>
+            <button type="button" id="adoptPet" onclick="showDiv()" class="btn btn-primary btn-md mr-1 mb-2" style="margin-right:30px">Adopt Me!</button>
+            <form id="contact-form" name="contact-form" action="mail.php" method="POST">
+                <input type="hidden" value="@Model.Id" name="animalId" id="animalIdFav" />
+                <input type="hidden" value="@Model.Name" name="animalName" id="animalNameFav" />
+                <input type="hidden" value="@UserManager.GetUserId(User)" name="userId" id="userIdFav" />
+                <input type="hidden" value="@Model.Image" name="animalImage" id="animalImageFav" />
+                <button type="button" class="btn" onclick="sendFavorite()">
+                    <i class="fa fa-heart">&nbsp;&nbsp;Favorite </i>
+                </button>
+            </form>
             <div id="adoptionForm" style="display:none">
                 <section class="mb-4">
                     <h2 class="h1-responsive font-weight-bold text-center my-4">Adoption Details</h2>
@@ -185,45 +197,5 @@
 </section>
 @section Scripts{
     <script src="~/js/adopt.js"></script>
+    <script src="~/js/favorite.js"></script>
 }
-@*<div class="text-center">
-    </div>
-    <section>
-        <div style="padding:0px 300px;" class="card detailed-view">
-            <br><br>
-            <div class="row">
-                <img class="" style="float: left" width="450" height="485"
-                     src="@Model.Image" />
-                <div class="col col-twothird" style="  padding-top: 87px;
-        padding-left: 60px;
-        width: 35%;">
-                    <h2>@Model.Name</h2>
-                    <p class="small grayed">
-                        @Model.Breed<span class="separator">|</span>
-                        @Model.Age<span class="separator">|</span>
-                        @Model.Gender
-                    </p>
-                    <h6>@Model.Description</h6>
-                    <h4>About</h4>
-                    <table style="width:100%">
-                        <tr>
-                            <td>Size:</td>
-                            <td>@Model.Size</td>
-                        </tr>
-                        <tr>
-                            <td>Coat length:</td>
-                            <td>@Model.Hair</td>
-                        </tr>
-                        <tr>
-                            <td>Characteristics:</td>
-                            <td>@String.Join(", ", Model.Characteristics)</td>
-                        </tr>
-                        <tr>
-                            <td>Gets along with:</td>
-                            <td>@String.Join(", ", Model.GetsAlongWith)</td>
-                        </tr>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </section>*@

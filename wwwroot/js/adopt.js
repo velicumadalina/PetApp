@@ -84,6 +84,6 @@ function sendData(endpoint, data) {
             method: "POST",
             body: JSON.stringify(data)
         })
-        .then(function (res) { console.log(res); window.location.href = "https://localhost:44335/my-perfect-pets" })
+        .then(function (res) { console.log(res); window.location.href = "https://localhost:44335/requests" })
         .catch(function (res) { console.log(res) })
 }

@@ -42,17 +42,17 @@ namespace PetApp.Controllers
         }
 
         [Route("/favorites")]
-        public async Task<IActionResult> FavoritePets()
+        public async Task<IActionResult> Favorites()
         {
-            var requests = new List<AdoptionRequest>();
+            var favorites = new List<FavoriteAnimal>();
             try
             {
-                requests = await _context.adoptionRequests.Where(x => x.UserId == int.Parse(_userManager.GetUserId(User))).ToListAsync();
+                favorites = await _context.Favorites.Where(x => x.UserId == int.Parse(_userManager.GetUserId(User))).ToListAsync();
             }
             catch
             {
             }
-            return View(requests);
+            return View(favorites);
         }
 
         // GET: AdoptionRequests/Details/5
@@ -85,7 +85,7 @@ namespace PetApp.Controllers
         [Route("/adopt-pet")]
         [Consumes("application/json")]
         [HttpPost]
-        public async Task<ActionResult<AdoptionRequest>> PostAnimal([FromBody] AdoptionRequest adoptionRequest) 
+        public async Task<ActionResult<AdoptionRequest>> AddAdoptionRequest([FromBody] AdoptionRequest adoptionRequest) 
         {
             _context.adoptionRequests.Add(adoptionRequest);
             try
@@ -95,6 +95,31 @@ namespace PetApp.Controllers
             catch (DbUpdateException)
             {
                 if (AdoptionRequestExists(adoptionRequest.Id))
+                {
+                    return Conflict();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return Ok();
+        }
+
+        [Route("/favorite-pet")]
+        [Consumes("application/json")]
+        [HttpPost]
+        public async Task<ActionResult<AdoptionRequest>> AddFavoritePet([FromBody] FavoriteAnimal favorite)
+        {
+            _context.Favorites.Add(favorite);
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateException)
+            {
+                if (FavoriteAnimalExists(favorite.Id))
                 {
                     return Conflict();
                 }
@@ -191,6 +216,11 @@ namespace PetApp.Controllers
         private bool AdoptionRequestExists(int id)
         {
             return _context.adoptionRequests.Any(e => e.Id == id);
+        }
+
+        private bool FavoriteAnimalExists(int id)
+        {
+            return _context.Favorites.Any(e => e.Id == id);
         }
     }
 }

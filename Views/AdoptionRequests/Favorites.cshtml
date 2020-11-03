@@ -1,4 +1,4 @@
-﻿@model IEnumerable<PetApp.Models.AdoptionRequest>
+﻿@model IEnumerable<PetApp.Models.FavoriteAnimal>
 @*@model IEnumerable<PetApp.Models.FavoriteAnimal>*@
 
 @{
@@ -8,22 +8,23 @@
 
 @foreach (var req in Model)
 {
-    <div class="card" style="margin:15px">
+    <div class="card" style="margin: 15px;width: 700px;">
         <div class="panel-body">
             <div class="row">
                 <div class="col-xs-2">
-                    <img class="img-responsive" src="~/Images/Animals/@req.AnimalImage" style="margin-left:25px;margin-right:75px;" height="100" width="150" alt="Poza Cu Animalul">
+                    <img class="img-responsive"  src="~/Images/Animals/@req.AnimalImage" style="margin-left:25px;margin-right:25px;" height="100" width="150">
                 </div>
                 <div class="col-md-4" style="padding-top:40px">
-                    <h5 class="product-name">Numele Animalului</h5>
+                    <h5 class="product-name">@req.AnimalName</h5>
                 </div>
                 <div class="col-md-4 text-right" style="padding-top:40px">
                     <div class="col-md-6 text-right">
-                        <h6>Buton catre animal <span class="text-muted"></span></h6>
+                        <h6><button class="btn"><a href="/Animal/@req.Id"> Details </a></button> <span class="text-muted"></span></h6>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+   
 }
 
