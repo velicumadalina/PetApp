@@ -13,5 +13,6 @@ namespace PetApp.Data
         public PetAppDbContext(DbContextOptions<PetAppDbContext> options) : base(options)
         {
         }
+        public DbSet<AdoptionRequest> adoptionRequests { get; set; }
     }
 }

@@ -10,6 +10,8 @@
 	<ItemGroup>
 	  <Compile Remove="Migrations\20201103113825_initial-create.cs" />
 	  <Compile Remove="Migrations\20201103113825_initial-create.Designer.cs" />
+	  <Compile Remove="Migrations\20201103122110_Add-AdoptionRequests.cs" />
+	  <Compile Remove="Migrations\20201103122110_Add-AdoptionRequests.Designer.cs" />
 	</ItemGroup>
 
   <ItemGroup>
@@ -27,10 +29,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\PetApp.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Migrations\" />
   </ItemGroup>
 
 
