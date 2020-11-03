@@ -1,0 +1,83 @@
+﻿@{
+    Layout = "/Views/Shared/_Layout.cshtml";
+}
+<div class="container-fluid mt--7">
+    <div class="row">
+        <div class="col-xl-3 order-xl-2">
+            <div class="card card-profile shadow" style="width:300px; height:570px">
+                <div class="row ">
+                    <div class="col-lg-3 order-lg-2">
+                        <div class="card-profile-image">
+                            <a href="#">
+                                <img src="https://demos.creative-tim.com/argon-dashboard/assets/img/theme/team-4.jpg" width="200" heigth="200" style="margin:50px" class="rounded-circle">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body pt-0 pt-md-4">
+                    <div class="row">
+                        <div class="col">
+                                <div class="row">
+                                    <p class="col-md-4">&nbsp;&nbsp;&nbsp;&nbsp;nr</p>
+                                    <p class="col-md-4">&nbsp;&nbsp;&nbsp;&nbsp;nr</p>
+                                    <p class="col-md-4">&nbsp;&nbsp;&nbsp;&nbsp;nr</p>
+                                </div>
+                                <div class="row">
+                                    <p class="col-md-4">Adopted</p>
+                                    <p class="col-md-4">Pending</p>
+                                    <p class="col-md-4">Favorites</p>
+                                </div>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="text-center">
+                        <h4>
+                            Username
+                        </h4>
+
+                    </div>
+                    <div class="text-md-center">
+                        <h5>
+                            First Last
+                        </h5>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-9 order-xl-1">
+            <div class="row">
+                <div class="card">
+                    <div class="card-header">
+                        <ul class="nav nav-tabs card-header-tabs">
+                            <li class="nav-item" style="margin-right:50px;">
+                                <a class="nav-link" href="/profile">Your Information</a>
+                            </li>
+                            <li class="nav-item" style="margin-right:50px;">
+                                <a class="nav-link" href="/requests">Adoption Requests</a>
+                            </li>
+                            <li class="nav-item" style="margin-right:50px;">
+                                <a class="nav-link" href="/favorites">Your Favorite Pets</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="card-content">
+                        <div class="row">
+                            <div class="col-md-12">
+                                @RenderBody()
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@section Scripts
+{
+    @RenderSection("Scripts", required: false)
+
+}

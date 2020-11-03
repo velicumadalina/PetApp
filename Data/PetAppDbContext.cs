@@ -14,5 +14,6 @@ namespace PetApp.Data
         {
         }
         public DbSet<AdoptionRequest> adoptionRequests { get; set; }
+        //public DbSet<PetAppUser> Users { get; set; }
     }
 }

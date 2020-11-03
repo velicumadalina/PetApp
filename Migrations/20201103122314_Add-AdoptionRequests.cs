@@ -14,7 +14,7 @@ namespace PetApp.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     AnimalId = table.Column<int>(nullable: false),
                     ShelterId = table.Column<int>(nullable: false),
-                    UserId = table.Column<int>(nullable: false),
+                    UserId = table.Column<string>(nullable: false),
                     UserName = table.Column<string>(nullable: true),
                     PhoneNumber = table.Column<string>(nullable: true),
                     Email = table.Column<string>(nullable: true),

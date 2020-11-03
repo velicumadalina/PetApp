@@ -39,7 +39,7 @@ namespace WebApplication1
             services.ConfigureApplicationCookie(config =>
             {
                 config.Cookie.Name = "Identity.Cookie";
-                config.LoginPath = "/login";
+                config.LoginPath = "/login-user";
             });
 
         }

@@ -1,4 +1,9 @@
 ﻿@model PetApp.Models.Animal
+@using Microsoft.AspNetCore.Identity
+@using PetApp.Models
+
+@inject SignInManager<PetAppUser> SignInManager
+@inject UserManager<PetAppUser> UserManager
     <!--Section: Block Content-->
 <section class="mb-5" style="margin-top:75px;">
 
@@ -105,12 +110,82 @@
                 Gets along with: @String.Join(", ", Model.GetsAlongWith)
             </p>
             <br />
-            <button type="button" class="btn btn-primary btn-md mr-1 mb-2">Adopt Me!</button>
+            <button type="button" id="adoptPet" onclick="showDiv()" class="btn btn-primary btn-md mr-1 mb-2">Adopt Me!</button>
+            <div id="adoptionForm" style="display:none">
+                <section class="mb-4">
+                    <h2 class="h1-responsive font-weight-bold text-center my-4">Adoption Details</h2>
+                    <div class="row">
+                        <div class="col-md-10 mb-md-0 mb-5">
+                            <form id="contact-form" name="contact-form" action="mail.php" method="POST">
+                                <input type="hidden" value="@Model.Id" name="animalId" id="animalId" />
+                                <input type="hidden" value="@Model.Name" name="animalName" id="animalName" />
+                                <input type="hidden" value="@UserManager.GetUserId(User)" name="userId" id="userId" />
+                                <input type="hidden" value="@User.Identity.Name" name="userName" id="userName" />
+                                <input type="hidden" value="@Model.ShelterId" name="shelterId" id="shelterId" />
+                                <input type="hidden" value="@Model.Image" name="animalImage" id="animalImage" />
+                                <input type="hidden" value="Pending" name="status" id="status" />
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="md-form mb-0">
+                                            <label for="fname" class="">First Name</label>
+                                            <input type="text" id="fname" name="fname" class="form-control">
+
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="md-form mb-0">
+                                            <label for="lname" class="">Last Name</label>
+                                            <input type="text" id="lname" name="lname" class="form-control">
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-8">
+                                        <div class="md-form mb-0">
+                                            <label for="phone" class="">Your phone number</label>
+                                            <input type="text" id="phone" name="phone" class="form-control">
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="md-form mb-0">
+                                            <label for="email" class="">Your email</label>
+                                            <input type="text" id="email" name="email" class="form-control">
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="md-form">
+                                            <label for="message">Your message</label>
+                                            <textarea type="text" id="message" name="message" rows="2" class="form-control md-textarea"></textarea>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </form>
+                            <div class="text-center text-md-left">
+                                <a class="btn btn-primary" onclick="formAction()">Send</a>
+                            </div>
+                            <div class="status"></div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
         </div>
     </div>
 
 </section>
-<!--Section: Block Content-->
+@section Scripts{
+    <script src="~/js/adopt.js"></script>
+}
 @*<div class="text-center">
     </div>
     <section>

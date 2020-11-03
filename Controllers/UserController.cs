@@ -60,6 +60,12 @@ namespace PetApp.Controllers
             return View();
         }
 
+        [Route("/profile")]
+        public IActionResult Profile()
+        {
+            return View();
+        }
+
         [Route("/login-user")]
         public async Task<IActionResult> Login(string username, string password)
         {

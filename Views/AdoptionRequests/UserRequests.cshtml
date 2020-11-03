@@ -1,0 +1,26 @@
+﻿@model IEnumerable<PetApp.Models.AdoptionRequest>
+@{
+    ViewData["Title"] = "UserRequests";
+    Layout = "~/Views/AdoptionRequests/_ProfileLayout.cshtml"; 
+}
+    @foreach (var req in Model)
+    {
+        <div class="card" style="margin: 15px;width: 700px;">
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-xs-2">
+                        <img class="img-responsive" src="~/Images/Animals/@req.AnimalImage" style="margin-left:25px;margin-right:25px;" height="100" width="150">
+                    </div>
+                    <div class="col-md-4" style="padding-top:40px">
+                        <h5 class="product-name">@req.AnimalName</h5>
+                    </div>
+                    <div class="col-md-4 text-right" style="padding-top:40px">
+                        <div class="col-md-6 text-right">
+                            <h6>@req.AdoptionStatus <span class="text-muted"></span></h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    
