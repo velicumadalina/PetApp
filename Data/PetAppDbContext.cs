@@ -15,5 +15,6 @@ namespace PetApp.Data
         }
         public DbSet<AdoptionRequest> adoptionRequests { get; set; }
         public DbSet<FavoriteAnimal> Favorites { get; set; }
+
     }
 }

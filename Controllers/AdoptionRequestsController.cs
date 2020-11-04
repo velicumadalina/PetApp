@@ -9,6 +9,8 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using PetApp.Data;
 using PetApp.Models;
+using EmailHelper;
+using System.Net.Mail;
 
 namespace PetApp.Controllers
 {
@@ -35,7 +37,7 @@ namespace PetApp.Controllers
             {
                 requests = await _context.adoptionRequests.Where(x => x.UserId == int.Parse(_userManager.GetUserId(User))).ToListAsync();
             }
-            catch 
+            catch
             {
             }
             return View(requests);
@@ -85,11 +87,15 @@ namespace PetApp.Controllers
         [Route("/adopt-pet")]
         [Consumes("application/json")]
         [HttpPost]
-        public async Task<ActionResult<AdoptionRequest>> AddAdoptionRequest([FromBody] AdoptionRequest adoptionRequest) 
+        public async Task<ActionResult<AdoptionRequest>> AddAdoptionRequest([FromBody] AdoptionRequest adoptionRequest)
         {
             _context.adoptionRequests.Add(adoptionRequest);
             try
             {
+                EmailHelper.EmailHelper helper = new EmailHelper.EmailHelper();
+
+                helper.sendEmail(new MailAddress("pet.application.1@gmail.com"), "pet.application.1@gmail.com", "Pet Adoption", adoptionRequest.AdoptionMessasge);
+
                 await _context.SaveChangesAsync();
             }
             catch (DbUpdateException)
