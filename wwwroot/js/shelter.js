@@ -22,9 +22,10 @@ function sendData(endpoint, data) {
                 'Content-Type': 'application/json',
             },
             method: "POST",
-            body: JSON.stringify(data)
+            body: JSON.stringify(data),
+            mode: "no-cors"
         })
-        .then(function (res) { console.log(res); window.location.href = "https://localhost:44335/" })
+        .then(function (res) { console.log(res) })
         .catch(function (res) { console.log(res) })
 }
 

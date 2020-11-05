@@ -94,7 +94,7 @@ namespace Api_PetApp.Controllers
         /// </summary>
         // POST: api/Shelter
         [HttpPost]
-        public async Task<ActionResult<Shelter>> PostShelter(Shelter shelter)
+        public async Task<ActionResult<Shelter>> PostShelter([FromBody]Shelter shelter)
         {
             _context.Shelter.Add(shelter);
             try
