@@ -63,7 +63,7 @@ namespace PetApp.Controllers
 
 
         [Route("Shelter/{id}")]
-        public async Task<IActionResult> Shelter(string id)
+        public async Task<IActionResult> Shelter(int id)
         {
             List<Animal> animalsList = new List<Animal>();
             using (var httpClient = new HttpClient())

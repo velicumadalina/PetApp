@@ -18,7 +18,6 @@ namespace PetApp.Models
         public string PhoneNumber { get; set; }
         public string Email { get; set; }
         public string AdoptionMessasge { get; set; }
-
         public string AdoptionStatus { get; set; }
 
     }

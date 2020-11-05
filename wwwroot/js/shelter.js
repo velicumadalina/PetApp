@@ -26,7 +26,7 @@ function sendData(endpoint, data) {
             body: JSON.stringify(data),
             
         })
-        .then(function (res) { console.log(res) })
+        .then(function (res) { console.log(res); window.location.replace("/login") })
         .catch(function (res) { console.log(res) })
 }
 

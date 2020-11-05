@@ -11,6 +11,8 @@ using PetApp.Data;
 using PetApp.Models;
 using EmailHelper;
 using System.Net.Mail;
+using System.Net.Http;
+using Newtonsoft.Json;
 
 namespace PetApp.Controllers
 {
@@ -19,6 +21,8 @@ namespace PetApp.Controllers
         private UserManager<User> _userManager;
         private SignInManager<User> _signInManager;
         private readonly PetAppDbContext _context;
+        private readonly string _apiPath = "https://localhost:44306/";
+
 
         public AdoptionRequestsController(PetAppDbContext context, UserManager<User> userManager, SignInManager<User> signInManager)
         {
@@ -36,6 +40,31 @@ namespace PetApp.Controllers
             try
             {
                 requests = await _context.adoptionRequests.Where(x => x.UserId == int.Parse(_userManager.GetUserId(User))).ToListAsync();
+            }
+            catch
+            {
+            }
+            return View(requests);
+        }
+
+        [Route("/shelter/animal-requests")]
+        public async Task<IActionResult> AnimalRequests()
+        {
+            var requests = new List<AdoptionRequest>();
+            var user = _context.appUsers.Where(u => u.UserName == User.Identity.Name).FirstOrDefault();
+            Shelter shelter;
+            using (var httpClient = new HttpClient())
+            {
+                using (var response = await httpClient.GetAsync(_apiPath + "get-shelter-by-email/"+ user.Email))
+                {
+                    string apiResponse = await response.Content.ReadAsStringAsync();
+                    shelter = JsonConvert.DeserializeObject<Shelter>(apiResponse);
+                }
+            }
+
+            try
+            {
+                requests = await _context.adoptionRequests.Where(r => r.ShelterId == shelter.Id).ToListAsync();
             }
             catch
             {
@@ -190,34 +219,31 @@ namespace PetApp.Controllers
             return View(adoptionRequest);
         }
 
-        // GET: AdoptionRequests/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        //// GET: AdoptionRequests/Delete/5
+        [Route("/adoptionrequests/delete/{id}")]
+        public async Task<IActionResult> Delete(int id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var adoptionRequest = await _context.adoptionRequests
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (adoptionRequest == null)
-            {
-                return NotFound();
-            }
-
-            return View(adoptionRequest);
+            var adoptionRequest = await _context.adoptionRequests.Where(a => a.AnimalId == id).FirstOrDefaultAsync();
+            _context.adoptionRequests.Remove(adoptionRequest);
+            await _context.SaveChangesAsync();
+            return RedirectToAction("AnimalRequests");
         }
 
         // POST: AdoptionRequests/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            var adoptionRequest = await _context.adoptionRequests.FindAsync(id);
-            _context.adoptionRequests.Remove(adoptionRequest);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
-        }
+        //[HttpPost, ActionName("Delete")]
+        //[ValidateAntiForgeryToken]
+        //public async Task<IActionResult> DeleteConfirmed(int id)
+        //{
+        //    var adoptionRequest = await _context.adoptionRequests.Where(a => a.AnimalId == id).FirstOrDefaultAsync();
+        //    _context.adoptionRequests.Remove(adoptionRequest);
+        //    await _context.SaveChangesAsync();
+        //    return RedirectToAction(nameof(Index));
+        //}
 
         private bool AdoptionRequestExists(int id)
         {

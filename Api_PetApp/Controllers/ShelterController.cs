@@ -53,6 +53,19 @@ namespace Api_PetApp.Controllers
             return shelter;
         }
 
+        [HttpGet("{email}")]
+        [Route("/get-shelter-by-email/{email}")]
+        public async Task<ActionResult<Shelter>> GetShelterByEmail(string email)
+        {
+            var shelter = await _context.Shelter.Where(s => s.Email == email).FirstOrDefaultAsync();
+
+            if (shelter == null)
+            {
+                return NotFound();
+            }
+
+            return shelter;
+        }
 
         /// <summary>
         /// Edits an specific shelter.
