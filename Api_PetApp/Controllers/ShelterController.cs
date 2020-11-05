@@ -29,7 +29,8 @@ namespace Api_PetApp.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Shelter>>> GetShelter()
         {
-            return await _context.Shelter.ToListAsync();
+            var result = await _context.Shelter.Include(s => s.Animals).ToListAsync();
+            return result;
         }
 
 

@@ -14,6 +14,8 @@ namespace Api_PetApp.Data
         {
         }
 
+
+
         public DbSet<WebApi_PetApp.Models.Animal> Animal { get; set; }
         public DbSet<WebApi_PetApp.Models.Shelter> Shelter { get; set; }
 

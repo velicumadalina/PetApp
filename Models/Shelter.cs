@@ -12,13 +12,9 @@ namespace PetApp.Models
 
         public string Name { get; set; }
 
-        public string Animals
+        public List<Animal> Animals
         {
-            get
-            {
-                return "https://api/animals?shelter=" + Id;
-            }
-            set { }
+            get;set;
         }
 
         public string Image { get; set; }

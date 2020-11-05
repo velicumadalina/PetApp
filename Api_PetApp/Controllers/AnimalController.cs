@@ -56,7 +56,8 @@ namespace Api_PetApp.Controllers
        [HttpGet]
         public ActionResult<List<Animal>> GetShelterAnimals(int shelterId)
         {
-            var animals = _context.Animal.Where(x => x.ShelterId == shelterId).ToList();
+            //var animals = _context.Animal.Where(x => x.ShelterId == shelterId).ToList();
+            var animals = _context.Shelter.Where(s => s.Id == shelterId).Include(s => s.Animals).FirstOrDefault()?.Animals;
             return animals;
         }
 
