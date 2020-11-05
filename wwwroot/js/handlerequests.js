@@ -46,7 +46,14 @@ $('.deny').click(function () {
     sendData("https://localhost:44335/AdoptionRequests/Delete/" + $(this).data("animal"))
     window.location.reload();
 });
+$('.accept').click(function () {
+    console.log($(this).data("animal"));
+    let data = { "id": $(this).data("animal") };
+    console.log(data);
+    getData("https://localhost:44335/confirm-adoption/" + $(this).data("animal"))
+    window.location.reload();
 
+});
 function sendData(endpoint) {
     fetch(endpoint,
         {
@@ -58,6 +65,19 @@ function sendData(endpoint) {
             
         })
         .then(function (res) { console.log(res)})
+        .catch(function (res) { console.log(res) })
+}
+function getData(endpoint) {
+    fetch(endpoint,
+        {
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            },
+            method: "GET",
+
+        })
+        .then(function (res) { console.log(res) })
         .catch(function (res) { console.log(res) })
 }
 

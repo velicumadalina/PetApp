@@ -64,7 +64,7 @@ namespace PetApp.Controllers
 
             try
             {
-                requests = await _context.adoptionRequests.Where(r => r.ShelterId == shelter.Id).ToListAsync();
+                requests = await _context.adoptionRequests.Where(r => r.ShelterId == shelter.Id).Where(a => a.AdoptionStatus != "Approved").ToListAsync();
             }
             catch
             {
@@ -187,25 +187,23 @@ namespace PetApp.Controllers
         // POST: AdoptionRequests/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,AnimalId,ShelterId,UserId,UserName,PhoneNumber,Email,AdoptionMessasge")] AdoptionRequest adoptionRequest)
+        [HttpGet]
+        [Route("/confirm-adoption/{id}")]
+        public async Task<IActionResult> ConfirmAdoption(int id)
         {
-            if (id != adoptionRequest.Id)
+            var request = _context.adoptionRequests.Where(a => a.AnimalId == id).FirstOrDefault();
+            if (request != null) 
             {
-                return NotFound();
+                request.AdoptionStatus = "Approved";
             }
-
-            if (ModelState.IsValid)
-            {
                 try
                 {
-                    _context.Update(adoptionRequest);
+                    _context.Update(request);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!AdoptionRequestExists(adoptionRequest.Id))
+                    if (!AdoptionRequestExists(request.Id))
                     {
                         return NotFound();
                     }
@@ -215,8 +213,6 @@ namespace PetApp.Controllers
                     }
                 }
                 return RedirectToAction(nameof(Index));
-            }
-            return View(adoptionRequest);
         }
 
         //// GET: AdoptionRequests/Delete/5
