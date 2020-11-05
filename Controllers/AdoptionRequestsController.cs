@@ -64,7 +64,7 @@ namespace PetApp.Controllers
 
             try
             {
-                requests = await _context.adoptionRequests.Where(r => r.ShelterId == shelter.Id).Where(a => a.AdoptionStatus != "Approved").ToListAsync();
+                requests = await _context.adoptionRequests.Where(r => r.ShelterId == shelter.Id).Where(a => a.AdoptionStatus != "Approved").Where(a => a.AdoptionStatus != "Declined").ToListAsync();
             }
             catch
             {
@@ -213,6 +213,35 @@ namespace PetApp.Controllers
                     }
                 }
                 return RedirectToAction(nameof(Index));
+        }
+
+
+        [HttpGet]
+        [Route("/decline-adoption/{id}")]
+        public async Task<IActionResult> DeclineAdoption(int id)
+        {
+            var request = _context.adoptionRequests.Where(a => a.AnimalId == id).FirstOrDefault();
+            if (request != null)
+            {
+                request.AdoptionStatus = "Declined";
+            }
+            try
+            {
+                _context.Update(request);
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!AdoptionRequestExists(request.Id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+            return RedirectToAction(nameof(Index));
         }
 
         //// GET: AdoptionRequests/Delete/5
