@@ -3,14 +3,16 @@ using Api_PetApp.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Api_PetApp.Migrations
 {
     [DbContext(typeof(PetAppContext))]
-    partial class PetAppContextModelSnapshot : ModelSnapshot
+    [Migration("20201105085356_Change-Capacity")]
+    partial class ChangeCapacity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

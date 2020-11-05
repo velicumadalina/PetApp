@@ -12,6 +12,6 @@ namespace WebApi_PetApp.Models
         public List<Animal> Animals { get; set; }
         public string Image { get; set; }
         public string Email { get; set; }
-        public string Capacity { get; set; }
+        public int Capacity { get; set; }
     }
 }
