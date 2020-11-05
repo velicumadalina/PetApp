@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Api_PetApp.Data;
 using WebApi_PetApp.Models;
+using Microsoft.AspNetCore.Cors;
 
 namespace Api_PetApp.Controllers
 {
@@ -94,7 +95,32 @@ namespace Api_PetApp.Controllers
         /// </summary>
         // POST: api/Shelter
         [HttpPost]
-        public async Task<ActionResult<Shelter>> PostShelter([FromBody]Shelter shelter)
+        [Consumes("application/json")]
+        public async Task<ActionResult<Shelter>> PostShelter(Shelter shelter)
+        {
+            _context.Shelter.Add(shelter);
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateException)
+            {
+                if (ShelterExists(shelter.Id))
+                {
+                    return Conflict();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+            return Ok();
+        }
+
+        [HttpPost]
+        [Route("/api/shelter/add")]
+        [Consumes("application/json")]
+        public async Task<ActionResult<Shelter>> AddShelter(Shelter shelter)
         {
             _context.Shelter.Add(shelter);
             try

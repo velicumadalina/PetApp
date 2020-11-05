@@ -27,7 +27,6 @@ namespace PetApp.Controllers
             _apiPath = "https://localhost:44306/";
         }
 
-
         public async Task<IActionResult> Index()
         {
             List<Shelter> shelterList = new List<Shelter>();

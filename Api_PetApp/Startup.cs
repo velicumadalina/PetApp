@@ -31,6 +31,20 @@ namespace Api_PetApp
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddCors(options =>
+            {
+
+                options.AddDefaultPolicy(builder => builder.WithOrigins("https://localhost:44335"));
+            });
+            services.AddCors(options =>
+            {
+                options.AddPolicy("default", policy =>
+                {
+                    policy.WithOrigins("https://localhost:44335")
+                        .AllowAnyHeader()
+                        .AllowAnyMethod();
+                });
+            });
             services.AddDbContext<PetAppContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("PetAppContext")));
             services.AddSwaggerGen(c =>
@@ -45,8 +59,9 @@ namespace Api_PetApp
                 var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
                 c.IncludeXmlComments(xmlPath);
             });
-
             
+
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -70,7 +85,7 @@ namespace Api_PetApp
                 c.RoutePrefix = string.Empty;
             });
             app.UseRouting();
-
+            app.UseCors("default");
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

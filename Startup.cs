@@ -27,6 +27,11 @@ namespace WebApplication1
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddCors(options =>
+            {
+
+                options.AddDefaultPolicy(builder => builder.AllowAnyOrigin());
+            });
             services.AddRazorPages();
             services.AddIdentity<User, PetAppRole>(options =>
             {
@@ -41,6 +46,7 @@ namespace WebApplication1
                 config.Cookie.Name = "Identity.Cookie";
                 config.LoginPath = "/login-user";
             });
+            
 
         }
 
@@ -62,6 +68,8 @@ namespace WebApplication1
             app.UseStaticFiles();
 
             app.UseRouting();
+            app.UseCors();
+
             app.UseAuthentication();
             app.UseAuthorization();
 

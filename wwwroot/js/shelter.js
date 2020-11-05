@@ -19,11 +19,12 @@ function sendData(endpoint, data) {
         {
             headers: {
                 'Accept': 'application/json',
-                'Content-Type': 'application/json',
+                'Content-Type': 'application/json;charset=utf-8',
+                'Accept-Encoding': 'gzip, deflate, br'
             },
             method: "POST",
             body: JSON.stringify(data),
-            mode: "no-cors"
+            
         })
         .then(function (res) { console.log(res) })
         .catch(function (res) { console.log(res) })
@@ -32,5 +33,5 @@ function sendData(endpoint, data) {
 function sendShelter() {
     let data = addShelter();
     console.log(data);
-    sendData("https://localhost:44306/api/Shelter", data);
+    sendData("https://localhost:44306/api/shelter/add", data);
 }
