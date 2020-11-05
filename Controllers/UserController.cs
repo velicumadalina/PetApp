@@ -10,10 +10,10 @@ namespace PetApp.Controllers
 {
     public class UserController : Controller
     {
-        private UserManager<PetAppUser> _userManager;
-            private SignInManager<PetAppUser> _signInManager;
+        private UserManager<User> _userManager;
+            private SignInManager<User> _signInManager;
 
-        public UserController(UserManager<PetAppUser> userManager, SignInManager<PetAppUser> signInManager)
+        public UserController(UserManager<User> userManager, SignInManager<User> signInManager)
         {
             _userManager = userManager;
             _signInManager = signInManager;
@@ -27,21 +27,26 @@ namespace PetApp.Controllers
         }
 
         [Route("/register-user")]
-        public async Task<IActionResult> Register(string username, string email, string first, string last, string psw) 
+        public async Task<IActionResult> Register(string username, string email, string first, string last, bool isShelter,string psw)
         {
             try
             {
                 ViewBag.Message = "User Already Registered!";
-                PetAppUser user = await _userManager.FindByNameAsync(username);
-                if (user == null) 
+                User user = await _userManager.FindByNameAsync(username);
+                if (user == null)
                 {
-                    user = new PetAppUser();
+                    user = new User();
                     user.UserName = username;
                     user.Email = email;
                     user.FirstName = first;
                     user.LastName = last;
+                    user.IsShelter = isShelter;
                     IdentityResult result = await _userManager.CreateAsync(user, psw);
                     ViewBag.Message = "User created!";
+                }
+                if (isShelter)
+                {
+                    return RedirectToAction("RegisterShelter");
                 }
             }
             catch { }
@@ -70,7 +75,7 @@ namespace PetApp.Controllers
         public async Task<IActionResult> Login(string username, string password)
         {
             var user = await _userManager.FindByNameAsync(username);
-            if (user != null) 
+            if (user != null)
             {
                 await _signInManager.PasswordSignInAsync(user, password, true, false);
                 return RedirectToAction("Index", "Home");
@@ -80,5 +85,10 @@ namespace PetApp.Controllers
             return RedirectToAction("Register");
         }
 
+        [Route("/register-shelter")]
+        public IActionResult RegisterShelter()
+        {
+            return View();
+        }
     }
 }

@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 
 namespace PetApp.Models
 {
-    public class PetAppUser : IdentityUser<int>
+    public class User : IdentityUser<int>
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
+        public bool IsShelter { get; set; }
 
     }
 }

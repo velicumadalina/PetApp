@@ -28,7 +28,7 @@ namespace WebApplication1
         {
             services.AddControllersWithViews();
             services.AddRazorPages();
-            services.AddIdentity<PetAppUser, PetAppRole>(options =>
+            services.AddIdentity<User, PetAppRole>(options =>
             {
                 options.Password.RequireDigit = false;
                 options.Password.RequireNonAlphanumeric = false;

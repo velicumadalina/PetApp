@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace PetApp.Data
 {
-    public class PetAppDbContext : IdentityDbContext<PetAppUser, PetAppRole, int>
+    public class PetAppDbContext : IdentityDbContext<User, PetAppRole, int>
     {
         public PetAppDbContext(DbContextOptions<PetAppDbContext> options) : base(options)
         {

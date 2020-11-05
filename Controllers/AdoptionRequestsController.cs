@@ -16,11 +16,11 @@ namespace PetApp.Controllers
 {
     public class AdoptionRequestsController : Controller
     {
-        private UserManager<PetAppUser> _userManager;
-        private SignInManager<PetAppUser> _signInManager;
+        private UserManager<User> _userManager;
+        private SignInManager<User> _signInManager;
         private readonly PetAppDbContext _context;
 
-        public AdoptionRequestsController(PetAppDbContext context, UserManager<PetAppUser> userManager, SignInManager<PetAppUser> signInManager)
+        public AdoptionRequestsController(PetAppDbContext context, UserManager<User> userManager, SignInManager<User> signInManager)
         {
             _context = context;
             _userManager = userManager;
