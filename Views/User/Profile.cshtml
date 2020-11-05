@@ -1,9 +1,9 @@
-﻿@model PetAppUser
+﻿@model User
 @using Microsoft.AspNetCore.Identity
 @using PetApp.Models
 
-@inject SignInManager<PetAppUser> SignInManager
-@inject UserManager<PetAppUser> UserManager
+@inject SignInManager<User> SignInManager
+@inject UserManager<User> UserManager
 @{
     ViewData["Title"] = "Profile";
     Layout = "~/Views/AdoptionRequests/_ProfileLayout.cshtml";

@@ -1,8 +1,8 @@
 ﻿@using Microsoft.AspNetCore.Identity
 @using PetApp.Models
 
-@inject SignInManager<PetAppUser> SignInManager
-@inject UserManager<PetAppUser> UserManager
+@inject SignInManager<User> SignInManager
+@inject UserManager<User> UserManager
 
 <ul class="navbar-nav">
     @if (User.Identity.IsAuthenticated)

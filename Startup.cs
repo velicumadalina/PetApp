@@ -35,7 +35,7 @@ namespace WebApplication1
                 options.Password.RequireUppercase = false;
                 options.Password.RequiredLength = 4;
             }).AddEntityFrameworkStores<PetAppDbContext>();
-            services.AddDbContext<PetAppDbContext>(c => { c.UseSqlServer(Configuration.GetConnectionString("PetAppUserDbContextConnection")); });
+            services.AddDbContext<PetAppDbContext>(c => { c.UseSqlServer(Configuration.GetConnectionString("UserDbContextConnection")); });
             services.ConfigureApplicationCookie(config =>
             {
                 config.Cookie.Name = "Identity.Cookie";
