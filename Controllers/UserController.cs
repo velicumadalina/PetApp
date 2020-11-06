@@ -104,5 +104,11 @@ namespace PetApp.Controllers
         {
             return View();
         }
+
+        [Route("/add-pet")]
+        public IActionResult AddPet()
+        {
+            return View();
+        }
     }
 }

@@ -24,7 +24,6 @@ function sendData(endpoint, data) {
             },
             method: "POST",
             body: JSON.stringify(data),
-            
         })
         .then(function (res) { console.log(res); window.location.replace("/login") })
         .catch(function (res) { console.log(res) })

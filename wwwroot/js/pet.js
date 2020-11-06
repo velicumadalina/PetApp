@@ -1,5 +1,4 @@
-﻿
-$(document).ready(function () {
+﻿$(document).ready(function () {
 
     $(".toggle").click(function () {
         if (
@@ -53,13 +52,27 @@ $(document).ready(function () {
 
 $("#subBtn").click(function () {
     turnToObject();
-    sendData("/my-perfect-pet", turnToObject());
+    sendData("https://localhost:44306/api/animal/add", turnToObject());
+
 })
 
-function turnToObject()
-{
-    let vals = { "Id": 1 };
-    let keyNames = ["Type", "Breed", "Age", "EnergyLevel", "Size", "Gender", "FriendlyWithDogs", "FriendlyWithCats", "FriendlyWithKids", "SpecialNeeds"]
+
+let petImage = document.getElementById("pet-image");
+let petName = document.getElementById("pet-name");
+let petBreed = document.getElementById("pet-breed");
+let characteristics = document.getElementById("characteristics");
+let description = document.getElementById("description");
+
+function turnToObject() {
+    let vals = {
+        "Image": petImage.value.split("\\")[2],
+        "Name": petName.value,
+        "Breed": petBreed.value,
+        "Characteristics": characteristics.value,
+        "Description": description.value,
+        "ShelterId": 4
+    };
+    let keyNames = ["Type", "Age", "Gender", "Size", "EnergyLevel", "Hair", "FriendlyWithDogs", "FriendlyWithCats", "FriendlyWithKids", "SpecialNeeds"]
     let selected = $(".clicked");
     for (let i = 0; i < keyNames.length; i++) {
         let divs = $(selected).filter(function () {
@@ -67,13 +80,19 @@ function turnToObject()
         })
         let divValues = []
         for (val of divs) {
-            divValues.push(val.dataset.val);
+            if (val.dataset.val === "true") {
+                let trueVal = true;
+                divValues.push(trueVal);
+            }
+            else {
+                divValues.push(val.dataset.val);
+            }
         }
         if (divValues.length < 1) {
-            vals[keyNames[i]] = ["false"];
+            vals[keyNames[i]] = false;
         }
         else {
-            vals[keyNames[i]] = divValues;
+            vals[keyNames[i]] = divValues[0];
         }
         console.log(vals);
     }
@@ -85,12 +104,12 @@ function sendData(endpoint, data) {
         {
             headers: {
                 'Accept': 'application/json',
-                'Content-Type': 'application/json',
+                'Content-Type': 'application/json;charset=utf-8',
+                'Accept-Encoding': 'gzip, deflate, br'
             },
             method: "POST",
             body: JSON.stringify(data),
         })
-        .then(function (res) { console.log(res); window.location.href = "https://localhost:44335/my-perfect-pets"})
+        .then(function (res) { console.log(res) })
         .catch(function (res) { console.log(res) })
-    //$.post(endpoint, data).then(function (res) { console.log(res); })
 }

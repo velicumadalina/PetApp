@@ -105,7 +105,33 @@ namespace Api_PetApp.Controllers
         // POST: api/Animals
         [Route("/api/Animals")]
         [HttpPost]
+        [Consumes("application/json")]
         public async Task<ActionResult<Animal>> PostAnimal(Animal animal)
+        {
+            _context.Animal.Add(animal);
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateException)
+            {
+                if (AnimalExists(animal.Id))
+                {
+                    return Conflict();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return Ok();
+        }
+
+        [HttpPost]
+        [Route("/api/animal/add")]
+        [Consumes("application/json")]
+        public async Task<ActionResult<Animal>> AddAnimal(Animal animal)
         {
             _context.Animal.Add(animal);
             try
