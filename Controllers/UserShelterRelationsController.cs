@@ -44,7 +44,7 @@ namespace PetApp.Controllers
                     throw;
                 }
             }
-            return View("Login", "User");
+            return RedirectToAction("Login", "User");
         }
 
         private bool UserShelterRelationExists(int id)

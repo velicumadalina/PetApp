@@ -27,6 +27,7 @@ namespace PetApp.Models
         public bool FriendlyWithKids { get; set; }
         public bool SpecialNeeds { get; set; }
         public bool IsAdopted { get; set; }
+        [NotMapped]
         public string GetsAlongWith { get; set; }
 
 

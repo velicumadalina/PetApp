@@ -20,14 +20,13 @@ namespace PetApp.Controllers
         }
         [Route("/add-shelter")]
         [HttpPost]
-        [Consumes("application/json")]
-        public async Task<ActionResult<Relation>> PostShelter([FromBody]Relation relation)
+        public async Task<ActionResult<Relation>> RegisterShelter(string userId, string shelterName, string shelterEmail, string shelterImage, int capacity)
         {
             var shelter = new Shelter();
-            shelter.Name = relation.Name;
-            shelter.Image = relation.Image;
-            shelter.Email = relation.Email;
-            shelter.Capacity = relation.Capacity;
+            shelter.Name = shelterName;
+            shelter.Image = shelterImage;
+            shelter.Email = shelterEmail;
+            shelter.Capacity = capacity;
             _context.Shelter.Add(shelter);
             try
             {
@@ -44,7 +43,7 @@ namespace PetApp.Controllers
                     throw;
                 }
             }
-            return Redirect("/add-relation/" + shelter.Id + "/" + relation.UserId);
+            return Redirect("/add-relation/" + shelter.Id + "/" + userId);
         }
 
         [Route("/add-shelter")]

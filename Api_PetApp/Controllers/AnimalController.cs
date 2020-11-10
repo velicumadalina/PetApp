@@ -43,7 +43,7 @@ namespace Api_PetApp.Controllers
         public async Task<ActionResult<Animal>> GetAnimal(int id)
         {
             var animal = await _context.Animal.ToListAsync();
-            return animal.Where(x => x.Id == id).First();
+            return animal.Where(x => x.Id == id).Where(a => a.IsAdopted != true).First();
         }
 
 
@@ -58,7 +58,7 @@ namespace Api_PetApp.Controllers
         {
             //var animals = _context.Animal.Where(x => x.ShelterId == shelterId).ToList();
             var animals = _context.Shelter.Where(s => s.Id == shelterId).Include(s => s.Animals).FirstOrDefault()?.Animals;
-            return animals;
+            return animals.Where(a => a.IsAdopted != true).ToList();
         }
 
 

@@ -44,33 +44,6 @@ namespace PetApp.Controllers
             return Ok();
         }
 
-        [Route("/set-adopted/{id}")]
-        [HttpGet]
-        public async Task<IActionResult> SetAdoptedAnimal(int id)
-        {
-
-            var animal = _context.Animal.Where(a => a.Id == id).FirstOrDefault();
-            if (animal != null) { animal.IsAdopted = true; }
-            else { return BadRequest(); }
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!AnimalExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
-        }
 
         private bool AnimalExists(int id)
         {

@@ -203,7 +203,9 @@ namespace PetApp.Controllers
                         throw;
                     }
                 }
-                return Redirect("/set-adopted/" + id);
+            var animal = _context.Animal.Where(a => a.Id == id).FirstOrDefault();
+            if (animal != null) { animal.IsAdopted = true; await _context.SaveChangesAsync(); }
+            return Ok();
         }
 
 
