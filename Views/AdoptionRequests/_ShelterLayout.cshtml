@@ -1,4 +1,9 @@
-﻿@{
+﻿@using Microsoft.AspNetCore.Identity
+@using PetApp.Models
+
+@inject SignInManager<User> SignInManager
+@inject UserManager<User> UserManager
+@{
     Layout = "/Views/Shared/_Layout.cshtml";
 }
 <div class="container-fluid mt--7">
@@ -9,37 +14,17 @@
                     <div class="col-lg-3 order-lg-2">
                         <div class="card-profile-image">
                             <a href="#">
-                                <img src="https://demos.creative-tim.com/argon-dashboard/assets/img/theme/team-4.jpg" width="200" heigth="200" style="margin:50px" class="rounded-circle">
+                                <img src="https://logopond.com/logos/81f8ed9d00dbf1887850bcb8f8b6b979.png" width="200" heigth="200" style="margin:50px" class="rounded-circle">
                             </a>
                         </div>
                     </div>
                 </div>
                 <div class="card-body pt-0 pt-md-4">
-                    <div class="row">
-                        <div class="col">
-                            <div class="row">
-                                <p class="col-md-4">&nbsp;&nbsp;&nbsp;&nbsp;nr</p>
-                                <p class="col-md-4">&nbsp;&nbsp;&nbsp;&nbsp;nr</p>
-                                <p class="col-md-4">&nbsp;&nbsp;&nbsp;&nbsp;nr</p>
-                            </div>
-                            <div class="row">
-                                <p class="col-md-4">Adopted</p>
-                                <p class="col-md-4">Pending</p>
-                                <p class="col-md-4">Favorites</p>
-                            </div>
-                        </div>
-                    </div>
                     <br />
                     <div class="text-center">
                         <h4>
-                            Username
+                            @User.Identity.Name
                         </h4>
-
-                    </div>
-                    <div class="text-md-center">
-                        <h5>
-                            First Last
-                        </h5>
 
                     </div>
                 </div>

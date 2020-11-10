@@ -70,7 +70,7 @@ function turnToObject() {
         "Breed": petBreed.value,
         "Characteristics": characteristics.value,
         "Description": description.value,
-        "ShelterId": 4
+        "ShelterId": 15
     };
     let keyNames = ["Type", "Age", "Gender", "Size", "EnergyLevel", "Hair", "FriendlyWithDogs", "FriendlyWithCats", "FriendlyWithKids", "SpecialNeeds"]
     let selected = $(".clicked");
@@ -110,6 +110,7 @@ function sendData(endpoint, data) {
             method: "POST",
             body: JSON.stringify(data),
         })
-        .then(function (res) { console.log(res) })
+        .then(function (res) {
+            console.log(res); window.location.href = "https://localhost:44335/"})
         .catch(function (res) { console.log(res) })
 }
