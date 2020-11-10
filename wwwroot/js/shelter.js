@@ -2,6 +2,7 @@
 let shelterName = document.getElementById("shelter-name");
 let shelterEmail = document.getElementById("shelter-email");
 let capacity = document.getElementById("capacity");
+let userId = document.getElementById("userId").value;
 
 function addShelter() {
     let ShelterObject =
@@ -14,6 +15,7 @@ function addShelter() {
     return ShelterObject;
 }
 
+
 function sendData(endpoint, data) {
     fetch(endpoint,
         {
@@ -23,15 +25,21 @@ function sendData(endpoint, data) {
                 'Accept-Encoding': 'gzip, deflate, br'
             },
             method: "POST",
-            body: JSON.stringify(data),
+            body: JSON.stringify(data)
             
         })
-        .then(function (res) { console.log(res); window.location.replace("/login") })
+        .then(function (res) { console.log(res) })
         .catch(function (res) { console.log(res) })
 }
 
 function sendShelter() {
-    let data = addShelter();
+    let data = {
+            "Image": shelterImage.value.split("\\")[2],
+            "Name": shelterName.value,
+            "Email": shelterEmail.value,
+            "Capacity": parseInt(capacity.value),
+            "UserId": parseInt(userId)
+        }
     console.log(data);
-    sendData("https://localhost:44306/api/shelter/add", data);
+    sendData("/add-shelter", data);
 }

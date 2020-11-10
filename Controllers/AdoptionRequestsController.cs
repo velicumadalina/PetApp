@@ -52,19 +52,10 @@ namespace PetApp.Controllers
         {
             var requests = new List<AdoptionRequest>();
             var user = _context.appUsers.Where(u => u.UserName == User.Identity.Name).FirstOrDefault();
-            Shelter shelter;
-            using (var httpClient = new HttpClient())
-            {
-                using (var response = await httpClient.GetAsync(_apiPath + "get-shelter-by-email/"+ user.Email))
-                {
-                    string apiResponse = await response.Content.ReadAsStringAsync();
-                    shelter = JsonConvert.DeserializeObject<Shelter>(apiResponse);
-                }
-            }
-
+            var shelterId = _context.UserShelterRelations.Where(r => r.UserId == user.Id).FirstOrDefault().ShelterId;
             try
             {
-                requests = await _context.adoptionRequests.Where(r => r.ShelterId == shelter.Id).Where(a => a.AdoptionStatus != "Approved").Where(a => a.AdoptionStatus != "Declined").ToListAsync();
+                requests = await _context.adoptionRequests.Where(r => r.ShelterId == shelterId).Where(a => a.AdoptionStatus != "Approved").Where(a => a.AdoptionStatus != "Declined").ToListAsync();
             }
             catch
             {
@@ -212,7 +203,7 @@ namespace PetApp.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                return Redirect("/set-adopted/" + id);
         }
 
 

@@ -29,7 +29,7 @@ namespace Api_PetApp.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Animal>>> GetAnimals()
         {
-            return await _context.Animal.ToListAsync();
+            return await _context.Animal.Where(a=> a.IsAdopted != true).ToListAsync();
         }
 
 

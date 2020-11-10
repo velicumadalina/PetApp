@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -8,14 +9,14 @@ namespace PetApp.Models
     public class Animal
     {
         public int Id { get; set; }
-        public string ShelterId { get; set; }
+        [ForeignKey("Shelter")]
+        public int ShelterId { get; set; }
         public string Name { get; set; }
         public string Image { get; set; }
-        public string EnergyLevel { get; set; }
-
         public string Breed { get; set; }
         public string Gender { get; set; }
         public string Characteristics { get; set; }
+        public string EnergyLevel { get; set; }
         public string Age { get; set; }
         public string Size { get; set; }
         public string Type { get; set; }
@@ -25,6 +26,7 @@ namespace PetApp.Models
         public bool FriendlyWithCats { get; set; }
         public bool FriendlyWithKids { get; set; }
         public bool SpecialNeeds { get; set; }
+        public bool IsAdopted { get; set; }
         public string GetsAlongWith { get; set; }
 
 

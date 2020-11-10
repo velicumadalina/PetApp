@@ -48,7 +48,7 @@ namespace PetApp.Controllers
                 }
                 if (isShelter)
                 {
-                    return RedirectToAction("RegisterShelter");
+                    return Redirect("/register-shelter/" + user.UserName);
                 }
             }
             catch { }
@@ -86,7 +86,7 @@ namespace PetApp.Controllers
 
 
         [Route("/login-user")]
-        public async Task<IActionResult> Login(string username, string password)
+        public async Task<IActionResult> LoginUser(string username, string password)
         {
             var user = await _userManager.FindByNameAsync(username);
             if (user != null)
@@ -99,10 +99,11 @@ namespace PetApp.Controllers
             return RedirectToAction("Register");
         }
 
-        [Route("/register-shelter")]
-        public IActionResult RegisterShelter()
+        [Route("/register-shelter/{userName}")]
+        public IActionResult RegisterShelter(string userName)
         {
-            return View();
+            var user = _context.appUsers.Where(u => u.UserName == userName).FirstOrDefault();
+            return View(user);
         }
     }
 }
