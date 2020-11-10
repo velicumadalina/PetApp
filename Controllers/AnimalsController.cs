@@ -22,7 +22,7 @@ namespace PetApp.Controllers
 
         [Route("/add-animal")]
         [HttpPost]
-        public async Task<ActionResult<Animal>> PostAnimal(Animal animal)
+        public async Task<ActionResult<Animal>> PostAnimal([FromBody]Animal animal)
         {
             _context.Animal.Add(animal);
             try

@@ -5,26 +5,34 @@
     ViewData["Title"] = "Favorites";
     Layout = "~/Views/AdoptionRequests/_ProfileLayout.cshtml";
 }
-
-@foreach (var req in Model)
+@if (Model.Count() == 0)
 {
-    <div class="card" style="margin: 15px;width: 700px;">
-        <div class="panel-body">
-            <div class="row">
-                <div class="col-xs-2">
-                    <img class="img-responsive"  src="~/Images/Animals/@req.AnimalImage" style="margin-left:25px;margin-right:25px;" height="100" width="150">
-                </div>
-                <div class="col-md-4" style="padding-top:40px">
-                    <h5 class="product-name">@req.AnimalName</h5>
-                </div>
-                <div class="col-md-4 text-right" style="padding-top:40px">
-                    <div class="col-md-6 text-right">
-                        <h6><button class="btn"><a href="/Animal/@req.Id"> Details </a></button> <span class="text-muted"></span></h6>
+    <div class="alert alert-light col-md-9 offset-md-2" role="alert">
+        <h4 class="alert-heading">No favorites!</h4>
+        <p> There are no favorite animals here for now.</p>
+        <p> When you favorite an animal it will appear here.</p>
+    </div>}
+else
+{
+    @foreach (var req in Model)
+    {
+        <div class="card" style="margin: 15px;width: 700px;">
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-xs-2">
+                        <img class="img-responsive" src="~/Images/Animals/@req.AnimalImage" style="margin-left:25px;margin-right:25px;" height="100" width="150">
+                    </div>
+                    <div class="col-md-4" style="padding-top:40px">
+                        <h5 class="product-name">@req.AnimalName</h5>
+                    </div>
+                    <div class="col-md-4 text-right" style="padding-top:40px">
+                        <div class="col-md-6 text-right">
+                            <h6><button class="btn"><a href="/Animal/@req.Id"> Details </a></button> <span class="text-muted"></span></h6>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-   
-}
 
+    }
+}

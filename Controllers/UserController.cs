@@ -105,5 +105,14 @@ namespace PetApp.Controllers
             var user = _context.appUsers.Where(u => u.UserName == userName).FirstOrDefault();
             return View(user);
         }
+
+        [Route("/add-pet")]
+        public IActionResult AddPet()
+        {
+            var user = _context.appUsers.Where(u => u.UserName == User.Identity.Name).FirstOrDefault();
+            var relation = _context.UserShelterRelations.Where(r => r.UserId == user.Id).FirstOrDefault();
+            if (!User.Identity.IsAuthenticated || !user.IsShelter) { return RedirectToAction("Register"); }
+            return View(relation);
+        }
     }
 }

@@ -1,0 +1,103 @@
+﻿@model PetApp.Models.UserShelterRelation
+@{
+    ViewData["Title"] = "AddPet";
+    Layout = "~/Views/AdoptionRequests/_ShelterLayout.cshtml";
+}
+
+    <link rel="stylesheet" href="~/css/quiz.css" />
+
+<div style="width:800px" class="container">
+    <h1>Add Pet</h1>
+    <p>Please fill in this form to add a pet.</p>
+    <hr>
+    <input type="hidden" value="@Model.ShelterId" id="shelterId" required>
+    <label for="pet-image"><b>Pet's image:</b></label>
+    <input type="file" id="pet-image" placeholder="Select a photo" name="petImage" required>
+    <hr />
+    <label for="pet-name"><b>Pet's name:</b></label>
+    <input type="text" placeholder="Enter pet's name" name="petName" id="pet-name" required>
+    <hr />
+    <b>Pet's type:</b>
+    <div class="options">
+        <div class="answer four" data-title="1" data-val="Dog" data-opts="2">Dog</div>
+        <div class="answer four" data-title="1" data-val="Cat" data-opts="2">Cat</div>
+    </div>
+    <hr />
+    <label for="pet-breed"><b>Pet's breed:</b></label>
+    <input type="text" placeholder="Enter pet's breed" name="petBreed" id="pet-breed" required>
+    <hr />
+    <b>Pet's age:</b>
+    <div class="options">
+        <div class="answer four" data-title="2" data-val="Junior">Junior(0-1.5 years old)</div>
+        <div class="answer four" data-title="2" data-val="Adult" data-opts="3">Adult(1.5-7 years old)</div>
+        <div class="answer four" data-title="2" data-val="Senior" data-opts="3">Senior(+7 years old)</div>
+    </div>
+    <hr />
+    <b>Pet's gender:</b>
+    <div class="options">
+        <div class="answer four" data-title="3" data-val="Female" data-opts="2">Female</div>
+        <div class="answer four" data-title="3" data-val="Male" data-opts="2">Male</div>
+    </div>
+    <hr />
+    <b>Pet's size:</b>
+    <div class="options">
+        <div class="answer four" data-title="4" data-val="Small" data-opts="3">Small</div>
+        <div class="answer four" data-title="4" data-val="Medium" data-opts="3">Medium</div>
+        <div class="answer four" data-title="4" data-val="Large" data-opts="3">Large</div>
+    </div>
+    <hr />
+    <b>Pet's energy level:</b>
+    <div class="options">
+        <div class="answer four" data-title="5" data-val="Low" data-opts="3">Low</div>
+        <div class="answer four" data-title="5" data-val="Medium" data-opts="3">Medium</div>
+        <div class="answer four" data-title="5" data-val="High" data-opts="3">High</div>
+    </div>
+    <hr />
+    <b>Pet's hair:</b>
+    <div class="options">
+        <div class="answer four" data-title="6" data-val="Short" data-opts="2">Short</div>
+        <div class="answer four" data-title="6" data-val="Long" data-opts="2">Long</div>
+    </div>
+    <br />
+    <hr />
+    <div class="questions row" style="margin-left:40px">
+        <h6>Friendly with dogs:</h6>
+        <p style=" margin-left:25px;font-size: 2em;">
+            <input type="checkbox" data-val="true" data-title="7" id="test1" class="toggle" />
+            <label for="test1"></label>
+        </p>
+    </div>
+    <div class="questions row" style="margin-left:40px">
+        <h6>Friendly with cats:</h6>
+        <p style="margin-left: 25px; font-size: 2em;">
+            <input type="checkbox" data-val="true" data-title="8" id="test2" class="toggle" />
+            <label for="test2"></label>
+        </p>
+    </div>
+    <div class="questions row" style="margin-left:40px">
+        <h6>Friendly with kids:</h6>
+        <p style="margin-left: 25px; font-size: 2em;">
+            <input type="checkbox" data-val="true" data-title="9" id="test3" class="toggle" />
+            <label for="test3"></label>
+        </p>
+    </div>
+    <div class="questions row" style="margin-left:40px">
+        <h6>Special needs:</h6>
+        <p style="margin-left: 25px; font-size: 2em;">
+            <input type="checkbox" data-val="true" data-title="11" id="test4" class="toggle" />
+            <label for="test4"></label>
+        </p>
+    </div>
+    <hr />
+    <label for="characteristics"><b>Pet characteristics:</b></label>
+    <input type="text" placeholder="Enter pet's characteristics" name="characteristics" id="characteristics" required>
+    <label for="description"><b>Pet description:</b></label>
+    <input type="text" placeholder="Enter pet's description" name="description" id="description" required>
+    <div id="subBtn" class="submit">Add Pet</div>
+</div>
+<br />
+<br />
+
+@section Scripts{
+    <script src="~/js/pet.js"></script>
+} 

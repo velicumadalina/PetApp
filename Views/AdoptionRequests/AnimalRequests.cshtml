@@ -1,38 +1,47 @@
-﻿
+﻿@model IEnumerable<PetApp.Models.AdoptionRequest>
 @{
     ViewData["Title"] = "AnimalRequests";
     Layout = "~/Views/AdoptionRequests/_ShelterLayout.cshtml";
 }
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
-@foreach (var req in Model)
+@if (Model.Count() == 0)
 {
-    <div class="card" style="margin: 15px;width: 700px;">
-        <div class="panel-body">
-            <div class="row">
-                <div class="col-xs-2">
-                    <img class="img-responsive" src="~/Images/Animals/@req.AnimalImage" style="margin-left:25px;margin-right:25px;" height="100" width="150">
-                </div>
-                <div class="col-md-4" style="padding-top:40px">
-                    <h5 class="product-name">@req.AnimalName</h5>
-                </div>
-                <div class="col-md-4 text-right" style="padding-top:40px">
-                    <div class="row">
-                        <div class="col-md-2">
-                            <button type="button" data-animal="@req.AnimalId" class="btn deny">
-                                <i class="fa fa-times"></i>
-                            </button>
-                        </div>
-                        <div class="col-md-2">
-                            <button type="button" data-animal="@req.AnimalId" class="btn accept">
-                                <i class="fa fa-check"></i>
-                            </button>
+    <div class="alert alert-light col-md-9 offset-md-2" role="alert">
+        <h4 class="alert-heading">No adoption requests!</h4>
+        <p> There are adoption requests here for now.</p>
+        <p> When someone will place an adoption request it will appear here.</p>
+    </div>}
+else
+{
+    @foreach (var req in Model)
+    {
+        <div class="card" style="margin: 15px;width: 700px;">
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-xs-2">
+                        <img class="img-responsive" src="~/Images/Animals/@req.AnimalImage" style="margin-left:25px;margin-right:25px;" height="100" width="150">
+                    </div>
+                    <div class="col-md-4" style="padding-top:40px">
+                        <h5 class="product-name">@req.AnimalName</h5>
+                    </div>
+                    <div class="col-md-4 text-right" style="padding-top:40px">
+                        <div class="row">
+                            <div class="col-md-2">
+                                <button type="button" data-animal="@req.AnimalId" class="btn deny">
+                                    <i class="fa fa-times"></i>
+                                </button>
+                            </div>
+                            <div class="col-md-2">
+                                <button type="button" data-animal="@req.AnimalId" class="btn accept">
+                                    <i class="fa fa-check"></i>
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    }
 }
 @section Scripts{
     <script src="~/js/handlerequests.js"></script>
