@@ -32,7 +32,6 @@
 body {
     font-family: "Abel", sans-serif;
     font-size: medium;
-    color: #ff4500cf;
     text-align: center;
     background-color: #f9f3e8;
 }
@@ -49,7 +48,6 @@ h2 {
 
 h3 {
     font-size: 1.2em;
-    margin: 2rem 0;
 }
 
 .quiz-container {
@@ -58,10 +56,11 @@ h3 {
     position: relative;
 }
 
-/* Set positioning for items */
+
 .questions {
     margin: 0 2rem 2rem 2rem;
 }
+
 
 .options {
     margin-top: 2em;
@@ -80,7 +79,7 @@ h3 {
     max-width: 60%;
     height: 60px;
     margin-left: 150px;
-    margin-top: 50px;
+    margin-bottom: 20px;
     font-size: 1.5em;
     line-height: 1.3em;
     min-height: 3em;

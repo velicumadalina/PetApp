@@ -1,14 +1,13 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿
 @{
+    Layout = "~/Views/AdoptionRequests/_ProfileLayout.cshtml";
 }
-@section css{
+
+
     <link rel="stylesheet" href="~/css/quiz.css" />
-}<!-- Check out https://github.com/thekristin/randomized-quiz-sets for details -->
-<h1 style="margin-left:340px;margin-bottom:40px; padding:25px">Find your perfect pet!</h1>
+
+<h1 style="margin-bottom:40px">Find your perfect pet!</h1>
 <div class="quiz-container">
-    <!-- start Version 1 of quiz - only show if random number is 1 -->
     <div id="quiz1" class="quiz" style="display:block">
         <div class="questions">
             <h3>Are you looking for a dog or a cat?</h3>
@@ -18,13 +17,15 @@
                 <div class="answer three clicked" id="preselected1" data-title="1" data-val="null">Both</div>
             </div>
         </div>
-        <div class="questions row" style="margin-left:40px">
+        <hr />
+        <div class="questions row" style="margin-bottom: auto">
             <h3>Are you looking for a purebred animal?</h3>
-            <p style="margin-left: 25px; font-size: 2em;">
+            <p style="margin-left: 250px; font-size: 2em; margin-bottom: -10px">
                 <input type="checkbox" data-val="true" data-title="2" id="test4" class="toggle" />
                 <label for="test4"></label>
             </p>
         </div>
+        <hr />
         <div class="questions">
             <h3>What about the age of the animal?</h3>
             <div class="options">
@@ -59,32 +60,38 @@
                 <div class="answer three" data-title="6" data-val="Male" data-opts="2">Male</div>
                 <div class="answer three clicked" id="preselected6" data-title="6" data-val="null">Doesn't matter.</div>
             </div>
-        </div><div class="questions row" style="margin-left:40px">
+        </div>
+        <hr />
+        <div class="questions row" style="margin-bottom: auto">
             <h3>Do you have other dogs?</h3>
-            <p style=" margin-left:25px;font-size: 2em;">
+            <p style=" margin-left: 345px;font-size: 2em;">
                 <input type="checkbox" data-val="true" data-title="7" id="test1" class="toggle" />
                 <label for="test1"></label>
             </p>
         </div>
-        <div class="questions row" style="margin-left:40px">
+        <div class="questions row" style="margin-bottom: auto">
             <h3>Do you have other cats?</h3>
-            <p style="margin-left: 25px; font-size: 2em;">
+            <p style="margin-left: 345px; font-size: 2em;">
                 <input type="checkbox" data-val="true" data-title="8" id="test2" class="toggle" />
                 <label for="test2"></label>
             </p>
-        </div><div class="questions row" style="margin-left:40px">
+        </div>
+        <div class="questions row" style="margin-bottom: auto">
             <h3>Do you have small children?</h3>
-            <p style="margin-left: 25px; font-size: 2em;">
+            <p style="margin-left: 320px; font-size: 2em;">
                 <input type="checkbox" data-val="true" data-title="9" id="test3" class="toggle" />
                 <label for="test3"></label>
             </p>
         </div>
-    </div><div class="questions row" style="margin-left:40px">
-        <h3>Would you take care of a special needs animal?</h3>
-        <p style="margin-left: 25px; font-size: 2em;">
-            <input type="checkbox" id="test5" data-val="true" data-title="10" class="toggle" />
-            <label for="test5"></label>
-        </p>
+
+        <div class="questions row" style="margin-bottom: auto">
+            <h3>Would you take care of a special needs animal?</h3>
+            <p style="margin-left: 175px; font-size: 2em;">
+                <input type="checkbox" id="test5" data-val="true" data-title="10" class="toggle" />
+                <label for="test5"></label>
+            </p>
+        </div>
+        <hr />
     </div>
 
     <div id="subBtn" class="submit">Find my pet!</div>

@@ -14,7 +14,6 @@
         if (
             $(this).hasClass("clicked")
         ) {
-            
             $(this).removeClass("clicked");
         } else {
             $(this).addClass("clicked");
@@ -86,6 +85,6 @@ function sendData(endpoint, data) {
             method: "POST",
             body: JSON.stringify(data),
         })
-        .then(function (res) { console.log(res) })
+        .then(function (res) { console.log(res); window.location.href = "https://localhost:44335/profile"})
         .catch(function (res) { console.log(res) })
-} 
+}
