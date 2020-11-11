@@ -12,6 +12,9 @@ input[type=text], input[type=password] {
     border: 1px solid #ccc;
     box-sizing: border-box;
 }
+.container {
+    font-family: 'Poppins', sans-serif;
+}
 
 /* Set a style for all buttons */
 button {

@@ -82,6 +82,14 @@ namespace PetApp.Controllers
             return View();
         }
 
+        [Route("/is-user-shelter/{id}")]
+        public bool IsUserShelter()
+        {
+            var isShelter = _context.appUsers.Where(u => u.UserName == User.Identity.Name).FirstOrDefault().IsShelter;
+            return isShelter;
+        }
+
+
         [Route("/shelter-profile")]
         public ActionResult<List<Animal>> ShelterProfile()
         {

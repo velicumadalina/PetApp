@@ -1,0 +1,53 @@
+﻿@model IEnumerable<PetApp.Models.Shelter>
+@{
+    ViewData["Title"] = "Home page";
+}
+
+
+
+
+<div class="container_image">
+    <div class="row">
+        <div class="column">
+            <img id="dog" src="https://preview.colorlib.com/theme/anipat/img/banner/dog.png" alt="">
+        </div>
+        <div class="column">
+            <img id="cat" src="https://preview.colorlib.com/theme/anipat/img/about/pet_care.png" alt="">
+        </div>
+    </div>
+
+    <hr />
+    <div class="container">
+        <div class="row col-xs-12 margin0">
+
+            @foreach (var shelter in Model)
+            {
+                <div class="col-xs-12 col-sm-6 col-md-4" style="padding: 10px 10px; width:250px; height:400px ">
+                    <div class="col-lg-12">
+
+                        <div class="card">
+                            <div class="prod mbr-gallery-item">
+                                @if (shelter.Image == null)
+                                {
+                                    <a href="/Shelter/@shelter.Id">
+                                        <img src="https://i.pinimg.com/originals/73/4d/71/734d71353465324d2128ce284c28efa3.jpg" width="300" height="200" />
+                                    </a>
+                                }
+                                else
+                                { <a href="/Shelter/@shelter.Id"><img src="~/Images/Shelters/@shelter.Image" width="300" height="200" /></a>}
+                            </div>
+                            <div class="card-header">
+                                <h6>@shelter.Name</h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            }
+
+
+        </div>
+
+    </div>
+
+</div>

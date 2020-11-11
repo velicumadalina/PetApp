@@ -27,12 +27,20 @@ a {
 /* Sticky footer styles
 -------------------------------------------------- */
 html {
-  font-size: 14px;
+    font-size: 14px;
+    font-family: 'Poppins', sans-serif;
 }
 @media (min-width: 768px) {
   html {
     font-size: 16px;
   }
+}
+.container {
+    font-family: 'Poppins', sans-serif;
+}
+section {
+
+    font-family: 'Poppins', sans-serif;
 }
 
 .border-top {
@@ -59,9 +67,10 @@ html {
 }
 
 body {
-  /* Margin bottom by footer height */
-  margin-bottom: 20px;
-
+    /* Margin bottom by footer height */
+    margin-bottom: 20px;
+    font-family: 'Poppins', sans-serif;
+    background: url('Images/3.jpg')
 }
 .footer {
   bottom: 0;

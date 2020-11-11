@@ -20,6 +20,23 @@ function formAction()
     sendData("/adopt-pet", data);
     hideDiv();
 }
+window.onload = () =>
+{
+    getIsUserShelter();
+}
+
+function getIsUserShelter() {
+    fetch("/is-user-shelter/" + userId,
+        {
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            },
+            method: "GET",
+        })
+        .then(response => response.json())
+        .then(data => { if (data == true) { console.log(document.getElementById("hideIfShelter").innerHTML = "") } })
+        .catch(function (res) { console.log(res) }) }
 
 function validateFormData() {
     if (fname.value == "") {

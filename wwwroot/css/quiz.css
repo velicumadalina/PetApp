@@ -16,6 +16,9 @@
     z-index: 99999;
     display: none;
 }
+.container {
+    font-family: 'Poppins', sans-serif;
+}
 
 .answer {
     /* Hovering over an answer shows the hand cursor */
