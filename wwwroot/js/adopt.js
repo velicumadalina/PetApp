@@ -15,7 +15,6 @@ let status = "Pending";
 
 function formAction()
 {
-    validateFormData();
     let data = getFormData();
     console.log(data);
     sendData("/adopt-pet", data);
@@ -44,6 +43,7 @@ function validateFormData() {
     if (validateEmail(email.value) != true) {
         email.parentNode.appendChild(createValidationErrorMessage("Please enter a valid email!"));
     }
+    formAction()
 }
 function getFormData() {
     let adoptionRequestObject =
@@ -84,6 +84,6 @@ function sendData(endpoint, data) {
             method: "POST",
             body: JSON.stringify(data)
         })
-        .then(function (res) { console.log(res); window.location.href = "https://localhost:44335/requests" })
+        .then(function (res) { console.log(res); window.location.href = "https://localhost:44335/favorites" })
         .catch(function (res) { console.log(res) })
 }

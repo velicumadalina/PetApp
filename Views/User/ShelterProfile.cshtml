@@ -1,12 +1,12 @@
-﻿@*@model IEnumerable<PetApp.Models.Animal>*@
+﻿@model IEnumerable<PetApp.Models.Animal>
 @{
     ViewData["Title"] = "ShelterProfile";
     Layout = "~/Views/AdoptionRequests/_ShelterLayout.cshtml";
 }
 
-<h1>ShelterProfile</h1>
+<h3>Shelter's animals </h3>
 
-@*<div class="text-center">
+<div class="text-center">
 </div>
 <div class="container">
     <div class="row col-xs-12 margin0">
@@ -20,8 +20,8 @@
                         <div class="prod mbr-gallery-item">
                             @if (animal.Image == null)
                             {
-                                <a href="/Animal/@animal.Id">
-                                    <img src="https://s.iw.ro/gateway/g/ZmlsZVNvdXJjZT1odHRwJTNBJTJGJTJG/c3RvcmFnZWRpZ2lhbmltYWx3b3JsZC5y/Y3MtcmRzLnJvJTJGc3RvcmFnZSUyRjIw/MTklMkYxMiUyRjE4JTJGMTE0NDQwOF8x/MTQ0NDA4X21hbWlmZXItcXVva2thLmpw/ZyZ3PTY0MCZoPTQ4MCZ6Yz0xJmhhc2g9/OWQ5NDUyNDkzYWFjZWU3MmEzY2I3M2JlZGE2ZTMyYTg=.thumb.jpg" width="300" height="200" />
+                                <a href="/Animal/@int.Parse(@animal.Id.ToString())">
+                                    <img src="~/Images/Animals/@animal.Image" />
                                 </a>
                             }
                             else
@@ -38,5 +38,4 @@
         }
     </div>
 
-</div>*@
-
+</div>

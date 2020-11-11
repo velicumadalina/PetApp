@@ -85,6 +85,6 @@ function sendData(endpoint, data) {
             method: "POST",
             body: JSON.stringify(data),
         })
-        .then(function (res) { console.log(res); window.location.href = "https://localhost:44335/profile"})
+        .then(function (res) { console.log(res); window.location.href = "https://localhost:44335/shelter-profile"})
         .catch(function (res) { console.log(res) })
 }

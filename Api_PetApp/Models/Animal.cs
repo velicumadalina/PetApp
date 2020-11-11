@@ -13,7 +13,6 @@ namespace WebApi_PetApp.Models
         [ForeignKey("Shelter")]
         public int ShelterId { get; set; }
 
-        //public Shelter Shelter { get; set; }
         public string Name { get; set; }
         public string Image { get; set; }
         public string Breed { get; set; }

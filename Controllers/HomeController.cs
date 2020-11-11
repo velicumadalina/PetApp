@@ -90,7 +90,7 @@ namespace PetApp.Controllers
                                 str.Add(kv.Key);
                             }
                         }
-                        animal.GetsAlongWith = String.Join(",", str);
+                        animal.GetsAlongWith = String.Join(", ", str);
                     }
 
                 }

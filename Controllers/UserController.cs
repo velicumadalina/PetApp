@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using PetApp.Data;
 using PetApp.Models;
 
@@ -64,6 +65,9 @@ namespace PetApp.Controllers
         [Route("/login")]
         public IActionResult Login()
         {
+            if (TempData["LoginError"] != null) {
+                ViewBag.Message = TempData["LoginError"];
+            }
             return View();
         }
 
@@ -79,9 +83,12 @@ namespace PetApp.Controllers
         }
 
         [Route("/shelter-profile")]
-        public IActionResult ShelterProfile()
+        public ActionResult<List<Animal>> ShelterProfile()
         {
-            return View();
+            var user = _context.appUsers.Where(u => u.UserName == User.Identity.Name).FirstOrDefault();
+            var shelter = _context.UserShelterRelations.Where(s => s.UserId == user.Id).FirstOrDefault();
+            var animals = _context.Shelter.Where(a => a.Id == shelter.ShelterId).Include(s => s.Animals).FirstOrDefault()?.Animals;
+            return View(animals.Where(a => a.IsAdopted != true).ToList());
         }
 
 
@@ -92,7 +99,15 @@ namespace PetApp.Controllers
             if (user != null)
             {
                 await _signInManager.PasswordSignInAsync(user, password, true, false);
-                return RedirectToAction("Index", "Home");
+                //if (!User.Identity.IsAuthenticated)
+                //{
+                //    TempData["LoginError"] = "Incorrect username or password!";
+                //    return RedirectToAction("Login");
+                //}
+                //else
+                //{
+                    return RedirectToAction("Index", "Home");
+                //}
 
             }
 
