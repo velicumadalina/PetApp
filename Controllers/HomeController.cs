@@ -29,12 +29,13 @@ namespace PetApp.Controllers
 
         public async Task<IActionResult> Index()
         {
-
+            var indexModel = new IndexModel();
             List<Animal> animals = new List<Animal>();
             using (var httpClient = new HttpClient())
             {
                 using (var response = await httpClient.GetAsync(_apiPath + "api/Animals"))
                 {
+                    
                     string apiResponse = await response.Content.ReadAsStringAsync();
                     animals = JsonConvert.DeserializeObject<List<Animal>>(apiResponse);
                     foreach (var animal in animals)
@@ -57,8 +58,18 @@ namespace PetApp.Controllers
                     }
                 }
             }
-
-            return View(animals);
+            indexModel.Animals = animals;
+            List<Shelter> shelterList = new List<Shelter>();
+            using (var httpClient = new HttpClient()) 
+            {
+                using (var response = await httpClient.GetAsync(_apiPath + "api/Shelter")) 
+                {
+                    string apiResponse = await response.Content.ReadAsStringAsync();
+                    shelterList = JsonConvert.DeserializeObject<List<Shelter>>(apiResponse);
+                }
+            }
+            indexModel.Shelters = shelterList;
+            return View(indexModel);
         }
 
 

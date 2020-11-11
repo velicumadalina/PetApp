@@ -1,4 +1,4 @@
-﻿@model IEnumerable<PetApp.Models.Animal>
+﻿@model PetApp.Models.IndexModel
 @{
     ViewData["Title"] = "Home page";
 }
@@ -30,6 +30,132 @@
                     <h3 class="mb-3">Our animals who are waiting for you:</h3>
                 </div>
                 <div class="col-6 text-right">
+                    <a class="btn btn-primary mb-3 mr-1" href="#carouselExampleIndicators3" role="button" data-slide="prev">
+                        <i class="fa fa-arrow-left"></i>
+                    </a>
+                    <a class="btn btn-primary mb-3 " href="#carouselExampleIndicators3" role="button" data-slide="next">
+                        <i class="fa fa-arrow-right"></i>
+                    </a>
+                </div>
+                <div class="col-12">
+                    <div id="carouselExampleIndicators3" class="carousel slide" data-ride="carousel">
+
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <div class="row">
+
+                                    <div class="col-md-4 mb-3">
+                                        <div class="card">
+                                            <img class="carousel-animals" alt="100%x280" src="~/Images/Animals/@Model.Animals.ElementAt(0).Image">
+                                            <div class="card-body">
+                                                <h4 class="card-title">@Model.Animals.ElementAt(0).Name</h4>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4 mb-3">
+                                        <div class="card">
+                                            <img class="carousel-animals" alt="100%x280" src="~/Images/Animals/@Model.Animals.ElementAt(1).Image">
+                                            <div class="card-body">
+                                                <h4 class="card-title">@Model.Animals.ElementAt(1).Name</h4>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 mb-3">
+                                        <div class="card">
+                                            <img class="carousel-animals" alt="100%x280" src="~/Images/Animals/@Model.Animals.ElementAt(2).Image">
+                                            <div class="card-body">
+                                                <h4 class="card-title">@Model.Animals.ElementAt(2).Name</h4>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="carousel-item">
+                                <div class="row">
+
+                                    <div class="col-md-4 mb-3">
+                                        <div class="card">
+                                            <img class="carousel-animals" alt="100%x280" src="~/Images/Animals/@Model.Animals.ElementAt(3).Image">
+                                            <div class="card-body">
+                                                <h4 class="card-title">@Model.Animals.ElementAt(3).Name</h4>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 mb-3">
+                                        <div class="card">
+                                            <img class="carousel-animals" alt="100%x280" src="~/Images/Animals/@Model.Animals.ElementAt(3).Image">
+                                            <div class="card-body">
+                                                <h4 class="card-title">@Model.Animals.ElementAt(0).Name</h4>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 mb-3">
+                                        <div class="card">
+                                            <img class="carousel-animals" alt="100%x280" src="~/Images/Animals/@Model.Animals.ElementAt(4).Image">
+                                            <div class="card-body">
+                                                <h4 class="card-title">@Model.Animals.ElementAt(0).Name</h4>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="carousel-item">
+                                <div class="row">
+
+                                    <div class="col-md-4 mb-3">
+                                        <div class="card">
+                                            <img class="carousel-animals" alt="100%x280" src="~/Images/Animals/@Model.Animals.ElementAt(5).Image">
+                                            <div class="card-body">
+                                                <h4 class="card-title">@Model.Animals.ElementAt(0).Name</h4>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 mb-3">
+                                        <div class="card">
+                                            <img class="carousel-animals" alt="100%x280" src="~/Images/Animals/@Model.Animals.ElementAt(6).Image">
+                                            <div class="card-body">
+                                                <h4 class="card-title">@Model.Animals.ElementAt(0).Name</h4>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 mb-3">
+                                        <div class="card">
+                                            <img class="carousel-animals" alt="100%x280" src="~/Images/Animals/@Model.Animals.ElementAt(7).Image">
+                                            <div class="card-body">
+                                                <h4 class="card-title">@Model.Animals.ElementAt(0).Name</h4>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+
+
+
+
+    <section class="pt-5 pb-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-6">
+                    <h3 class="mb-3">Our animals who are waiting for you:</h3>
+                </div>
+                <div class="col-6 text-right">
                     <a class="btn btn-primary mb-3 mr-1" href="#carouselExampleIndicators2" role="button" data-slide="prev">
                         <i class="fa fa-arrow-left"></i>
                     </a>
@@ -46,9 +172,9 @@
 
                                     <div class="col-md-4 mb-3">
                                         <div class="card">
-                                            <img class="carousel-animals" alt="100%x280" src="~/Images/Animals/@Model.ElementAt(0).Image">
+                                            <img class="carousel-animals" alt="100%x280" src="~/Images/Shelters/@Model.Shelters.ElementAt(0).Image">
                                             <div class="card-body">
-                                                <h4 class="card-title">@Model.ElementAt(0).Name</h4>
+                                                <h4 class="card-title">@Model.Shelters.ElementAt(0).Name</h4>
                                             </div>
 
                                         </div>
@@ -56,18 +182,18 @@
 
                                     <div class="col-md-4 mb-3">
                                         <div class="card">
-                                            <img class="carousel-animals" alt="100%x280" src="~/Images/Animals/@Model.ElementAt(4).Image">
+                                            <img class="carousel-animals" alt="100%x280" src="~/Images/Shelters/@Model.Shelters.ElementAt(1).Image">
                                             <div class="card-body">
-                                                <h4 class="card-title">@Model.ElementAt(0).Name</h4>
+                                                <h4 class="card-title">@Model.Shelters.ElementAt(1).Name</h4>
                                             </div>
 
                                         </div>
                                     </div>
                                     <div class="col-md-4 mb-3">
                                         <div class="card">
-                                            <img class="carousel-animals" alt="100%x280" src="~/Images/Animals/@Model.ElementAt(3).Image">
+                                            <img class="carousel-animals" alt="100%x280" src="~/Images/Animals/@Model.Shelters.ElementAt(2).Image">
                                             <div class="card-body">
-                                                <h4 class="card-title">@Model.ElementAt(0).Name</h4>
+                                                <h4 class="card-title">@Model.Shelters.ElementAt(2).Name</h4>
                                             </div>
                                         </div>
                                     </div>
@@ -78,26 +204,26 @@
 
                                     <div class="col-md-4 mb-3">
                                         <div class="card">
-                                            <img class="carousel-animals" alt="100%x280" src="~/Images/Animals/@Model.ElementAt(1).Image">
+                                            <img class="carousel-animals" alt="100%x280" src="~/Images/Shelters/@Model.Shelters.ElementAt(3).Image">
                                             <div class="card-body">
-                                                <h4 class="card-title">@Model.ElementAt(0).Name</h4>
+                                                <h4 class="card-title">@Model.Shelters.ElementAt(3).Name</h4>
                                             </div>
 
                                         </div>
                                     </div>
                                     <div class="col-md-4 mb-3">
                                         <div class="card">
-                                            <img class="carousel-animals" alt="100%x280" src="~/Images/Animals/@Model.ElementAt(3).Image">
+                                            <img class="carousel-animals" alt="100%x280" src="~/Images/Shelters/@Model.Shelters.ElementAt(3).Image">
                                             <div class="card-body">
-                                                <h4 class="card-title">@Model.ElementAt(0).Name</h4>
+                                                <h4 class="card-title">@Model.Shelters.ElementAt(0).Name</h4>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-md-4 mb-3">
                                         <div class="card">
-                                            <img class="carousel-animals" alt="100%x280" src="~/Images/Animals/@Model.ElementAt(4).Image">
+                                            <img class="carousel-animals" alt="100%x280" src="~/Images/Animals/@Model.Shelters.ElementAt(4).Image">
                                             <div class="card-body">
-                                                <h4 class="card-title">@Model.ElementAt(0).Name</h4>
+                                                <h4 class="card-title">@Model.Shelters.ElementAt(0).Name</h4>
                                             </div>
                                         </div>
                                     </div>
@@ -109,26 +235,26 @@
 
                                     <div class="col-md-4 mb-3">
                                         <div class="card">
-                                            <img class="carousel-animals" alt="100%x280" src="~/Images/Animals/@Model.ElementAt(5).Image">
+                                            <img class="carousel-animals" alt="100%x280" src="~/Images/Animals/@Model.Shelters.ElementAt(5).Image">
                                             <div class="card-body">
-                                                <h4 class="card-title">@Model.ElementAt(0).Name</h4>
+                                                <h4 class="card-title">@Model.Shelters.ElementAt(0).Name</h4>
                                             </div>
 
                                         </div>
                                     </div>
                                     <div class="col-md-4 mb-3">
                                         <div class="card">
-                                            <img class="carousel-animals" alt="100%x280" src="~/Images/Animals/@Model.ElementAt(6).Image">
+                                            <img class="carousel-animals" alt="100%x280" src="~/Images/Shelters/@Model.Shelters.ElementAt(6).Image">
                                             <div class="card-body">
-                                                <h4 class="card-title">@Model.ElementAt(0).Name</h4>
+                                                <h4 class="card-title">@Model.Shelters.ElementAt(0).Name</h4>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-md-4 mb-3">
                                         <div class="card">
-                                            <img class="carousel-animals" alt="100%x280" src="~/Images/Animals/@Model.ElementAt(7).Image">
+                                            <img class="carousel-animals" alt="100%x280" src="~/Images/Shelters/@Model.Shelters.ElementAt(7).Image">
                                             <div class="card-body">
-                                                <h4 class="card-title">@Model.ElementAt(0).Name</h4>
+                                                <h4 class="card-title">@Model.Shelters.ElementAt(0).Name</h4>
                                             </div>
                                         </div>
                                     </div>
@@ -141,11 +267,10 @@
         </div>
     </section>
 
-
 </div>
 
 
-
+</video>
 
 @section Scripts{
     <script src="~/js/site.js"></script>
