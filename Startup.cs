@@ -38,7 +38,8 @@ namespace WebApplication1
                 options.Password.RequireDigit = false;
                 options.Password.RequireNonAlphanumeric = false;
                 options.Password.RequireUppercase = false;
-                options.Password.RequiredLength = 4;
+                options.Password.RequireLowercase = false;
+                options.Password.RequiredLength = 2;
             }).AddEntityFrameworkStores<PetAppDbContext>();
             services.AddDbContext<PetAppDbContext>(c => { c.UseSqlServer(Configuration.GetConnectionString("UserDbContextConnection")); });
             services.ConfigureApplicationCookie(config =>
@@ -46,7 +47,6 @@ namespace WebApplication1
                 config.Cookie.Name = "Identity.Cookie";
                 config.LoginPath = "/login-user";
             });
-            
 
         }
 
