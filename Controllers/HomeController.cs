@@ -29,16 +29,36 @@ namespace PetApp.Controllers
 
         public async Task<IActionResult> Index()
         {
-            List<Shelter> shelterList = new List<Shelter>();
+
+            List<Animal> animals = new List<Animal>();
             using (var httpClient = new HttpClient())
             {
-                using (var response = await httpClient.GetAsync(_apiPath + "api/Shelter"))
+                using (var response = await httpClient.GetAsync(_apiPath + "api/Animals"))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
-                    shelterList = JsonConvert.DeserializeObject<List<Shelter>>(apiResponse);
+                    animals = JsonConvert.DeserializeObject<List<Animal>>(apiResponse);
+                    foreach (var animal in animals)
+                    {
+                        Dictionary<string, bool> _getsAlongWith = new Dictionary<string, bool>()
+                        {
+                            { "Dogs", animal.FriendlyWithDogs },
+                            { "Cats", animal.FriendlyWithCats },
+                            { "Kids", animal.FriendlyWithKids }
+                        };
+                        var str = new List<string>();
+                        foreach (KeyValuePair<string, bool> kv in _getsAlongWith)
+                        {
+                            if (kv.Value == true)
+                            {
+                                str.Add(kv.Key);
+                            }
+                        }
+                        animal.GetsAlongWith = String.Join(",", str);
+                    }
                 }
             }
-            return View(shelterList);
+
+            return View(animals);
         }
 
 

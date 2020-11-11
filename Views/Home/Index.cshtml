@@ -1,7 +1,12 @@
-﻿@model IEnumerable<PetApp.Models.Shelter>
+﻿@model IEnumerable<PetApp.Models.Animal>
 @{
     ViewData["Title"] = "Home page";
 }
+
+
+<link rel="stylesheet" href="~/css/home.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 
 
 
@@ -17,40 +22,132 @@
     </div>
 
     <hr />
-    <div class="container">
-        <div class="row col-xs-12 margin0">
 
-            @foreach (var shelter in Model)
-            {
-                <div class="col-xs-12 col-sm-6 col-md-4" style="padding: 10px 10px; width:250px; height:400px ">
-                    <div class="col-lg-12">
+    <section class="pt-5 pb-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-6">
+                    <h3 class="mb-3">Our animals who are waiting for you:</h3>
+                </div>
+                <div class="col-6 text-right">
+                    <a class="btn btn-primary mb-3 mr-1" href="#carouselExampleIndicators2" role="button" data-slide="prev">
+                        <i class="fa fa-arrow-left"></i>
+                    </a>
+                    <a class="btn btn-primary mb-3 " href="#carouselExampleIndicators2" role="button" data-slide="next">
+                        <i class="fa fa-arrow-right"></i>
+                    </a>
+                </div>
+                <div class="col-12">
+                    <div id="carouselExampleIndicators2" class="carousel slide" data-ride="carousel">
 
-                        <div class="card">
-                            <div class="prod mbr-gallery-item">
-                                @if (shelter.Image == null)
-                                {
-                                    <a href="/Shelter/@shelter.Id">
-                                        <img src="https://i.pinimg.com/originals/73/4d/71/734d71353465324d2128ce284c28efa3.jpg" width="300" height="200" />
-                                    </a>
-                                }
-                                else
-                                { <a href="/Shelter/@shelter.Id"><img src="~/Images/Shelters/@shelter.Image" width="300" height="200" /></a>}
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <div class="row">
+
+                                    <div class="col-md-4 mb-3">
+                                        <div class="card">
+                                            <img class="carousel-animals" alt="100%x280" src="~/Images/Animals/@Model.ElementAt(0).Image">
+                                            <div class="card-body">
+                                                <h4 class="card-title">@Model.ElementAt(0).Name</h4>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4 mb-3">
+                                        <div class="card">
+                                            <img class="carousel-animals" alt="100%x280" src="~/Images/Animals/@Model.ElementAt(4).Image">
+                                            <div class="card-body">
+                                                <h4 class="card-title">@Model.ElementAt(0).Name</h4>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 mb-3">
+                                        <div class="card">
+                                            <img class="carousel-animals" alt="100%x280" src="~/Images/Animals/@Model.ElementAt(3).Image">
+                                            <div class="card-body">
+                                                <h4 class="card-title">@Model.ElementAt(0).Name</h4>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="card-header">
-                                <h6>@shelter.Name</h6>
+                            <div class="carousel-item">
+                                <div class="row">
+
+                                    <div class="col-md-4 mb-3">
+                                        <div class="card">
+                                            <img class="carousel-animals" alt="100%x280" src="~/Images/Animals/@Model.ElementAt(1).Image">
+                                            <div class="card-body">
+                                                <h4 class="card-title">@Model.ElementAt(0).Name</h4>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 mb-3">
+                                        <div class="card">
+                                            <img class="carousel-animals" alt="100%x280" src="~/Images/Animals/@Model.ElementAt(3).Image">
+                                            <div class="card-body">
+                                                <h4 class="card-title">@Model.ElementAt(0).Name</h4>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 mb-3">
+                                        <div class="card">
+                                            <img class="carousel-animals" alt="100%x280" src="~/Images/Animals/@Model.ElementAt(4).Image">
+                                            <div class="card-body">
+                                                <h4 class="card-title">@Model.ElementAt(0).Name</h4>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="carousel-item">
+                                <div class="row">
+
+                                    <div class="col-md-4 mb-3">
+                                        <div class="card">
+                                            <img class="carousel-animals" alt="100%x280" src="~/Images/Animals/@Model.ElementAt(5).Image">
+                                            <div class="card-body">
+                                                <h4 class="card-title">@Model.ElementAt(0).Name</h4>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 mb-3">
+                                        <div class="card">
+                                            <img class="carousel-animals" alt="100%x280" src="~/Images/Animals/@Model.ElementAt(6).Image">
+                                            <div class="card-body">
+                                                <h4 class="card-title">@Model.ElementAt(0).Name</h4>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 mb-3">
+                                        <div class="card">
+                                            <img class="carousel-animals" alt="100%x280" src="~/Images/Animals/@Model.ElementAt(7).Image">
+                                            <div class="card-body">
+                                                <h4 class="card-title">@Model.ElementAt(0).Name</h4>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-
-            }
-
-
+            </div>
         </div>
+    </section>
 
-    </div>
 
 </div>
 
 
+
+
+@section Scripts{
+    <script src="~/js/site.js"></script>
+}
 
