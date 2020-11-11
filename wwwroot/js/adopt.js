@@ -23,6 +23,7 @@ function formAction()
 window.onload = () =>
 {
     getIsUserShelter();
+    getIsRequestMade();
 }
 
 function getIsUserShelter() {
@@ -36,7 +37,22 @@ function getIsUserShelter() {
         })
         .then(response => response.json())
         .then(data => { if (data == true) { console.log(document.getElementById("hideIfShelter").innerHTML = "") } })
-        .catch(function (res) { console.log(res) }) }
+        .catch(function (res) { console.log(res) })
+}
+
+function getIsRequestMade() {
+    fetch("/is-request-already-made/" + userId + "/" + animalId,
+        {
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            },
+            method: "GET",
+        })
+        .then(response => response.json())
+        .then(data => { if (data == true) { console.log(document.getElementById("hideIfShelter").innerHTML = "") } })
+        .catch(function (res) { console.log(res) })
+}
 
 function validateFormData() {
     if (fname.value == "") {

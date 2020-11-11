@@ -40,17 +40,12 @@
 //}
 
 $('.deny').click(function () {
-    console.log($(this).data("animal"));
-    let data = { "id": $(this).data("animal") };
-    console.log(data);
-    getData("https://localhost:44335/decline-adoption/" + $(this).data("animal"))
+    getData("https://localhost:44335/decline-adoption/" + $("#requestId").data("animal"))
     window.location.reload();
 });
 $('.accept').click(function () {
-    console.log($(this).data("animal"));
-    let data = { "id": $(this).data("animal") };
-    console.log(data);
-    getData("https://localhost:44335/confirm-adoption/" + $(this).data("animal"))
+    console.log($("#requestId").data("animal"))
+    getData("https://localhost:44335/confirm-adoption/" + $("#requestId").data("animal"))
     window.location.reload();
 
 });

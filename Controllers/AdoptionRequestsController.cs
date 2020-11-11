@@ -13,6 +13,7 @@ using EmailHelper;
 using System.Net.Mail;
 using System.Net.Http;
 using Newtonsoft.Json;
+using System.Reflection.Metadata.Ecma335;
 
 namespace PetApp.Controllers
 {
@@ -48,14 +49,14 @@ namespace PetApp.Controllers
         }
 
         [Route("/shelter/animal-requests")]
-        public async Task<IActionResult> AnimalRequests()
+        public IActionResult AnimalRequests()
         {
             var requests = new List<AdoptionRequest>();
             var user = _context.appUsers.Where(u => u.UserName == User.Identity.Name).FirstOrDefault();
             var shelterId = _context.UserShelterRelations.Where(r => r.UserId == user.Id).FirstOrDefault().ShelterId;
             try
             {
-                requests = await _context.adoptionRequests.Where(r => r.ShelterId == shelterId).Where(a => a.AdoptionStatus != "Approved").Where(a => a.AdoptionStatus != "Declined").ToListAsync();
+                requests = _context.adoptionRequests.Where(r => r.ShelterId == shelterId).Where(a => a.AdoptionStatus == "Pending").ToList();
             }
             catch
             {
@@ -75,6 +76,17 @@ namespace PetApp.Controllers
             {
             }
             return View(favorites);
+        }
+
+        [Route("/is-request-already-made/{userId}/{animalId}")]
+        public bool IsRequestMade(int userId, int animalId)
+        {
+            var request = _context.adoptionRequests.Where(r => r.UserId == userId && r.AnimalId == animalId).FirstOrDefault();
+            if (request != null)
+            {
+                return false;
+            }
+            return true;
         }
 
         // GET: AdoptionRequests/Details/5
@@ -182,7 +194,8 @@ namespace PetApp.Controllers
         [Route("/confirm-adoption/{id}")]
         public async Task<IActionResult> ConfirmAdoption(int id)
         {
-            var request = _context.adoptionRequests.Where(a => a.AnimalId == id).FirstOrDefault();
+            var request = _context.adoptionRequests.Where(a => a.Id == id).FirstOrDefault();
+            var animalId = request.AnimalId;
             if (request != null) 
             {
                 request.AdoptionStatus = "Approved";
@@ -203,8 +216,9 @@ namespace PetApp.Controllers
                         throw;
                     }
                 }
-            var animal = _context.Animal.Where(a => a.Id == id).FirstOrDefault();
+            var animal = _context.Animal.Where(a => a.Id == animalId).FirstOrDefault();
             if (animal != null) { animal.IsAdopted = true; await _context.SaveChangesAsync(); }
+            _context.adoptionRequests.Remove(request);
             return Ok();
         }
 
@@ -213,7 +227,7 @@ namespace PetApp.Controllers
         [Route("/decline-adoption/{id}")]
         public async Task<IActionResult> DeclineAdoption(int id)
         {
-            var request = _context.adoptionRequests.Where(a => a.AnimalId == id).FirstOrDefault();
+            var request = _context.adoptionRequests.Where(a => a.Id == id).FirstOrDefault();
             if (request != null)
             {
                 request.AdoptionStatus = "Declined";
