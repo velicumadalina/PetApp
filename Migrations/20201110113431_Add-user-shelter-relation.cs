@@ -6,9 +6,6 @@ namespace PetApp.Migrations
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropColumn(
-                name: "ShelterId",
-                table: "AspNetUsers");
 
             migrationBuilder.CreateTable(
     name: "UserShelterRelations",
