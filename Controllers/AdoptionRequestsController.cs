@@ -84,9 +84,9 @@ namespace PetApp.Controllers
             var request = _context.adoptionRequests.Where(r => r.UserId == userId && r.AnimalId == animalId).FirstOrDefault();
             if (request != null)
             {
-                return false;
+                return true;
             }
-            return true;
+            return false;
         }
 
         // GET: AdoptionRequests/Details/5

@@ -27,7 +27,7 @@ window.onload = () =>
 }
 
 function getIsUserShelter() {
-    fetch("/is-user-shelter/" + userId,
+    fetch("/is-user-shelter/" + userId.value,
         {
             headers: {
                 'Accept': 'application/json',
@@ -41,7 +41,7 @@ function getIsUserShelter() {
 }
 
 function getIsRequestMade() {
-    fetch("/is-request-already-made/" + userId + "/" + animalId,
+    fetch("/is-request-already-made/" + userId.value + "/" + animalId.value,
         {
             headers: {
                 'Accept': 'application/json',
