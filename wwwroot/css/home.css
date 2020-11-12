@@ -14,10 +14,6 @@
     font-family: 'Poppins', sans-serif;
 }
 
-.about-section {
-    padding-top: 40px;
-}
-
 .about-image {
     position: relative;
 }
@@ -365,7 +361,7 @@ h2 {
 .paws {
     position: relative;
     display: inline-block;
-    margin-bottom: 20px;
+    margin-left: 850px;
 }
 
 .paws:before {
@@ -420,7 +416,7 @@ footer {
     margin-top: -200px;
 }
 
-.adapt_area .adapt_about .single_adapt {
+.single_adapt {
     margin-bottom: 40px;
     box-shadow: 0px 16px 35px 0px rgba(0, 0, 2, 0.08);
     border-radius: 14px;
@@ -428,7 +424,7 @@ footer {
     padding: 40px 40px 33px 40px;
 }
 
-.adapt_area .adapt_about .single_adapt .adapt_content h3 {
+.single_adapt .adapt_content h3 {
     font-size: 60px;
     font-weight: 700;
     font-family: "Poppins",sans-serif;
@@ -437,4 +433,12 @@ footer {
     margin-bottom: 2px;
     margin-top: 22px;
     line-height: 1;
+}
+
+.dog_thumb {
+    position: absolute;
+    bottom: 0;
+    right: 10%;
+    bottom: -55px;
+    z-index: 1;
 }

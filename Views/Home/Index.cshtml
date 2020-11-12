@@ -12,23 +12,20 @@
 
 
 <section class="banner_part">
+    <div class="dog_thumb d-none d-lg-block">
+        <img src="~/Images/dog.png" alt="" width="700">
+    </div>
 </section>
-
+<hr />
 <div class="paws">
     <i class="fa fa-paw" aria-hidden="true"></i>
     <span class="icon-paw"><i class="fa fa-paw" aria-hidden="true"></i></span>
+    <i class="fa fa-paw" aria-hidden="true"></i>
 </div>
 
 <br />
 <br />
 <div class="container_image">
-    @*<div class="row">
-            <div class="column">
-                <img id="dog" src="https://preview.colorlib.com/theme/anipat/img/banner/dog.png" alt="">
-            </div>
-        </div>*@
-
-    <hr />
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -42,21 +39,26 @@
                 </div>
                 <div class="col-lg-6">
                     <div class="about-content">
-                        <h3> Welcome to our Pet Adoption Website </h3>
+                        <h2> Welcome to our Pet Adoption Website </h2>
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. </p>
                         <br>
                         <p> Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. </p>
                         <br><br>
-                        <a class="boxed-btn3">About Us</a>
+                        <a href="#" class="boxed-btn3">About Us</a>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-    <br /><br /><hr /><br />
+    <hr />
+    <div class="paws">
+        <i class="fa fa-paw" aria-hidden="true"></i>
+        <span class="icon-paw"><i class="fa fa-paw" aria-hidden="true"></i></span>
+        <i class="fa fa-paw" aria-hidden="true"></i>
+    </div>
 
     <div class="container">
-        <h3>Our animals:</h3>
+        <h2 class="text-black mb-3"><b>OUR ANIMALS</b></h2>
         <div class="row col-xs-12 mx-auto">
             <div class="container">
                 @foreach (var animal in Model.Animals.Where(a => a.IsAdopted != true).Take(6))
@@ -72,7 +74,7 @@
                 }
             </div>
             <div style="font-size: 24px;">
-                <i style="width:200px;padding:50px" class="fa fa-arrow-right fa-10x"><a href="/see-all-animals">See all</a></i>
+                <a href="/see-all-animals" class="boxed-btn3">See all</a>
             </div>
 
         </div>
@@ -80,7 +82,11 @@
 
     <br />
     <hr />
-    <br />
+    <div class="paws">
+        <i class="fa fa-paw" aria-hidden="true"></i>
+        <span class="icon-paw"><i class="fa fa-paw" aria-hidden="true"></i></span>
+        <i class="fa fa-paw" aria-hidden="true"></i>
+    </div>
 
     <div class="container mx-auto">
         <div class="row justify-content-between align-items-center">
@@ -101,7 +107,7 @@
                     <div class="row align-items-center">
                         <div class="col-lg-6 col-md-6">
                             <div class="single_adapt text-center">
-                                <img src="img/adapt_icon/x1.png.pagespeed.ic.gP4wnFR8vR.webp" alt="" data-pagespeed-url-hash="4287309140" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
+                                <img src="~/Images/dog1.png" alt="">
                                 <div class="adapt_content">
                                     <h3 class="counter">@(Model.Animals.Count - Model.Animals.Where(a => a.IsAdopted == true).ToList().Count())</h3>
                                     <p>Pets Available</p>
@@ -110,14 +116,14 @@
                         </div>
                         <div class="col-lg-6 col-md-6">
                             <div class="single_adapt text-center">
-                                <img src="img/adapt_icon/x3.png.pagespeed.ic.L0x1lZnC24.webp" alt="" data-pagespeed-url-hash="581341686" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
+                                <img src="~/Images/paw.png" alt="">
                                 <div class="adapt_content">
                                     <h3><span class="counter">@Model.Shelters.Count</span></h3>
                                     <p>Shelters</p>
                                 </div>
                             </div>
                             <div class="single_adapt text-center">
-                                <img src="img/adapt_icon/x2.png.pagespeed.ic.5xVBFHD5Ii.webp" alt="" data-pagespeed-url-hash="286841765" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
+                                <img src="~/Images/dog2.png" alt="">
                                 <div class="adapt_content">
                                     <h3><span class="counter">@Model.Animals.Where(a => a.IsAdopted == true).ToList().Count()</span></h3>
                                     <p>Pets Adopted</p>
@@ -128,25 +134,25 @@
                 </div>
             </div>
         </div>
-
-        <br />
-        <hr />
-        <br />
-
-
-        <div class="container">
-            <h2>Our  Partner shelters: </h2>
-            <section class="customer-logos slider">
-                @foreach (var shelter in Model.Shelters)
-                {
-                    <a href="/shelter/@shelter.Id"><div class="slide"><img height="100" src="~/Images/Shelters/@shelter.Image"></div></a>
-                }
-            </section>
-            <a href="/see-all-shelters"><small>See all the shelters</small></a>
-        </div>
-        <br /><br />
-
     </div>
+    <hr />
+    <div class="paws">
+        <i class="fa fa-paw" aria-hidden="true"></i>
+        <span class="icon-paw"><i class="fa fa-paw" aria-hidden="true"></i></span>
+        <i class="fa fa-paw" aria-hidden="true"></i>
+    </div>
+    <div class="container">
+        <h2 class="text-black mb-3"><b>OUR SHELTERS</b></h2>
+        <section class="customer-logos slider">
+            @foreach (var shelter in Model.Shelters)
+            {
+                <a href="/shelter/@shelter.Id"><div class="slide"><img height="100" src="~/Images/Shelters/@shelter.Image"></div></a>
+            }
+        </section>
+        <a href="/see-all-shelters" class="boxed-btn3" style="font-size: 12px; margin-left: 480px; margin-top: 5px;">See all</a>
+        <br /><br />
+    </div>
+
 
 </div>
 
