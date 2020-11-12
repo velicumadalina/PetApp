@@ -457,3 +457,8 @@ footer {
     line-height: 85px;
 }
 
+.all_animals {
+    margin-top: 50px;
+    background: white;
+    border-radius: 10px;
+}

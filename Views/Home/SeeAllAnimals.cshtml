@@ -8,15 +8,17 @@
 
 <div class="text-center">
 </div>
-<div class="container">
-    <h3>Our animals:</h3>
+<div class="container all_animals">
+    <br />
+    <h3 style="text-align:center"><b>OUR ANIMALS</b></h3>
+    <hr/>
     <div class="row col-xs-12 margin0">
             @foreach (var animal in Model.Where(a => a.IsAdopted != true).ToList())
             {
                 <div class="col-xs-12 col-sm-3">
                     <div class="card" style="background:url('/Images/Animals/@animal.Image')">
                         <div class="card-description">
-                            <p>@animal.Name</p>
+                            <p style="text-shadow: 1px 1px 20px black, 1px 1px 20px black, 1px 1px 20px black, 1px 1px 20px black, 1px 1px 20px black, 1px 1px 20px black, 1px 1px 20px black;">@animal.Name</p>
                         </div>
                         <a class="card-link" href="/animal/@animal.Id"></a>
                     </div>

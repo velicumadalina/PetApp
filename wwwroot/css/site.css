@@ -70,7 +70,8 @@ body {
     /* Margin bottom by footer height */
     margin-bottom: 20px;
     font-family: 'Poppins', sans-serif;
-    background-color: #f9f3e8;
+    background-color: #fd6116;
+    /*background-color: #f9f3e8;*/
 }
 .footer {
   bottom: 0;
