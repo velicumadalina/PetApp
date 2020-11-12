@@ -70,7 +70,7 @@ body {
     /* Margin bottom by footer height */
     margin-bottom: 20px;
     font-family: 'Poppins', sans-serif;
-    background: url('Images/3.jpg')
+    background-color: #f9f3e8;
 }
 .footer {
   bottom: 0;

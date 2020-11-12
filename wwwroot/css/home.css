@@ -412,3 +412,10 @@ h2 {
     color: #fff;
     text-shadow: none;
 }
+
+footer {
+    clear: both;
+    position: relative;
+    height: 200px;
+    margin-top: -200px;
+}

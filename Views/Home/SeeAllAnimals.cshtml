@@ -11,7 +11,7 @@
 <div class="container">
     <h3>Our animals:</h3>
     <div class="row col-xs-12 margin0">
-            @foreach (var animal in Model)
+            @foreach (var animal in Model.Where(a => a.IsAdopted != true).ToList())
             {
                 <div class="col-xs-12 col-sm-3">
                     <div class="card" style="background:url('/Images/Animals/@animal.Image')">
