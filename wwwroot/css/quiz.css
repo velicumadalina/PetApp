@@ -273,3 +273,8 @@ input.toggle[readonly] + label {
   opacity: 0.5;
   cursor: default;
 }
+
+
+#subBtn:hover {
+    background-color: #f64a0b;
+}
