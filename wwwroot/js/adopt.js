@@ -19,6 +19,7 @@ let hideIfShelter = document.getElementById("hide");
 
 function formAction()
 {
+    validateFormData();
     let data = getFormData();
     console.log(data);
     sendData("/adopt-pet", data);
@@ -28,7 +29,7 @@ window.onload = () =>
 {
     getIsUserShelter();
     getIsRequestMade();
-    
+
 }
 
 function getIsUserShelter() {
@@ -41,7 +42,7 @@ function getIsUserShelter() {
             method: "GET",
         })
         .then(response => response.json())
-        .then(data => { if (data == false) { hideIfShelter.style.display = "block"; showIfAlreadyAdopted.display.style = "none"; getIsRequestMade() } })
+        .then(data => { if (data == false) { hideIfShelter.style.display = "block"; showIfAlreadyAdopted.style.display = "none"; getIsRequestMade() } })
         .catch(function (res) { console.log(res) })
 }
 
@@ -55,7 +56,7 @@ function getIsRequestMade() {
             method: "GET",
         })
         .then(response => response.json())
-        .then(data => { if (data == true) { console.log(data); hideIfShelter.style.display = "none"; showIfAlreadyAdopted.display.style = "block"; } })
+        .then(data => { if (data == true) { console.log(data); hideIfShelter.style.display = "none"; showIfAlreadyAdopted.style.display = "block"; } })
         .catch(function (res) { console.log(res) })
 }
 
@@ -81,7 +82,6 @@ function validateFormData() {
     if (validateEmail(email.value) != true) {
         email.parentNode.appendChild(createValidationErrorMessage("Please enter a valid email!"));
     }
-    formAction()
 }
 function getFormData() {
     let adoptionRequestObject =

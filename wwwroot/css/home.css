@@ -442,3 +442,18 @@ footer {
     bottom: -55px;
     z-index: 1;
 }
+
+.banner_part .slider_text {
+    position: relative;
+    z-index: 6;
+}
+
+.banner_part .slider_text h3 {
+    color: #ffffff;
+    font-family: "Poppins", sans-serif;
+    font-size: 75px;
+    font-weight: bold;
+    margin-bottom: 40px;
+    line-height: 85px;
+}
+
