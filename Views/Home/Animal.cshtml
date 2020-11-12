@@ -5,10 +5,10 @@
 @inject SignInManager<User> SignInManager
 @inject UserManager<User> UserManager
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
+<link rel="stylesheet" href="~/css/animal_profile.css" />
 
 <div class="container">
-    <section class="mb-5" style="margin-top:75px;">
+    <section class="mb-5 animal_profile_card" style="margin-top:75px;">
 
         <div class="row">
             <div class="col-md-6 mb-4 mb-md-0">
@@ -22,7 +22,7 @@
                         <div class="col-12 mb-0">
                             <figure class="view overlay rounded z-depth-1 main-img" style="width: 400px;">
                                 <img src="~/Images/Animals/@Model.Image"
-                                     class="img-fluid z-depth-1" width="400">
+                                     class="img-fluid z-depth-1 animal_image" width="400">
                             </figure>
                         </div>
                     </div>
@@ -30,7 +30,7 @@
                 </div>
 
             </div>
-            <div class="col-md-6">
+            <div class="col-md-6 animal_description">
 
                 <h3>@Model.Name</h3>
 
@@ -64,7 +64,7 @@
                     <button type="button" id="adoptPet" onclick="showDiv()" class="btn btn-primary btn-md mr-1 mb-2" style="margin-right:30px;">Adopt Me!</button>
                 </div>
                 <div id="asd1" style="display:none">
-                    <button type="button" id="adoptPetU" class="btn btn-primary btn-md mr-1 mb-2" style="margin-right:30px;background-color:slategrey">Adopt Me!</button>
+                    <button type="button" id="adoptPetU" class="btn btn-primary btn-md mr-1 mb-2" style="margin-right:30px;background-color:slategrey; border-color:slategrey">Adopt Me!</button>
                 </div>
                 <form id="contact-form" name="contact-form" method="POST">
                     <input type="hidden" value="@Model.Id" name="animalId" id="animalIdFav" />
@@ -75,11 +75,12 @@
                     </button>
                 </form>
                 <div id="adoptionForm" style="display:none">
-                    <section class="mb-4">
+                    <section class="mb-4 mx-auto adopt_form">
                         <h2 class="h1-responsive font-weight-bold text-center my-4">Adoption Details</h2>
+                        <hr />
                         <div class="row">
                             <div class="col-md-10 mb-md-0 mb-5">
-                                <form id="contact-form" name="contact-form" action="mail.php" method="POST">
+                                <form id="contact-form" name="contact-form" action="mail.php" method="POST" style="margin-left:70px">
                                     <input type="hidden" value="@Model.Id" name="animalId" id="animalId" />
                                     <input type="hidden" value="@Model.Name" name="animalName" id="animalName" />
                                     <input type="hidden" value="@UserManager.GetUserId(User)" name="userId" id="userId" />
@@ -105,9 +106,9 @@
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="col-md-8">
+                                        <div class="col-md-8" style="margin-top: 10px; margin-left: 70px; margin-bottom: 10px;">
                                             <div class="md-form mb-0">
-                                                <label for="phone" class="">Your phone number</label>
+                                                <label for="phone" class="">Phone number</label>
                                                 <input type="text" id="phone" name="phone" class="form-control">
 
                                             </div>
@@ -116,14 +117,14 @@
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="md-form mb-0">
-                                                <label for="email" class="">Your email</label>
+                                                <label for="email" class="">Email</label>
                                                 <input type="text" id="email" name="email" class="form-control">
 
                                             </div>
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="col-md-12">
+                                        <div class="col-md-12" style="margin-top:10px">
                                             <div class="md-form">
                                                 <label for="message">Your message</label>
                                                 <textarea type="text" id="message" name="message" rows="2" class="form-control md-textarea"></textarea>
@@ -133,9 +134,11 @@
                                         </div>
                                     </div>
                                 </form>
-                                <div class="text-center text-md-left">
-                                    <a class="btn btn-primary" onclick="formAction()">Send</a>
+                                <div class="text-center mx-auto" style="margin-left:100px">
+                                    <br />
+                                    <a class="btn btn-primary" onclick="formAction()" style="color:white; margin-left:100px">Send</a>
                                 </div>
+                                <br />
                                 <div class="status"></div>
                             </div>
                         </div>

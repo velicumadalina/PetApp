@@ -1,0 +1,19 @@
+﻿.animal_profile_card {
+    background: white;
+    border-radius: 10px;
+}
+.animal_image {
+    margin-top: 25px;
+}
+
+.animal_description {
+    margin-top: 25px;
+}
+
+.adopt_form {
+    border-width: thin;
+    border-style: solid;
+    border-radius: 10px;
+    text-align: center;
+}
+
