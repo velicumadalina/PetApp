@@ -118,3 +118,8 @@ body {
 .animals {
     height: 100%!important;
 }
+
+
+li a:target {
+    background-color: #ed5b0d
+}
