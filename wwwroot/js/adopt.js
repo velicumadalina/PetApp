@@ -12,6 +12,10 @@ let shelterId = document.getElementById("shelterId");
 let userName = document.getElementById("userName");
 let userId = document.getElementById("userId");
 let status = "Pending";
+let showIfAlreadyAdopted = document.getElementById("asd1");
+let hideIfShelter = document.getElementById("hide");
+
+
 
 function formAction()
 {
@@ -24,6 +28,7 @@ window.onload = () =>
 {
     getIsUserShelter();
     getIsRequestMade();
+    
 }
 
 function getIsUserShelter() {
@@ -36,7 +41,7 @@ function getIsUserShelter() {
             method: "GET",
         })
         .then(response => response.json())
-        .then(data => { if (data == true) { console.log(document.getElementById("hideIfShelter").innerHTML = "") } })
+        .then(data => { if (data == false) { hideIfShelter.style.display = "block"; showIfAlreadyAdopted.display.style = "none"; getIsRequestMade() } })
         .catch(function (res) { console.log(res) })
 }
 
@@ -50,7 +55,7 @@ function getIsRequestMade() {
             method: "GET",
         })
         .then(response => response.json())
-        .then(data => { if (data == true) { console.log(document.getElementById("hideIfShelter").innerHTML = "") } })
+        .then(data => { if (data == true) { console.log(data); hideIfShelter.style.display = "none"; showIfAlreadyAdopted.display.style = "block"; } })
         .catch(function (res) { console.log(res) })
 }
 

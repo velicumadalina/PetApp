@@ -114,10 +114,13 @@
                 Gets along with: @String.Join(", ", Model.GetsAlongWith)
             </p>
             <br />
-            <div id="hideIfShelter">
-                <button type="button" id="adoptPet" onclick="showDiv()" class="btn btn-primary btn-md mr-1 mb-2" style="margin-right:30px">Adopt Me!</button>
+            <div id="hide" style="display:none">
+                <button type="button" id="adoptPet" onclick="showDiv()" class="btn btn-primary btn-md mr-1 mb-2" style="margin-right:30px;">Adopt Me!</button>
             </div>
-                <form id="contact-form" name="contact-form" method="POST">
+            <div id="asd1" style="display:none">
+                <button type="button" id="adoptPetU" class="btn btn-primary btn-md mr-1 mb-2" style="margin-right:30px;background-color:slategrey">Adopt Me!</button>
+            </div>
+            <form id="contact-form" name="contact-form" method="POST">
                 <input type="hidden" value="@Model.Id" name="animalId" id="animalIdFav" />
                 <input type="hidden" value="@Model.Name" name="animalName" id="animalNameFav" />
                 <input type="hidden" value="@UserManager.GetUserId(User)" name="userId" id="userIdFav" />
