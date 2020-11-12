@@ -74,12 +74,12 @@ namespace PetApp.Controllers
         [Route("/profile")]
         public IActionResult Profile()
         {
-            var isShelter = _context.appUsers.Where(u => u.UserName == User.Identity.Name).FirstOrDefault().IsShelter;
-            if (isShelter)
+            var user = _context.appUsers.Where(u => u.UserName == User.Identity.Name).FirstOrDefault();
+            if (user.IsShelter)
             {
                 return RedirectToAction("ShelterProfile");
             }
-            return View();
+            return View(user);
         }
 
         [Route("/is-user-shelter/{id}")]
