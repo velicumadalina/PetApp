@@ -419,3 +419,22 @@ footer {
     height: 200px;
     margin-top: -200px;
 }
+
+.adapt_area .adapt_about .single_adapt {
+    margin-bottom: 40px;
+    box-shadow: 0px 16px 35px 0px rgba(0, 0, 2, 0.08);
+    border-radius: 14px;
+    background: #fff;
+    padding: 40px 40px 33px 40px;
+}
+
+.adapt_area .adapt_about .single_adapt .adapt_content h3 {
+    font-size: 60px;
+    font-weight: 700;
+    font-family: "Poppins",sans-serif;
+    color: #383737;
+    display: inline-block;
+    margin-bottom: 2px;
+    margin-top: 22px;
+    line-height: 1;
+}

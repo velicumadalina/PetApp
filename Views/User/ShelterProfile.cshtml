@@ -3,47 +3,25 @@
     ViewData["Title"] = "ShelterProfile";
     Layout = "~/Views/AdoptionRequests/_ShelterLayout.cshtml";
 }
-@*<link rel="stylesheet" href="~/css/shelter_profile.css" />*@
+<link rel="stylesheet" href="~/css/shelter_profile.css" />
 
 <h3>Shelter's animals </h3>
 
 <div class="text-center">
 </div>
 <div class="container">
-    <div class="row col-xs-12 margin0">
+    <div class="row col-xs-12 mx-auto">
 
         @foreach (var animal in Model)
         {
-            <div class="col-xs-12 col-sm-6 col-md-4" style="padding: 10px 10px; width:250px; height:400px ">
-                <div class="col-lg-12">
-
-                    <div class="card">
-                        <div class="prod mbr-gallery-item">
-                            @if (animal.Image == null)
-                            {
-                                <a href="/Animal/@int.Parse(@animal.Id.ToString())">
-                                    <img src="~/Images/Animals/@animal.Image" />
-                                </a>
-                            }
-                            else
-                            { <a href="/Animal/@animal.Id"><img src="~/Images/Animals/@animal.Image" style="width: 220px; height:auto; padding:10px" /></a>}
-
-                        </div>
-                        <div class="card-header">
-                            <h6>@animal.Name</h6>
-                        </div>
-                    </div>
+        <div class="col-xs-12 col-sm-3">
+            <div class="card" style="background:url('/Images/Animals/@animal.Image')">
+                <div class="card-description">
+                    <p>@animal.Name</p>
                 </div>
+                <a class="card-link" href="/animal/@animal.Id"></a>
             </div>
-
-            @*<div class="col-xs-12 col-sm-3">
-                <div class="card" style="background:url('/Images/Animals/@animal.Image')">
-                    <div class="card-description">
-                        <p>@animal.Name</p>
-                    </div>
-                    <a class="card-link" href="/animal/@animal.Id"></a>
-                </div>
-            </div>*@
+        </div>
         }
     </div>
 

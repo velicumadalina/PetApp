@@ -109,3 +109,12 @@ body {
     clear: both;
     display: table;
 }
+
+.shelter-profile {
+    margin-top: 12rem;
+    text-align: center;
+}
+
+.animals {
+    height: 100%!important;
+}
