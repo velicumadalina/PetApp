@@ -8,13 +8,7 @@
     margin-bottom: -0.25rem;
     text-align: center;
 }
-#myVideo {
-    position: fixed;
-    right: 0;
-    bottom: 0;
-    min-width: 100%;
-    min-height: 100%;
-}
+
 
 .container {
     font-family: 'Poppins', sans-serif;
@@ -86,7 +80,7 @@
     font-family: 'Poppins', sans-serif;
 }
 
-.main-btn {
+/*.main-btn {
     display: inline-block;
     font-weight: 600;
     text-align: center;
@@ -99,15 +93,15 @@
     letter-spacing: 2px;
     text-transform: uppercase;
     text-decoration: none;
-}
+}*/
 
-    .main-btn:hover {
+/*    .main-btn:hover {
         background: #333;
         color: #fff;
         border-color: #333;
         transition: all .8s ease-out 0s;
         text-decoration: none;
-    }
+    }*/
 h2 {
     text-align: center;
     padding: 20px;
@@ -342,4 +336,79 @@ h2 {
 .features p {
     font-size: 15px;
     font-weight: lighter;
+}
+
+.banner_part:after {
+    position: absolute;
+    content: "";
+    left: 0;
+    bottom: -1px;
+    width: 100%;
+    height: 130px;
+    background-image: url(../Images/banner_sharp.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.banner_part {
+    height: 550px;
+    display: flex;
+    align-items: center;
+    position: relative;
+    background-image: url(../Images/banner.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: right;
+}
+
+.paws {
+    position: relative;
+    display: inline-block;
+    margin-bottom: 20px;
+}
+
+.paws:before {
+    left: -30px;
+    -webkit-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+}
+.paws > span {
+    color: #a2c0be;
+    font-size: 2rem;
+}
+
+
+.paws:after {
+    right: -30px;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+
+.boxed-btn3 {
+    font-size: 18px;
+    font-weight: 500;
+    color: #fff;
+    padding: 17px 55px;
+    font-family: "Poppins",sans-serif;
+    display: inline-block;
+    -webkit-border-radius: 30px;
+    -moz-border-radius: 30px;
+    border-radius: 30px;
+    background-position: 100% 0;
+    background-position: 0 0;
+    background-image: -webkit-linear-gradient(0deg, #f14437 0%, #ed5b0d 99%);
+}
+.boxed-btn3:hover {
+    background-size: 200% 200%;
+    color: #fff;
+}
+
+::selection {
+    background: #444;
+    color: #fff;
+    text-shadow: none;
 }

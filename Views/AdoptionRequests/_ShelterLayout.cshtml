@@ -7,54 +7,32 @@
 @{
     Layout = "/Views/Shared/_Layout.cshtml";
 }
-<link rel="stylesheet" href="~/css/novideo.css" />
 
-<div class="container-fluid mt--7">
-    <div class="row">
-        <div class="col-xl-3 order-xl-2">
-            <div class="card card-profile shadow" style="width:300px; height:570px">
-                <div class="row ">
-                    <div class="col-lg-3 order-lg-2">
-                        <div class="card-profile-image">
-                            <a href="#">
-                                <img src="https://logopond.com/logos/81f8ed9d00dbf1887850bcb8f8b6b979.png" width="200" heigth="200" style="margin:50px" class="rounded-circle">
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="card-body pt-0 pt-md-4">
-                    <br />
-                    <div class="text-center">
-                        <h4>@User.Identity.Name</h4>
-                    </div>
-                </div>
-            </div>
+<div class="container">
+    <div class="card">
+        <div class="card-header">
+            <ul class="nav nav-tabs card-header-tabs">
+                <li class="nav-item" style="margin-right:50px;">
+                    <a class="nav-link" href="/add-pet">Add pets for adoption</a>
+                </li>
+                <li class="nav-item" style="margin-right:50px;">
+                    <a class="nav-link" href="/shelter/animal-requests">Adoption requests</a>
+                </li>
+                <li class="nav-item" style="margin-right:50px;">
+                    <a class="nav-link" href="/shelter-profile">Shelter's animals</a>
+                </li>
+            </ul>
         </div>
-        <div class="col-xl-9 order-xl-1">
+        <div class="card-content">
             <div class="row">
-                <div class="card">
-                    <div class="card-header">
-                        <ul class="nav nav-tabs card-header-tabs">
-                            <li class="nav-item" style="margin-right:50px;">
-                                <a class="nav-link" href="/add-pet">Add pets for adoption</a>
-                            </li>
-                            <li class="nav-item" style="margin-right:50px;">
-                                <a class="nav-link" href="/shelter/animal-requests">Adoption Requests</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="card-content">
-                        <div class="row">
-                            <div class="col-md-12">
-                                @RenderBody()
-                            </div>
-                        </div>
-                    </div>
+                <div class="col-md-12">
+                        @RenderBody()
                 </div>
             </div>
         </div>
     </div>
 </div>
+
 
 
 

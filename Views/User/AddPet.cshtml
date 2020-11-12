@@ -3,7 +3,6 @@
     ViewData["Title"] = "AddPet";
     Layout = "~/Views/AdoptionRequests/_ShelterLayout.cshtml";
 }
-<link rel="stylesheet" href="~/css/novideo.css" />
 
 <link rel="stylesheet" href="~/css/quiz.css" />
 
@@ -91,14 +90,17 @@
     </div>
     <hr />
     <label for="characteristics"><b>Pet characteristics:</b></label>
-    <input type="text" placeholder="Enter pet's characteristics" name="characteristics" id="characteristics" required>
+    <textarea type="text" placeholder="Enter pet's characteristics" name="characteristics" id="characteristics" rows="4" cols="50" required></textarea>
+    <br />
+    <br />
     <label for="description"><b>Pet description:</b></label>
-    <input type="text" placeholder="Enter pet's description" name="description" id="description" required>
+    <textarea type="text" placeholder="Enter pet's description" name="description" id="description" rows="4" cols="50" required></textarea>
     <div id="subBtn" class="submit">Add Pet</div>
 </div>
+
 <br />
 <br />
 
 @section Scripts{
     <script src="~/js/pet.js"></script>
-} 
+}
