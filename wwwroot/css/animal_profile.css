@@ -17,3 +17,9 @@
     text-align: center;
 }
 
+.no:hover{
+    background-color:red;
+}
+.yes:hover{
+    background-color: green;
+}
