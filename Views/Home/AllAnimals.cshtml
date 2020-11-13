@@ -2,7 +2,8 @@
 @{
     ViewData["Title"] = "Home page";
 }
-<link rel="stylesheet" href="~/css/novideo.css" />
+
+
 
 <div class="text-center">
 </div>
@@ -12,26 +13,26 @@
         @foreach (var animal in Model)
         {
             <div class="col-xs-12 col-sm-6 col-md-4" style="padding: 10px 10px; width:250px; height:400px ">
-                <div class="col-lg-12">
+                    <div class="col-lg-12">
 
-                    <div class="card">
-                        <div class="prod mbr-gallery-item">
-                            @if (animal.Image == null)
-                            {
-                                <a href="/Animal/@animal.Id">
-                                    <img src="https://s.iw.ro/gateway/g/ZmlsZVNvdXJjZT1odHRwJTNBJTJGJTJG/c3RvcmFnZWRpZ2lhbmltYWx3b3JsZC5y/Y3MtcmRzLnJvJTJGc3RvcmFnZSUyRjIw/MTklMkYxMiUyRjE4JTJGMTE0NDQwOF8x/MTQ0NDA4X21hbWlmZXItcXVva2thLmpw/ZyZ3PTY0MCZoPTQ4MCZ6Yz0xJmhhc2g9/OWQ5NDUyNDkzYWFjZWU3MmEzY2I3M2JlZGE2ZTMyYTg=.thumb.jpg" width="300" height="200" />
-                                </a>
-                            }
-                            else
-                            { <a href="/Animal/@animal.Id"><img src="~/Images/Animals/@animal.Image" style="width: 300px; height:auto; padding:10px" /></a>}
+                        <div class="card">
+                            <div class="prod mbr-gallery-item">
+                                @if (animal.Image == null)
+                                {
+                                    <a href="/Animal/@animal.Id">
+                                        <img src="https://s.iw.ro/gateway/g/ZmlsZVNvdXJjZT1odHRwJTNBJTJGJTJG/c3RvcmFnZWRpZ2lhbmltYWx3b3JsZC5y/Y3MtcmRzLnJvJTJGc3RvcmFnZSUyRjIw/MTklMkYxMiUyRjE4JTJGMTE0NDQwOF8x/MTQ0NDA4X21hbWlmZXItcXVva2thLmpw/ZyZ3PTY0MCZoPTQ4MCZ6Yz0xJmhhc2g9/OWQ5NDUyNDkzYWFjZWU3MmEzY2I3M2JlZGE2ZTMyYTg=.thumb.jpg" width="300" height="200" />
+                                    </a>
+                                }
+                                else
+                                { <a href="/Animal/@animal.Id"><img src="~/Images/Animals/@animal.Image" style="width: 300px; height:auto; padding:10px" /></a>}
 
-                        </div>
-                        <div class="card-header">
-                            <h6>@animal.Name</h6>
+                            </div>
+                            <div class="card-header">
+                                <h6>@animal.Name</h6>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
         }
     </div>
