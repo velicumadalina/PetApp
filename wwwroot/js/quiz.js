@@ -60,7 +60,7 @@ $("#subBtn").click(function () {
 function turnToObject()
 {
     let vals = { "Id": 1 };
-    let keyNames = ["Type", "Breed", "Age", "EnergyLevel", "Size", "Gender", "FriendlyWithDogs", "FriendlyWithCats", "FriendlyWithKids", "SpecialNeeds"]
+    let keyNames = ["Type", "Breed", "Age", "EnergyLevel", "Size", "Gender","Hair", "FriendlyWithDogs", "FriendlyWithCats", "FriendlyWithKids", "SpecialNeeds"]
     let selected = $(".clicked");
     for (let i = 0; i < keyNames.length; i++) {
         let divs = $(selected).filter(function () {

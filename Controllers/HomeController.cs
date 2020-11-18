@@ -228,7 +228,7 @@ namespace PetApp.Controllers
             }
             if (filteringItem.Breed[0] != "false")
             {
-                    animals = animals.Where(x => x.Breed != "Mixed").ToList();
+                    animals = animals.Where(x => x.Breed != "Mixed" || x.Breed != "mixed" || x.Breed != "mix" || x.Breed != "Mix" || x.Breed != "corcitura").ToList();
             }
             if (filteringItem.Age[0] != "null")
             {
