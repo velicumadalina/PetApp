@@ -3,6 +3,7 @@ let animalNameFav = document.getElementById("animalNameFav");
 let animalImageFav = document.getElementById("animalImageFav");
 let userIdFav = document.getElementById("userIdFav");
 
+
 function createFav() {
     let favPetObject =
     {
@@ -14,7 +15,8 @@ function createFav() {
     return favPetObject;
 }
 
-function sendData(endpoint, data) {
+
+function sendDataFav(endpoint, data) {
     fetch(endpoint,
         {
             headers: {
@@ -24,12 +26,12 @@ function sendData(endpoint, data) {
             method: "POST",
             body: JSON.stringify(data)
         })
-        .then(function (res) { console.log(res); window.location.href = "https://localhost:44335/requests" })
+        .then(function (res) { window.location.href = "https://localhost:44335/favorites" })
         .catch(function (res) { console.log(res) })
 }
 
 function sendFavorite() {
     let data = createFav();
-    console.log(data);
-    sendData("/favorite-pet", data);
+    sendDataFav("/favorite-pet", data);
 }
+

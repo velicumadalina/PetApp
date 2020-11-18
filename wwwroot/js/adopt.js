@@ -12,16 +12,17 @@ let shelterId = document.getElementById("shelterId");
 let userName = document.getElementById("userName");
 let userId = document.getElementById("userId");
 let status = "Pending";
-let showIfAlreadyAdopted = document.getElementById("asd1");
-let hideIfShelter = document.getElementById("hide");
+let showIfAlreadyAdopted = document.getElementById("showAdopt");
+let hideIfShelter = document.getElementById("hideAdopt");
+
+let showIfAlreadyFav = document.getElementById("showFav");
+let hideIfShelterFav = document.getElementById("hideFav");
 
 
-
-function formAction()
+function sendAdoption()
 {
     validateFormData();
     let data = getFormData();
-    console.log(data);
     sendData("/adopt-pet", data);
     hideDiv();
 }
@@ -29,6 +30,8 @@ window.onload = () =>
 {
     getIsUserShelter();
     getIsRequestMade();
+    getIsUserShelterFav();
+    getIsRequestMadeFav();
 
 }
 
@@ -56,7 +59,7 @@ function getIsRequestMade() {
             method: "GET",
         })
         .then(response => response.json())
-        .then(data => { if (data == true) { console.log(data); hideIfShelter.style.display = "none"; showIfAlreadyAdopted.style.display = "block"; } })
+        .then(data => { if (data == true) { hideIfShelter.style.display = "none"; showIfAlreadyAdopted.style.display = "block"; } })
         .catch(function (res) { console.log(res) })
 }
 
@@ -122,6 +125,34 @@ function sendData(endpoint, data) {
             method: "POST",
             body: JSON.stringify(data)
         })
-        .then(function (res) { console.log(res); window.location.href = "https://localhost:44335/favorites" })
+        .then(function (res) { window.location.href = "https://localhost:44335/requests" })
+        .catch(function (res) { console.log(res) })
+}
+
+function getIsUserShelterFav() {
+    fetch("/is-user-shelter/" + userId.value,
+        {
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            },
+            method: "GET",
+        })
+        .then(response => response.json())
+        .then(data => { if (data == false) { hideIfShelterFav.style.display = "block"; showIfAlreadyFav.style.display = "none"; getIsRequestMadeFav() } })
+        .catch(function (res) { console.log(res) })
+}
+
+function getIsRequestMadeFav() {
+    fetch("/is-request-already-made-favorite/" + userId.value + "/" + animalId.value,
+        {
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            },
+            method: "GET",
+        })
+        .then(response => response.json())
+        .then(data => { if (data == true) { console.log(data); hideIfShelterFav.style.display = "none"; showIfAlreadyFav.style.display = "block"; } })
         .catch(function (res) { console.log(res) })
 }

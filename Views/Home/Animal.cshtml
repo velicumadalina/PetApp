@@ -60,19 +60,26 @@
                     Gets along with: @String.Join(", ", Model.GetsAlongWith)
                 </p>
                 <br />
-                <div id="hide" style="display:none">
+
+                <div id="hideFav" style="display:none">
+                    <button type="button" id="favPet" onclick="sendFavorite()" class="btn btn-primary btn-md mr-1 mb-2" style="margin-right:30px;">Favorite</button>
+                </div>
+                <div id="showFav" style="display:none">
+                    <button type="button" id="favPetU" class="btn btn-primary btn-md mr-1 mb-2" style="margin-right:30px;background-color:slategrey; border-color:slategrey; pointer-events:none">Favorite</button>
+                </div>
+
+                <br />
+                <div id="hideAdopt" style="display:none">
                     <button type="button" id="adoptPet" onclick="showDiv()" class="btn btn-primary btn-md mr-1 mb-2" style="margin-right:30px;">Adopt Me!</button>
                 </div>
-                <div id="asd1" style="display:none">
-                    <button type="button" id="adoptPetU" class="btn btn-primary btn-md mr-1 mb-2" style="margin-right:30px;background-color:slategrey; border-color:slategrey">Adopt Me!</button>
+                <div id="showAdopt" style="display:none">
+                    <button type="button" id="adoptPetU" class="btn btn-primary btn-md mr-1 mb-2" style="margin-right:30px;background-color:slategrey; border-color:slategrey; pointer-events:none">Adopt Me!</button>
                 </div>
                 <form id="contact-form" name="contact-form" method="POST">
                     <input type="hidden" value="@Model.Id" name="animalId" id="animalIdFav" />
                     <input type="hidden" value="@Model.Name" name="animalName" id="animalNameFav" />
                     <input type="hidden" value="@UserManager.GetUserId(User)" name="userId" id="userIdFav" />
                     <input type="hidden" value="@Model.Image" name="animalImage" id="animalImageFav" />
-                    <button type="button" class="btn" onclick="sendFavorite()">
-                    </button>
                 </form>
                 <div id="adoptionForm" style="display:none">
                     <section class="mb-4 mx-auto adopt_form">
@@ -136,7 +143,7 @@
                                 </form>
                                 <div class="text-center mx-auto" style="margin-left:100px">
                                     <br />
-                                    <a class="btn btn-primary" onclick="formAction()" style="color:white; margin-left:100px">Send</a>
+                                    <a class="btn btn-primary" onclick="sendAdoption()" style="color:white; margin-left:100px">Send</a>
                                 </div>
                                 <br />
                                 <div class="status"></div>
@@ -152,6 +159,6 @@
 </div>
 
 @section Scripts{
-    <script src="~/js/adopt.js"></script>
     <script src="~/js/favorite.js"></script>
+    <script src="~/js/adopt.js"></script>
 }

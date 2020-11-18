@@ -89,6 +89,21 @@ namespace PetApp.Controllers
             return false;
         }
 
+
+
+
+        [Route("/is-request-already-made-favorite/{userId}/{animalId}")]
+        public bool IsRequestMadeFav(int userId, int animalId)
+        {
+            var request = _context.Favorites.Where(r => r.UserId == userId && r.AnimalId == animalId).FirstOrDefault();
+            if (request != null)
+            {
+                return true;
+            }
+            return false;
+        }
+
+
         // GET: AdoptionRequests/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -157,7 +172,7 @@ namespace PetApp.Controllers
             }
             catch (DbUpdateException)
             {
-                if (FavoriteAnimalExists(favorite.Id))
+                if (FavoriteAnimalExists(favorite.AnimalId))
                 {
                     return Conflict();
                 }
