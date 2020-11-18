@@ -219,6 +219,13 @@ namespace PetApp.Controllers
             var animal = _context.Animal.Where(a => a.Id == animalId).FirstOrDefault();
             if (animal != null) { animal.IsAdopted = true; await _context.SaveChangesAsync(); }
             _context.adoptionRequests.Remove(request);
+            var otherRequestsForSameAnimal = _context.adoptionRequests.Where(a => a.AnimalId == animal.Id).Where(a=> a.AdoptionStatus == "Pending").ToList();
+            foreach (var req in otherRequestsForSameAnimal) 
+            {
+                req.AdoptionStatus = "Declined";
+                _context.Update(req);
+            }
+            await _context.SaveChangesAsync();
             return Ok();
         }
 

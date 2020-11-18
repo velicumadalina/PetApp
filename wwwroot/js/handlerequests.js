@@ -40,13 +40,13 @@
 //}
 
 $('.deny').click(function () {
-    getData("https://localhost:44335/decline-adoption/" + $("#requestId").data("animal"))
-    window.location.reload();
+    getData("https://localhost:44335/decline-adoption/" + $(this).data("req-id"))
+    window.location.href = window.location.href;
 });
 $('.accept').click(function () {
     console.log($("#requestId").data("animal"))
-    getData("https://localhost:44335/confirm-adoption/" + $("#requestId").data("animal"))
-    window.location.reload();
+    getData("https://localhost:44335/confirm-adoption/" + $(this).data("req-id"))
+    window.location.href = window.location.href;
 
 });
 
