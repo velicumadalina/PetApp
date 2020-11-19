@@ -149,33 +149,6 @@
                 </div>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                <br />
-
-                <br />
-
-                @*<div id="hideFav" style="display:none">
-            <button type="button" id="favPet" onclick="sendFavorite()" class="btn btn-primary btn-md mr-1 mb-2" style="margin-right:30px;">Favorite</button>
-        </div>
-        <div id="showFav" style="display:none">
-            <button type="button" id="favPetU" class="btn btn-primary btn-md mr-1 mb-2" style="margin-right:30px;background-color:slategrey; border-color:slategrey; pointer-events:none">Favorite</button>
-        </div>*@
-
                 <br />
                 <div id="hideAdopt" style="display:none">
                     <button type="button" id="adoptPet" onclick="showDiv()" class="btn btn-primary btn-md mr-1 mb-2" style="margin-right:30px;">Adopt Me!</button>
@@ -208,15 +181,19 @@
                                         <div class="col-md-6">
                                             <div class="md-form mb-0">
                                                 <label for="fname" class="">First Name</label>
-                                                <input type="text" id="fname" name="fname" class="form-control">
-
+                                                <input type="text" id="fname" name="fname" class="form-control" required />
+                                                <div class="invalid" id="fnValidate" style="display:none">
+                                                    <p style="color:red">Field cannot be empty!</p>
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="md-form mb-0">
                                                 <label for="lname" class="">Last Name</label>
-                                                <input type="text" id="lname" name="lname" class="form-control">
-
+                                                <input type="text" id="lname" name="lname" class="form-control" required />
+                                                <div class="invalid" id="lnValidate" style="display:none">
+                                                    <p style="color:red">Field cannot be empty!</p>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -224,8 +201,10 @@
                                         <div class="col-md-8" style="margin-top: 10px; margin-left: 70px; margin-bottom: 10px;">
                                             <div class="md-form mb-0">
                                                 <label for="phone" class="">Phone number</label>
-                                                <input type="text" id="phone" name="phone" class="form-control">
-
+                                                <input type="text" id="phone" name="phone" class="form-control" required />
+                                                <div class="invalid" id="phoneValidate" style="display:none"> 
+                                                    <p style="color:red">Field cannot contain letters!</p>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -233,8 +212,10 @@
                                         <div class="col-md-12">
                                             <div class="md-form mb-0">
                                                 <label for="email" class="">Email</label>
-                                                <input type="text" id="email" name="email" class="form-control">
-
+                                                <input type="text" id="email" name="email" class="form-control" required />
+                                                <div class="invalid" id="emailValidate" style="display:none">
+                                                    <p style="color:red">Please enter a valid email (ex: example@example.com)</p>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -242,8 +223,10 @@
                                         <div class="col-md-12" style="margin-top:10px">
                                             <div class="md-form">
                                                 <label for="message">Your message</label>
-                                                <textarea type="text" id="message" name="message" rows="2" class="form-control md-textarea"></textarea>
-
+                                                <textarea type="text" id="message" name="message" rows="2" class="form-control md-textarea" required></textarea>
+                                                <div class="invalid" id="messageValidate" style="display:none">
+                                                    <p style="color:red">Please enter a message!</p>
+                                                </div>
                                             </div>
 
                                         </div>

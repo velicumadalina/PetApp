@@ -21,10 +21,11 @@ let hideIfShelterFav = document.getElementById("hideFav");
 
 function sendAdoption()
 {
-    validateFormData();
-    let data = getFormData();
-    sendData("/adopt-pet", data);
-    hideDiv();
+    if (validateAdoption()) {
+        let data = getFormData();
+        sendData("/adopt-pet", data);
+        hideDiv();
+    }
 }
 window.onload = () =>
 {
@@ -63,28 +64,26 @@ function getIsRequestMade() {
         .catch(function (res) { console.log(res) })
 }
 
-function validateFormData() {
+function validateAdoption() {
+    let wrongFields = false;
+    if (!validateEmail(email.value)) { document.getElementById("emailValidate").style.display = "block"; wrongFields = true; }
+    else { document.getElementById("emailValidate").style.display = "none"; wrongFields = false; }
+    if (isNaN(phone.value) || phone.value == "") { document.getElementById("phoneValidate").style.display = "block"; wrongFields = true; }
+    else { document.getElementById("phoneValidate").style.display = "none"; wrongFields = false;}
     if (fname.value == "") {
-        fname.parentNode.appendChild(createValidationErrorMessage("Field cannot be empty!"));
+        document.getElementById("fnValidate").style.display = "block"; wrongFields = true;
     }
+    else { document.getElementById("fnValidate").style.display = "none"; wrongFields = false; }
     if (lname.value == "") {
-        lname.parentNode.appendChild(createValidationErrorMessage("Field cannot be empty!"));
+        document.getElementById("lnValidate").style.display = "block"; wrongFields = true;
     }
-    if (phone.value == "") {
-        phone.parentNode.appendChild(createValidationErrorMessage("Field cannot be empty!"));
-    }
-    if (email.value == "") {
-        email.parentNode.appendChild(createValidationErrorMessage("Field cannot be empty!"));
-    }
+    else { document.getElementById("lnValidate").style.display = "none"; wrongFields = false; }
     if (message.value == "") {
-        message.parentNode.appendChild(createValidationErrorMessage("Field cannot be empty!"));
+        document.getElementById("messageValidate").style.display = "block"; wrongFields = true;
     }
-    if (isNaN(phone.value)) {
-        phone.parentNode.appendChild(createValidationErrorMessage("Phone number cannot contain letters!"));
-    }
-    if (validateEmail(email.value) != true) {
-        email.parentNode.appendChild(createValidationErrorMessage("Please enter a valid email!"));
-    }
+    else { document.getElementById("messageValidate").style.display = "block"; wrongFields = false; }
+    if (wrongFields) { return false; }
+    return true;
 }
 function getFormData() {
     let adoptionRequestObject =
