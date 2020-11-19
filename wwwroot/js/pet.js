@@ -25,10 +25,19 @@
 
 
 $("#subBtn").click(function () {
-    turnToObject();
-    sendData("/add-animal", turnToObject());
-
+    let animal = turnToObject();
+    if (validateCreatedObject(animal)) {
+        sendData("/add-animal", turnToObject());
+    }
 })
+
+function validateCreatedObject(object) {
+    let isValid = true;
+    Object.keys(object).forEach(function (e) { if (object[e] === "" || object[e] === null) { isValid = false; document.getElementById("val").style.display = "block"; } });
+    return isValid;
+}
+
+
 
 let shelterId = document.getElementById("shelterId");
 let petImage = document.getElementById("pet-image");
@@ -63,13 +72,13 @@ function turnToObject() {
                 divValues.push(val.dataset.val);
             }
         }
-        if (divValues.length < 1) {
+        if (divValues.length < 1 && ( i >=6)) {
             vals[keyNames[i]] = false;
         }
         else {
+            
             vals[keyNames[i]] = divValues[0];
         }
-        console.log(vals);
     }
     return vals;
 }
