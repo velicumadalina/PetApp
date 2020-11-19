@@ -18,7 +18,7 @@
     <hr />
     <p style="text-align:center">Please fill in this form to add a shelter.</p>
     <hr>
-    <form method="post" action="/add-shelter">
+    <form method="post" action="/add-shelter" onsubmit="return sendShelter()">
         <label for="shelter-image"><b>Image:</b></label>
         <input type="file" id="shelter-image" placeholder="Select a photo" name="shelterImage" required>
 
@@ -29,12 +29,17 @@
         <input type="text" placeholder="Enter Shelter Name" name="shelterName" id="shelter-name" required>
         <label for="shelter-email"><b>Shelter Email:</b></label>
         <input type="text" placeholder="Enter Shelter Email" name="shelterEmail" id="shelter-email" required>
+        <div id="wrongEmail" style="display:none;color:red;">Please enter a valid email (ex: example@example.com)</div>
+
         <label for="capacity"><b>Shelter Capacity:</b></label>
         <input type="text" placeholder="Enter Shelter Capacity" name="capacity" id="capacity" required>
+        <div id="wrongCapacity" style="display:none;color:red;">Please enter a number bigger than 1!</div>
+
+        <div id="isEmpty" style="display:none;color:red;"><hr />Please complete all the fields!<hr /></div>
 
         <p>By creating an account you agree to our <a href="#">Terms & Privacy</a>.</p>
         <hr />
-        <button type="submit" class="registerbtn" style="border-radius: 25px;">Add shelter</button>
+        <button type="submit" class="registerbtn" id="submitBtnShelter" style="border-radius: 25px;">Add shelter</button>
     </form>
 </div>
 

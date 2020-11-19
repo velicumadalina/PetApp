@@ -67,21 +67,21 @@ function getIsRequestMade() {
 function validateAdoption() {
     let wrongFields = false;
     if (!validateEmail(email.value)) { document.getElementById("emailValidate").style.display = "block"; wrongFields = true; }
-    else { document.getElementById("emailValidate").style.display = "none"; wrongFields = false; }
-    if (isNaN(phone.value) || phone.value == "") { document.getElementById("phoneValidate").style.display = "block"; wrongFields = true; }
-    else { document.getElementById("phoneValidate").style.display = "none"; wrongFields = false;}
+    else { document.getElementById("emailValidate").style.display = "none"}
+    if (isNaN(phone.value) || phone.value == "" || (!isNaN(phone.value) && phone.value.length != 10) ) { document.getElementById("phoneValidate").style.display = "block"; wrongFields = true; }
+    else { document.getElementById("phoneValidate").style.display = "none"}
     if (fname.value == "") {
         document.getElementById("fnValidate").style.display = "block"; wrongFields = true;
     }
-    else { document.getElementById("fnValidate").style.display = "none"; wrongFields = false; }
+    else { document.getElementById("fnValidate").style.display = "none" }
     if (lname.value == "") {
         document.getElementById("lnValidate").style.display = "block"; wrongFields = true;
     }
-    else { document.getElementById("lnValidate").style.display = "none"; wrongFields = false; }
+    else { document.getElementById("lnValidate").style.display = "none"}
     if (message.value == "") {
         document.getElementById("messageValidate").style.display = "block"; wrongFields = true;
     }
-    else { document.getElementById("messageValidate").style.display = "block"; wrongFields = false; }
+    else { document.getElementById("messageValidate").style.display = "none"}
     if (wrongFields) { return false; }
     return true;
 }

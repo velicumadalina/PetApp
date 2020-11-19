@@ -5,14 +5,13 @@
 }
 @section css
 {
-    <link rel="stylesheet" href="~/css/novideo.css" />
 
     <link rel="stylesheet" href="~/css/register.css" />
     <link rel="stylesheet" href="~/css/quiz.css" />
 
 }
 
-<form action="/register-user" method="post">
+<form action="/register-user" method="post" onsubmit="return validateRegister()">
     <div class="container" style="width: 800px; margin-top:50px; border-radius:10px">
         <h2 style="text-align:center"><b>Register</b></h2>
         <hr />
@@ -26,6 +25,8 @@
         <input type="text" placeholder="Enter Last Name" name="last" id="last" required>
         <label for="email"><b>Email:</b></label>
         <input type="text" placeholder="Enter Email" name="email" id="email" required>
+        <div id="wrongEmailU" style="display:none;color:red;">Please enter a valid email (ex: example@example.com)</div>
+
         <label for="psw"><b>Password:</b></label>
         <input type="password" placeholder="Enter Password" name="psw" id="psw" required>
 
@@ -48,3 +49,6 @@
 
 
 </form>
+@section Scripts{
+    <script src="~/js/register.js"></script>
+}
