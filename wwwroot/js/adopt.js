@@ -1,5 +1,7 @@
 ﻿function showDiv() { document.getElementById("adoptionForm").style = "display:flex" };
 function hideDiv() { document.getElementById("adoptionForm").style = "display:none" };
+
+
 let fname = document.getElementById("fname");
 let lname = document.getElementById("lname");
 let phone = document.getElementById("phone");
@@ -27,6 +29,8 @@ function sendAdoption()
         hideDiv();
     }
 }
+
+
 window.onload = () =>
 {
     getIsUserShelter();
@@ -35,6 +39,7 @@ window.onload = () =>
     getIsRequestMadeFav();
 
 }
+
 
 function getIsUserShelter() {
     fetch("/is-user-shelter/" + userId.value,
@@ -50,6 +55,7 @@ function getIsUserShelter() {
         .catch(function (res) { console.log(res) })
 }
 
+
 function getIsRequestMade() {
     fetch("/is-request-already-made/" + userId.value + "/" + animalId.value,
         {
@@ -63,6 +69,7 @@ function getIsRequestMade() {
         .then(data => { if (data == true) { hideIfShelter.style.display = "none"; showIfAlreadyAdopted.style.display = "block"; } })
         .catch(function (res) { console.log(res) })
 }
+
 
 function validateAdoption() {
     let wrongFields = false;
@@ -85,6 +92,8 @@ function validateAdoption() {
     if (wrongFields) { return false; }
     return true;
 }
+
+
 function getFormData() {
     let adoptionRequestObject =
     {
@@ -102,10 +111,13 @@ function getFormData() {
     return adoptionRequestObject;
 }
 
+
 function validateEmail(email) {
     const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return re.test(String(email).toLowerCase());
 }
+
+
 
 function createValidationErrorMessage(message) {
     let p = document.createElement("p");
@@ -113,6 +125,7 @@ function createValidationErrorMessage(message) {
     p.innerText = message
     return p;
 }
+
 
 function sendData(endpoint, data) {
     fetch(endpoint,
@@ -128,6 +141,7 @@ function sendData(endpoint, data) {
         .catch(function (res) { console.log(res) })
 }
 
+
 function getIsUserShelterFav() {
     fetch("/is-user-shelter/" + userId.value,
         {
@@ -141,6 +155,7 @@ function getIsUserShelterFav() {
         .then(data => { if (data == false) { hideIfShelterFav.style.display = "block"; showIfAlreadyFav.style.display = "none"; getIsRequestMadeFav() } })
         .catch(function (res) { console.log(res) })
 }
+
 
 function getIsRequestMadeFav() {
     fetch("/is-request-already-made-favorite/" + userId.value + "/" + animalId.value,
@@ -160,10 +175,8 @@ function getIsRequestMadeFav() {
 
 function deleteFav() {
     sendDeleteFav();
-    setTimeout(function () { location.reload() }, 500);
+    setTimeout(function () { location.reload() }, 300);
 }
-
-
 
 
 
@@ -180,15 +193,6 @@ function sendDeleteFav() {
         .then(data => { hideIfShelterFav.style.display = "block"; showIfAlreadyFav.style.display = "none" })
         .catch(function (res) { console.log(res) })
 }
-
-
-
-
-
-
-
-
-
 
 
 
@@ -227,8 +231,5 @@ function sendDataFav(endpoint, data) {
 function sendFavorite() {
     let data = createFav();
     sendDataFav("/favorite-pet", data);
-    setTimeout(function () { location.reload() }, 500);
+    setTimeout(function () { location.reload() }, 300);
 }
-
-
-

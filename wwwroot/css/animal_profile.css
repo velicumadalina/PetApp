@@ -31,7 +31,7 @@ body {
 }
 
 .heartbox {
-    position: absolute;
+    float: right;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%)
@@ -62,6 +62,15 @@ svg {
         fill: #E2264D;
         animation: animateHeart .3s linear forwards .25s
     }
+
+
+    .checkbox:checked + label svg #heartreverse {
+        transform: scale(0.2);
+        fill: #AAB8C2;
+        animation: animateHeart .3s linear forwards .25s
+    }
+
+
 
     .checkbox:checked + label svg #main-circ {
         transition: all 2s;
