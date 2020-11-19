@@ -211,7 +211,7 @@ namespace PetApp.Controllers
         {
             var request = _context.adoptionRequests.Where(a => a.Id == id).FirstOrDefault();
             var animalId = request.AnimalId;
-            if (request != null) 
+            if (request != null)
             {
                 request.AdoptionStatus = "Approved";
             }
@@ -288,16 +288,24 @@ namespace PetApp.Controllers
             return RedirectToAction("AnimalRequests");
         }
 
-        // POST: AdoptionRequests/Delete/5
-        //[HttpPost, ActionName("Delete")]
-        //[ValidateAntiForgeryToken]
-        //public async Task<IActionResult> DeleteConfirmed(int id)
-        //{
-        //    var adoptionRequest = await _context.adoptionRequests.Where(a => a.AnimalId == id).FirstOrDefaultAsync();
-        //    _context.adoptionRequests.Remove(adoptionRequest);
-        //    await _context.SaveChangesAsync();
-        //    return RedirectToAction(nameof(Index));
-        //}
+
+        //// GET: Favorite/Delete/5
+        [Route("/favorite/delete/{id}")]
+        public async Task<IActionResult> DeleteFav(int id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var favorite = await _context.Favorites.Where(f => f.AnimalId == id).FirstOrDefaultAsync();
+            _context.Favorites.Remove(favorite);
+            await _context.SaveChangesAsync();
+            return Ok();
+        }
+
+
+
 
         private bool AdoptionRequestExists(int id)
         {
@@ -306,7 +314,7 @@ namespace PetApp.Controllers
 
         private bool FavoriteAnimalExists(int id)
         {
-            return _context.Favorites.Any(e => e.Id == id);
+            return _context.Favorites.Any(e => e.AnimalId == id);
         }
     }
 }

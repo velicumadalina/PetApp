@@ -156,3 +156,80 @@ function getIsRequestMadeFav() {
         .then(data => { if (data == true) { console.log(data); hideIfShelterFav.style.display = "none"; showIfAlreadyFav.style.display = "block"; } })
         .catch(function (res) { console.log(res) })
 }
+
+
+
+function deleteFav() {
+    sendDeleteFav();
+    setTimeout(function () { location.reload() }, 500);
+}
+
+
+
+
+
+function sendDeleteFav() {
+    fetch("/favorite/delete/" + parseInt(animalId.value),
+        {
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            },
+            method: "GET",
+        })
+        .then(response => response.json())
+        .then(data => { hideIfShelterFav.style.display = "block"; showIfAlreadyFav.style.display = "none" })
+        .catch(function (res) { console.log(res) })
+}
+
+
+
+
+
+
+
+
+
+
+
+
+let animalIdFav = document.getElementById("animalIdFav");
+let animalNameFav = document.getElementById("animalNameFav");
+let animalImageFav = document.getElementById("animalImageFav");
+let userIdFav = document.getElementById("userIdFav");
+
+
+function createFav() {
+    let favPetObject =
+    {
+        "AnimalId": parseInt(animalId.value),
+        "AnimalName": animalName.value,
+        "AnimalImage": animalImage.value,
+        "UserId": parseInt(userId.value),
+    }
+    return favPetObject;
+}
+
+
+function sendDataFav(endpoint, data) {
+    fetch(endpoint,
+        {
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            },
+            method: "POST",
+            body: JSON.stringify(data)
+        })
+        .then(function (res) { })
+        .catch(function (res) { console.log(res) })
+}
+
+function sendFavorite() {
+    let data = createFav();
+    sendDataFav("/favorite-pet", data);
+    setTimeout(function () { location.reload() }, 500);
+}
+
+
+

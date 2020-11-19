@@ -9,7 +9,7 @@ $(document).ready(function () {
         }
         else { $(this).addClass("clicked") }
     })
-    
+
     $(".answer").click(function () {
         var count = 0;
         if (
