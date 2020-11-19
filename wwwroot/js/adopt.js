@@ -1,4 +1,4 @@
-﻿function showDiv() { document.getElementById("adoptionForm").style = "display:flex" };
+﻿function showDiv() { document.getElementById("adoptionForm").style = "display:flex; margin-left: 325px; margin-top: 25px;" };
 function hideDiv() { document.getElementById("adoptionForm").style = "display:none" };
 
 

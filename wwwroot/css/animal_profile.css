@@ -302,3 +302,14 @@ svg {
         transform: scale(1)
     }
 }
+
+
+.adoptionBtn {
+    background-color: #ff4500cf;
+    border-color: #ff4500cf;
+}
+
+    .adoptionBtn:hover {
+        background-color: #ff4500;
+        border-color: #ff4500;
+    }
