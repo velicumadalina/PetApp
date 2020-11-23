@@ -35,9 +35,17 @@ A pet adoption website written in C# using the ASP.NET CORE Framework, Entity Fr
 
 ![](imgForREADME/quiz.gif)
 
+### Favorites functionality
+
+![](imgForREADME/favorite.gif)
+
+### Favorites page from user profile
+
+![](imgForREADME/favorites_page.gif)
+
 ### Animal details page with adoption form
 
-![](imgForREADME/adoption.gif)
+![](imgForREADME/adoption_form.gif)
 
 ### The adoption requests made appear on the user's profile page and the status updates as the requests are approved or denied
 
