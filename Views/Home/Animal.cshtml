@@ -24,7 +24,7 @@
                         <div class="col-12 mb-0">
                             <figure class="view overlay rounded z-depth-1 main-img" style="width: 400px;">
                                 <img src="~/Images/Animals/@Model.Image"
-                                     class="img-fluid z-depth-1 animal_image" width="400">
+                                     class="img-fluid z-depth-1 animal_image" width="400" style="border-radius: 10px">
                             </figure>
                         </div>
                     </div>
@@ -33,8 +33,90 @@
 
             </div>
             <div class="col-md-6 animal_description">
+                <div>
+                    <h3>@Model.Name</h3>
 
-                <h3>@Model.Name</h3>
+                    <div class="heartbox" id="hideFav" style="display:none">
+                        <input type="checkbox" class="checkbox" id="favPet" onclick="sendFavorite()" />
+                        <label for="favPet">
+                            <svg id="heart-svg" viewBox="467 392 58 57" xmlns="http://www.w3.org/2000/svg">
+                                <g id="Group" fill="none" fill-rule="evenodd" transform="translate(467 392)">
+                                    <path d="M29.144 20.773c-.063-.13-4.227-8.67-11.44-2.59C7.63 28.795 28.94 43.256 29.143 43.394c.204-.138 21.513-14.6 11.44-25.213-7.214-6.08-11.377 2.46-11.44 2.59z" id="heart" fill="#AAB8C2" />
+                                    <circle id="main-circ" fill="#E2264D" opacity="0" cx="29.5" cy="29.5" r="1.5" />
+                                    <g id="heartgroup7" opacity="0" transform="translate(7 6)">
+                                        <circle id="heart1" fill="#9CD8C3" cx="2" cy="6" r="2" />
+                                        <circle id="heart2" fill="#8CE8C3" cx="5" cy="2" r="2" />
+                                    </g>
+                                    <g id="heartgroup6" opacity="0" transform="translate(0 28)">
+                                        <circle id="heart1" fill="#CC8EF5" cx="2" cy="7" r="2" />
+                                        <circle id="heart2" fill="#91D2FA" cx="3" cy="2" r="2" />
+                                    </g>
+                                    <g id="heartgroup3" opacity="0" transform="translate(52 28)">
+                                        <circle id="heart2" fill="#9CD8C3" cx="2" cy="7" r="2" />
+                                        <circle id="heart1" fill="#8CE8C3" cx="4" cy="2" r="2" />
+                                    </g>
+                                    <g id="heartgroup2" opacity="0" transform="translate(44 6)">
+                                        <circle id="heart2" fill="#CC8EF5" cx="5" cy="6" r="2" />
+                                        <circle id="heart1" fill="#CC8EF5" cx="2" cy="2" r="2" />
+                                    </g>
+                                    <g id="heartgroup5" opacity="0" transform="translate(14 50)">
+                                        <circle id="heart1" fill="#91D2FA" cx="6" cy="5" r="2" />
+                                        <circle id="heart2" fill="#91D2FA" cx="2" cy="2" r="2" />
+                                    </g>
+                                    <g id="heartgroup4" opacity="0" transform="translate(35 50)">
+                                        <circle id="heart1" fill="#F48EA7" cx="6" cy="5" r="2" />
+                                        <circle id="heart2" fill="#F48EA7" cx="2" cy="2" r="2" />
+                                    </g>
+                                    <g id="heartgroup1" opacity="0" transform="translate(24)">
+                                        <circle id="heart1" fill="#9FC7FA" cx="2.5" cy="3" r="2" />
+                                        <circle id="heart2" fill="#9FC7FA" cx="7.5" cy="2" r="2" />
+                                    </g>
+                                </g>
+                            </svg>
+                        </label>
+                    </div>
+
+                    <div class="heartbox" id="showFav" style="display:none">
+                        <input type="checkbox" class="checkbox" id="favPetU" onclick="deleteFav()" style="pointer-events: none" />
+                        <label for="favPetU">
+                            <svg id="heart-svg" viewBox="467 392 58 57" xmlns="http://www.w3.org/2000/svg">
+                                <g id="Group" fill="none" fill-rule="evenodd" transform="translate(467 392)">
+                                    <path d="M29.144 20.773c-.063-.13-4.227-8.67-11.44-2.59C7.63 28.795 28.94 43.256 29.143 43.394c.204-.138 21.513-14.6 11.44-25.213-7.214-6.08-11.377 2.46-11.44 2.59z" id="heartreverse" fill="rgb(226, 38, 77)" />
+                                    <circle id="main-circ" fill="#E2264D" opacity="0" cx="29.5" cy="29.5" r="1.5" />
+                                    <g id="heartgroup7" opacity="0" transform="translate(7 6)">
+                                        <circle id="heart1" fill="#9CD8C3" cx="2" cy="6" r="2" />
+                                        <circle id="heart2" fill="#8CE8C3" cx="5" cy="2" r="2" />
+                                    </g>
+                                    <g id="heartgroup6" opacity="0" transform="translate(0 28)">
+                                        <circle id="heart1" fill="#CC8EF5" cx="2" cy="7" r="2" />
+                                        <circle id="heart2" fill="#91D2FA" cx="3" cy="2" r="2" />
+                                    </g>
+                                    <g id="heartgroup3" opacity="0" transform="translate(52 28)">
+                                        <circle id="heart2" fill="#9CD8C3" cx="2" cy="7" r="2" />
+                                        <circle id="heart1" fill="#8CE8C3" cx="4" cy="2" r="2" />
+                                    </g>
+                                    <g id="heartgroup2" opacity="0" transform="translate(44 6)">
+                                        <circle id="heart2" fill="#CC8EF5" cx="5" cy="6" r="2" />
+                                        <circle id="heart1" fill="#CC8EF5" cx="2" cy="2" r="2" />
+                                    </g>
+                                    <g id="heartgroup5" opacity="0" transform="translate(14 50)">
+                                        <circle id="heart1" fill="#91D2FA" cx="6" cy="5" r="2" />
+                                        <circle id="heart2" fill="#91D2FA" cx="2" cy="2" r="2" />
+                                    </g>
+                                    <g id="heartgroup4" opacity="0" transform="translate(35 50)">
+                                        <circle id="heart1" fill="#F48EA7" cx="6" cy="5" r="2" />
+                                        <circle id="heart2" fill="#F48EA7" cx="2" cy="2" r="2" />
+                                    </g>
+                                    <g id="heartgroup1" opacity="0" transform="translate(24)">
+                                        <circle id="heart1" fill="#9FC7FA" cx="2.5" cy="3" r="2" />
+                                        <circle id="heart2" fill="#9FC7FA" cx="7.5" cy="2" r="2" />
+                                    </g>
+                                </g>
+                            </svg>
+                        </label>
+                    </div>
+
+                </div>
 
                 <p class="mb-2 text-muted text-uppercase small">@Model.Type</p>
                 <p>
@@ -64,93 +146,9 @@
 
                 <br />
 
-                <div class="heartbox" id="hideFav" style="display:none" >
-                    <input type="checkbox" class="checkbox" id="favPet" onclick="sendFavorite()"  />
-                    <label for="favPet" >
-                        <svg id="heart-svg" viewBox="467 392 58 57" xmlns="http://www.w3.org/2000/svg">
-                            <g id="Group" fill="none" fill-rule="evenodd" transform="translate(467 392)">
-                                <path d="M29.144 20.773c-.063-.13-4.227-8.67-11.44-2.59C7.63 28.795 28.94 43.256 29.143 43.394c.204-.138 21.513-14.6 11.44-25.213-7.214-6.08-11.377 2.46-11.44 2.59z" id="heart" fill="#AAB8C2" />
-                                <circle id="main-circ" fill="#E2264D" opacity="0" cx="29.5" cy="29.5" r="1.5" />
-                                <g id="heartgroup7" opacity="0" transform="translate(7 6)">
-                                    <circle id="heart1" fill="#9CD8C3" cx="2" cy="6" r="2" />
-                                    <circle id="heart2" fill="#8CE8C3" cx="5" cy="2" r="2" />
-                                </g>
-                                <g id="heartgroup6" opacity="0" transform="translate(0 28)">
-                                    <circle id="heart1" fill="#CC8EF5" cx="2" cy="7" r="2" />
-                                    <circle id="heart2" fill="#91D2FA" cx="3" cy="2" r="2" />
-                                </g>
-                                <g id="heartgroup3" opacity="0" transform="translate(52 28)">
-                                    <circle id="heart2" fill="#9CD8C3" cx="2" cy="7" r="2" />
-                                    <circle id="heart1" fill="#8CE8C3" cx="4" cy="2" r="2" />
-                                </g>
-                                <g id="heartgroup2" opacity="0" transform="translate(44 6)">
-                                    <circle id="heart2" fill="#CC8EF5" cx="5" cy="6" r="2" />
-                                    <circle id="heart1" fill="#CC8EF5" cx="2" cy="2" r="2" />
-                                </g>
-                                <g id="heartgroup5" opacity="0" transform="translate(14 50)">
-                                    <circle id="heart1" fill="#91D2FA" cx="6" cy="5" r="2" />
-                                    <circle id="heart2" fill="#91D2FA" cx="2" cy="2" r="2" />
-                                </g>
-                                <g id="heartgroup4" opacity="0" transform="translate(35 50)">
-                                    <circle id="heart1" fill="#F48EA7" cx="6" cy="5" r="2" />
-                                    <circle id="heart2" fill="#F48EA7" cx="2" cy="2" r="2" />
-                                </g>
-                                <g id="heartgroup1" opacity="0" transform="translate(24)">
-                                    <circle id="heart1" fill="#9FC7FA" cx="2.5" cy="3" r="2" />
-                                    <circle id="heart2" fill="#9FC7FA" cx="7.5" cy="2" r="2" />
-                                </g>
-                            </g>
-                        </svg>
-                    </label>
-                </div>
-
-
-
-
-                <div class="heartbox" id="showFav" style="display:none" >
-                    <input type="checkbox" class="checkbox" id="favPetU" onclick="deleteFav()" style="pointer-events: none" />
-                    <label for="favPetU">
-                        <svg id="heart-svg" viewBox="467 392 58 57" xmlns="http://www.w3.org/2000/svg">
-                            <g id="Group" fill="none" fill-rule="evenodd" transform="translate(467 392)">
-                                <path d="M29.144 20.773c-.063-.13-4.227-8.67-11.44-2.59C7.63 28.795 28.94 43.256 29.143 43.394c.204-.138 21.513-14.6 11.44-25.213-7.214-6.08-11.377 2.46-11.44 2.59z" id="heart" fill="rgb(226, 38, 77)" />
-                                <circle id="main-circ" fill="#E2264D" opacity="0" cx="29.5" cy="29.5" r="1.5" />
-                                <g id="heartgroup7" opacity="0" transform="translate(7 6)">
-                                    <circle id="heart1" fill="#9CD8C3" cx="2" cy="6" r="2" />
-                                    <circle id="heart2" fill="#8CE8C3" cx="5" cy="2" r="2" />
-                                </g>
-                                <g id="heartgroup6" opacity="0" transform="translate(0 28)">
-                                    <circle id="heart1" fill="#CC8EF5" cx="2" cy="7" r="2" />
-                                    <circle id="heart2" fill="#91D2FA" cx="3" cy="2" r="2" />
-                                </g>
-                                <g id="heartgroup3" opacity="0" transform="translate(52 28)">
-                                    <circle id="heart2" fill="#9CD8C3" cx="2" cy="7" r="2" />
-                                    <circle id="heart1" fill="#8CE8C3" cx="4" cy="2" r="2" />
-                                </g>
-                                <g id="heartgroup2" opacity="0" transform="translate(44 6)">
-                                    <circle id="heart2" fill="#CC8EF5" cx="5" cy="6" r="2" />
-                                    <circle id="heart1" fill="#CC8EF5" cx="2" cy="2" r="2" />
-                                </g>
-                                <g id="heartgroup5" opacity="0" transform="translate(14 50)">
-                                    <circle id="heart1" fill="#91D2FA" cx="6" cy="5" r="2" />
-                                    <circle id="heart2" fill="#91D2FA" cx="2" cy="2" r="2" />
-                                </g>
-                                <g id="heartgroup4" opacity="0" transform="translate(35 50)">
-                                    <circle id="heart1" fill="#F48EA7" cx="6" cy="5" r="2" />
-                                    <circle id="heart2" fill="#F48EA7" cx="2" cy="2" r="2" />
-                                </g>
-                                <g id="heartgroup1" opacity="0" transform="translate(24)">
-                                    <circle id="heart1" fill="#9FC7FA" cx="2.5" cy="3" r="2" />
-                                    <circle id="heart2" fill="#9FC7FA" cx="7.5" cy="2" r="2" />
-                                </g>
-                            </g>
-                        </svg>
-                    </label>
-                </div>
-
-
                 <br />
                 <div id="hideAdopt" style="display:none">
-                    <button type="button" id="adoptPet" onclick="showDiv()" class="btn btn-primary btn-md mr-1 mb-2" style="margin-right:30px;">Adopt Me!</button>
+                    <button type="button" id="adoptPet" onclick="showDiv()" class="btn btn-primary btn-md mr-1 mb-2 adoptionBtn" style="margin-right:30px;">Adopt Me!</button>
                 </div>
                 <div id="showAdopt" style="display:none">
                     <button type="button" id="adoptPetU" class="btn btn-primary btn-md mr-1 mb-2" style="margin-right:30px;background-color:slategrey; border-color:slategrey; pointer-events:none">Adopt Me!</button>
@@ -161,87 +159,87 @@
                     <input type="hidden" value="@UserManager.GetUserId(User)" name="userId" id="userIdFav" />
                     <input type="hidden" value="@Model.Image" name="animalImage" id="animalImageFav" />
                 </form>
-                <div id="adoptionForm" style="display:none">
-                    <section class="mb-4 mx-auto adopt_form">
-                        <h2 class="h1-responsive font-weight-bold text-center my-4">Adoption Details</h2>
-                        <hr />
-                        <div class="row">
-                            <div class="col-md-10 mb-md-0 mb-5">
-                                <form id="contact-form" name="contact-form" method="POST" style="margin-left:70px">
-                                    <input type="hidden" value="@Model.Id" name="animalId" id="animalId" />
-                                    <input type="hidden" value="@Model.Name" name="animalName" id="animalName" />
-                                    <input type="hidden" value="@UserManager.GetUserId(User)" name="userId" id="userId" />
-                                    <input type="hidden" value="@User.Identity.Name" name="userName" id="userName" />
-                                    <input type="hidden" value="@Model.ShelterId" name="shelterId" id="shelterId" />
-                                    <input type="hidden" value="@Model.Image" name="animalImage" id="animalImage" />
-                                    <input type="hidden" value="Pending" name="status" id="status" />
 
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="md-form mb-0">
-                                                <label for="fname" class="">First Name</label>
-                                                <input type="text" id="fname" name="fname" class="form-control" required />
-                                                <div class="invalid" id="fnValidate" style="display:none">
-                                                    <p style="color:red">Field cannot be empty!</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="md-form mb-0">
-                                                <label for="lname" class="">Last Name</label>
-                                                <input type="text" id="lname" name="lname" class="form-control" required />
-                                                <div class="invalid" id="lnValidate" style="display:none">
-                                                    <p style="color:red">Field cannot be empty!</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-8" style="margin-top: 10px; margin-left: 70px; margin-bottom: 10px;">
-                                            <div class="md-form mb-0">
-                                                <label for="phone" class="">Phone number</label>
-                                                <input type="text" id="phone" name="phone" class="form-control" required />
-                                                <div class="invalid" id="phoneValidate" style="display:none"> 
-                                                    <p style="color:red">Please enter a valid phone number!</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <div class="md-form mb-0">
-                                                <label for="email" class="">Email</label>
-                                                <input type="text" id="email" name="email" class="form-control" required />
-                                                <div class="invalid" id="emailValidate" style="display:none">
-                                                    <p style="color:red">Please enter a valid email (ex: example@example.com)</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-12" style="margin-top:10px">
-                                            <div class="md-form">
-                                                <label for="message">Your message</label>
-                                                <textarea type="text" id="message" name="message" rows="2" class="form-control md-textarea" required></textarea>
-                                                <div class="invalid" id="messageValidate" style="display:none">
-                                                    <p style="color:red">Please enter a message!</p>
-                                                </div>
-                                            </div>
+            </div>
+            <div id="adoptionForm" style="display:none">
+                <section class="mb-4 mx-auto adopt_form">
+                    <h2 class="h1-responsive font-weight-bold text-center my-4">Adoption Details</h2>
+                    <hr />
+                    <div class="row">
+                        <div class="col-md-10 mb-md-0 mb-5">
+                            <form id="contact-form" name="contact-form" method="POST" style="margin-left:70px">
+                                <input type="hidden" value="@Model.Id" name="animalId" id="animalId" />
+                                <input type="hidden" value="@Model.Name" name="animalName" id="animalName" />
+                                <input type="hidden" value="@UserManager.GetUserId(User)" name="userId" id="userId" />
+                                <input type="hidden" value="@User.Identity.Name" name="userName" id="userName" />
+                                <input type="hidden" value="@Model.ShelterId" name="shelterId" id="shelterId" />
+                                <input type="hidden" value="@Model.Image" name="animalImage" id="animalImage" />
+                                <input type="hidden" value="Pending" name="status" id="status" />
 
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="md-form mb-0">
+                                            <label for="fname" class="">First Name</label>
+                                            <input type="text" id="fname" name="fname" class="form-control" required />
+                                            <div class="invalid" id="fnValidate" style="display:none">
+                                                <p style="color:red">Field cannot be empty!</p>
+                                            </div>
                                         </div>
                                     </div>
-                                </form>
-                                <div class="text-center mx-auto" style="margin-left:100px">
-                                    <br />
-                                    <a class="btn btn-primary" onclick="sendAdoption()" style="color:white; margin-left:100px">Send</a>
+                                    <div class="col-md-6">
+                                        <div class="md-form mb-0">
+                                            <label for="lname" class="">Last Name</label>
+                                            <input type="text" id="lname" name="lname" class="form-control" required />
+                                            <div class="invalid" id="lnValidate" style="display:none">
+                                                <p style="color:red">Field cannot be empty!</p>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                                <br />
-                                <div class="status"></div>
-                            </div>
-                        </div>
-                    </section>
-                </div>
+                                <div class="row">
+                                    <div class="col-md-8" style="margin-top: 10px; margin-left: 70px; margin-bottom: 10px;">
+                                        <div class="md-form mb-0">
+                                            <label for="phone" class="">Phone number</label>
+                                            <input type="text" id="phone" name="phone" class="form-control" required />
+                                            <div class="invalid" id="phoneValidate" style="display:none">
+                                                <p style="color:red">Please enter a valid phone number!</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="md-form mb-0">
+                                            <label for="email" class="">Email</label>
+                                            <input type="text" id="email" name="email" class="form-control" required />
+                                            <div class="invalid" id="emailValidate" style="display:none">
+                                                <p style="color:red">Please enter a valid email (ex: example@example.com)</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12" style="margin-top:10px">
+                                        <div class="md-form">
+                                            <label for="message">Your message</label>
+                                            <textarea type="text" id="message" name="message" rows="2" class="form-control md-textarea" required></textarea>
+                                            <div class="invalid" id="messageValidate" style="display:none">
+                                                <p style="color:red">Please enter a message!</p>
+                                            </div>
+                                        </div>
 
+                                    </div>
+                                </div>
+                            </form>
+                            <div class="text-center mx-auto" style="margin-left:100px">
+                                <br />
+                                <a class="btn btn-primary adoptionBtn" onclick="sendAdoption()" style="margin-left:100px; color:white">Send</a>
+                            </div>
+                            <br />
+                            <div class="status"></div>
+                        </div>
+                    </div>
+                </section>
             </div>
         </div>
 
@@ -249,6 +247,5 @@
 </div>
 
 @section Scripts{
-    <script src="~/js/favorite.js"></script>
     <script src="~/js/adopt.js"></script>
 }

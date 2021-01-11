@@ -5,7 +5,7 @@
     ViewData["Title"] = "Favorites";
     Layout = "~/Views/AdoptionRequests/_ProfileLayout.cshtml";
 }
-<link rel="stylesheet" href="~/css/novideo.css" />
+
 
 @if (Model.Count() == 0)
 {
@@ -18,18 +18,18 @@ else
 {
     @foreach (var req in Model)
     {
-        <div class="card" style="margin: 15px;width: 700px;">
+        <div class="card" style="margin: 15px;width: 700px; text-align: center; margin-left: 200px;">
             <div class="panel-body">
                 <div class="row">
                     <div class="col-xs-2">
-                        <img class="img-responsive" src="~/Images/Animals/@req.AnimalImage" style="margin-left:25px;margin-right:25px;" height="100" width="150">
+                        <img class="img-responsive" src="~/Images/Animals/@req.AnimalImage" style="margin: 10px 25px 10px 25px; height: auto; width: 150px; border-radius: 5px">
                     </div>
                     <div class="col-md-4" style="padding-top:40px">
-                        <h5 class="product-name">@req.AnimalName</h5>
+                        <h5 class="product-name" style="margin-top: 35px"><b>@req.AnimalName</b></h5>
                     </div>
                     <div class="col-md-4 text-right" style="padding-top:40px">
-                        <div class="col-md-6 text-right">
-                            <h6><button class="btn"><a href="/Animal/@req.AnimalId"> Details </a></button> <span class="text-muted"></span></h6>
+                        <div class="col-md-6 text-right" style="margin-top: 35px">
+                            <h6><button class="btn"><a href="/Animal/@req.AnimalId"><b>Details</b></a></button> <span class="text-muted"></span></h6>
                         </div>
                     </div>
                 </div>
