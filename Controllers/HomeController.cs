@@ -337,5 +337,46 @@ namespace PetApp.Controllers
             }
             return View(animal);
         }
+
+        [Route("get-random-animal")]
+        public async Task<IActionResult> GetRandomAnimalId() 
+        {
+            List<Animal> animals = new List<Animal>();
+            using (var httpClient = new HttpClient())
+            {
+                using (var response = await httpClient.GetAsync(_apiPath + "api/Animals"))
+                {
+
+                    string apiResponse = await response.Content.ReadAsStringAsync();
+                    animals = JsonConvert.DeserializeObject<List<Animal>>(apiResponse);
+                    foreach (var animal in animals)
+                    {
+                        Dictionary<string, bool> _getsAlongWith = new Dictionary<string, bool>()
+                        {
+                            { "Dogs", animal.FriendlyWithDogs },
+                            { "Cats", animal.FriendlyWithCats },
+                            { "Kids", animal.FriendlyWithKids }
+                        };
+                        var str = new List<string>();
+                        foreach (KeyValuePair<string, bool> kv in _getsAlongWith)
+                        {
+                            if (kv.Value == true)
+                            {
+                                str.Add(kv.Key);
+                            }
+                        }
+                        animal.GetsAlongWith = String.Join(",", str);
+                    }
+                }
+            }
+            Random rand = new Random();
+            animals = animals.Where(a => a.IsAdopted != true).ToList();
+            var animalId = animals.ElementAt(rand.Next(animals.Count)).Id;
+            return RedirectToAction("Animal", new { id = animalId });
+
+
+        }
+        
+
     }
 }
