@@ -139,9 +139,9 @@ namespace PetApp.Controllers
             _context.adoptionRequests.Add(adoptionRequest);
             try
             {
-                EmailHelper.EmailHelper helper = new EmailHelper.EmailHelper();
+                //EmailHelper.EmailHelper helper = new EmailHelper.EmailHelper();
 
-                helper.sendEmail(new MailAddress("pet.application.1@gmail.com"), "pet.application.1@gmail.com", "Pet Adoption", adoptionRequest.AdoptionMessasge);
+                //helper.sendEmail(new MailAddress("pet.application.1@gmail.com"), "pet.application.1@gmail.com", "Pet Adoption", adoptionRequest.AdoptionMessasge);
 
                 await _context.SaveChangesAsync();
             }
@@ -233,7 +233,7 @@ namespace PetApp.Controllers
                 }
             var animal = _context.Animal.Where(a => a.Id == animalId).FirstOrDefault();
             if (animal != null) { animal.IsAdopted = true; await _context.SaveChangesAsync(); }
-            _context.adoptionRequests.Remove(request);
+            //_context.adoptionRequests.Remove(request);
             var otherRequestsForSameAnimal = _context.adoptionRequests.Where(a => a.AnimalId == animal.Id).Where(a=> a.AdoptionStatus == "Pending").ToList();
             foreach (var req in otherRequestsForSameAnimal) 
             {
