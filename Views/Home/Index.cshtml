@@ -15,11 +15,13 @@
     <div class="col-lg-5 col-md-6 mx-auto">
         <div class="slider_text">
             <h3><b>ADOPT ME!</b></h3>
-            <p>
+            <div>
+                <h5 style="float:right; margin-top:40px; margin-right:398px; font-weight:bolder; color:white">I choose you!</h5>
                 <a href="/get-random-animal">
-                    <img src="~/Images/pokeball.gif" style="width:200px; margin-left: 97px" />
+                    <img src="~/Images/pokeball.gif" style="width:150px; margin-left: 10px; margin-top:50px" />
                 </a>
-            </p>
+                <img src="/Images/arrow.gif" style="width: 50px; transform: rotate(-164deg);" />
+            </div>
         </div>
     </div>
     <div class="dog_thumb d-none d-lg-block">
@@ -164,12 +166,6 @@
         </section>
         <a href="/see-all-shelters" class="boxed-btn3" style="font-size: 12px; margin-left: 480px; margin-top: 40px; margin-bottom: 90px;">See all</a>
         <br /><br />
-        <div id="map" style="height:400px;width:700px;">
-
-
-
-
-    </div>
     </div>
 
 
@@ -185,49 +181,6 @@
     <script src="~/js/site.js"></script>
     <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
     <script src="~/js/home.js"></script>
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCfCwCwyeIkDXKo1oriAgm3SxXKpOzIy54&callback=initMap&libraries=&v=weekly"
-            type="text/javascript"></script>
-    <script>
-        let map;
-
-        function initMap() {
-            var center = { lat: 44.439663, lng: 26.096306 },
-            map = new google.maps.Map(document.getElementById('map'), {
-                zoom: 10,
-                center: center
-            });
-            var marker = new google.maps.Marker({
-                position: center,
-                map: map
-            });
-        }
-
-        var locations = [
-            ['Shelter 1', 44.08758502824518, 25.993652343750004],
-            ['Shelter 2', 46.619261036171515, 27.729492187500004],
-            ['Shelter 3', 46.81509864599243, 24.982910156250004],
-            ['Shelter 4', 46.392411189814645, 23.334960937500004],
-            ['Shelter 5', 45.44471679159555, 23.258056640625]
-        ];
-
-        //var infowindow = new google.maps.InfoWindow({});
-        var marker, count;
-        for (count = 0; count < locations.length; count++) {
-            marker = new google.maps.Marker({
-                position: new google.maps.LatLng(locations[count][1], locations[count][2]),
-                map: map,
-                title: locations[count][0]
-            });
-            //google.maps.event.addListener(marker, 'click', (function (marker, count) {
-            //    return function () {
-            //        infowindow.setContent(locations[count][0]);
-            //        infowindow.open(map, marker);
-            //    }
-            //})(marker, count));
-        }
-
-        
-    </script>
 }
 
 
