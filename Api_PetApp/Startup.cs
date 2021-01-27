@@ -15,6 +15,7 @@ using Api_PetApp.Data;
 using System.Reflection;
 using Microsoft.OpenApi.Models;
 using System.IO;
+using Api_PetApp.Models;
 
 namespace Api_PetApp
 {
@@ -47,6 +48,7 @@ namespace Api_PetApp
             });
             services.AddDbContext<PetAppContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("PetAppContext")));
+            services.AddScoped<IAnimalRepository, SQLAnimalRepository>();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo

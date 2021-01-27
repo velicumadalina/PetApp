@@ -7,17 +7,18 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Api_PetApp.Data;
 using WebApi_PetApp.Models;
+using Api_PetApp.Models;
 
 namespace Api_PetApp.Controllers
 {
     [ApiController]
     public class AnimalController : ControllerBase
     {
-        private readonly PetAppContext _context;
+        private readonly IAnimalRepository _repository;
 
-        public AnimalController(PetAppContext context)
+        public AnimalController(IAnimalRepository repository) 
         {
-            _context = context;
+            _repository = repository;
         }
 
 
@@ -27,9 +28,9 @@ namespace Api_PetApp.Controllers
         // GET: api/Animals
         [Route("/api/Animals")]
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Animal>>> GetAnimals()
+        public IEnumerable<Animal> GetAnimals()
         {
-            return await _context.Animal.ToListAsync();
+            return _repository.GetAllAnimals();
         }
 
 
@@ -40,10 +41,9 @@ namespace Api_PetApp.Controllers
         // GET: api/Animal/5
         [Route("/api/Animals/{id}")]
         [HttpGet]
-        public async Task<ActionResult<Animal>> GetAnimal(int id)
+        public ActionResult<Animal> GetAnimal(int id)
         {
-            var animal = await _context.Animal.ToListAsync();
-            return animal.Where(x => x.Id == id).Where(a => a.IsAdopted != true).First();
+            return _repository.GetAnimal(id);
         }
 
 
@@ -54,11 +54,10 @@ namespace Api_PetApp.Controllers
         //GET: api/Shelters/5/Animals
        [Route("/Shelters/{shelterId}/Animals")]
        [HttpGet]
-        public ActionResult<List<Animal>> GetShelterAnimals(int shelterId)
+        public IEnumerable<Animal> GetShelterAnimals(int shelterId)
         {
             //var animals = _context.Animal.Where(x => x.ShelterId == shelterId).ToList();
-            var animals = _context.Shelter.Where(s => s.Id == shelterId).Include(s => s.Animals).FirstOrDefault()?.Animals;
-            return animals.Where(a => a.IsAdopted != true).ToList();
+            return _repository.GetShelterAnimals(shelterId);
         }
 
 
@@ -77,11 +76,9 @@ namespace Api_PetApp.Controllers
                 return BadRequest();
             }
 
-            _context.Entry(animal).State = EntityState.Modified;
-
             try
             {
-                await _context.SaveChangesAsync();
+                _repository.Update(id, animal);
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -107,10 +104,9 @@ namespace Api_PetApp.Controllers
         [HttpPost]
         public async Task<ActionResult<Animal>> PostAnimal(Animal animal)
         {
-            _context.Animal.Add(animal);
             try
             {
-                await _context.SaveChangesAsync();
+                _repository.Add(animal);
             }
             catch (DbUpdateException)
             {
@@ -137,21 +133,20 @@ namespace Api_PetApp.Controllers
         [HttpDelete]
         public async Task<ActionResult<Animal>> DeleteAnimal(int id)
         {
-            var animal = await _context.Animal.FindAsync(id);
+            var animal = _repository.GetAnimal(id);
             if (animal == null)
             {
                 return NotFound();
             }
 
-            _context.Animal.Remove(animal);
-            await _context.SaveChangesAsync();
 
-            return animal;
+
+            return _repository.Delete(id);
         }
 
         private bool AnimalExists(int id)
         {
-            return _context.Animal.Any(e => e.Id == id);
+            return _repository.AnimalExists(id);
         }
     }
 }
