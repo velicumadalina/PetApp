@@ -48,7 +48,9 @@ namespace Api_PetApp
             });
             services.AddDbContext<PetAppContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("PetAppContext")));
+            services.AddScoped<IShelterRepository, SQLShelterRepository>();
             services.AddScoped<IAnimalRepository, SQLAnimalRepository>();
+            
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo

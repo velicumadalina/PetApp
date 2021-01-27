@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Api_PetApp.Data;
 using WebApi_PetApp.Models;
 using Microsoft.AspNetCore.Cors;
+using Api_PetApp.Models;
 
 namespace Api_PetApp.Controllers
 {
@@ -15,11 +16,11 @@ namespace Api_PetApp.Controllers
     [ApiController]
     public class ShelterController : ControllerBase
     {
-        private readonly PetAppContext _context;
+        private readonly IShelterRepository _repository;
 
-        public ShelterController(PetAppContext context)
+        public ShelterController(IShelterRepository repository)
         {
-            _context = context;
+            _repository = repository;
         }
 
 
@@ -28,10 +29,9 @@ namespace Api_PetApp.Controllers
         /// </summary>
         // GET: api/Shelter
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Shelter>>> GetShelter()
+        public IEnumerable<Shelter> GetShelter()
         {
-            var result = await _context.Shelter.Include(s => s.Animals).ToListAsync();
-            return result;
+            return _repository.GetShelter();
         }
 
 
@@ -41,9 +41,9 @@ namespace Api_PetApp.Controllers
         /// <param name="id"></param>
         // GET: api/Shelter/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Shelter>> GetShelter(int id)
+        public ActionResult<Shelter> GetShelter(int id)
         {
-            var shelter = await _context.Shelter.FindAsync(id);
+            var shelter = _repository.GetShelter(id);
 
             if (shelter == null)
             {
@@ -74,18 +74,18 @@ namespace Api_PetApp.Controllers
         /// <param name="shelter"></param>
         // PUT: api/Shelter/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutShelter(int id, Shelter shelter)
+        public ActionResult PutShelter(int id, Shelter shelter)
         {
             if (id != shelter.Id)
             {
                 return BadRequest();
             }
 
-            _context.Entry(shelter).State = EntityState.Modified;
+           
 
             try
             {
-                await _context.SaveChangesAsync();
+                _repository.EditShelter(id, shelter);
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -111,10 +111,10 @@ namespace Api_PetApp.Controllers
         [Consumes("application/json")]
         public async Task<ActionResult<Shelter>> PostShelter(Shelter shelter)
         {
-            _context.Shelter.Add(shelter);
+            
             try
             {
-                await _context.SaveChangesAsync();
+                _repository.AddShelter(shelter);
             }
             catch (DbUpdateException)
             {
@@ -135,10 +135,9 @@ namespace Api_PetApp.Controllers
         [Consumes("application/json")]
         public async Task<ActionResult<Shelter>> AddShelter(Shelter shelter)
         {
-            _context.Shelter.Add(shelter);
             try
             {
-                await _context.SaveChangesAsync();
+                _repository.AddShelter(shelter);
             }
             catch (DbUpdateException)
             {
@@ -161,16 +160,13 @@ namespace Api_PetApp.Controllers
         /// <param name="id"></param>
         // DELETE: api/Shelter/5
         [HttpDelete("{id}")]
-        public async Task<ActionResult<Shelter>> DeleteShelter(string id)
+        public async Task<ActionResult<Shelter>> DeleteShelter(int id)
         {
-            var shelter = await _context.Shelter.FindAsync(id);
+            var shelter = _repository.DeleteShelter(id);
             if (shelter == null)
             {
                 return NotFound();
             }
-
-            _context.Shelter.Remove(shelter);
-            await _context.SaveChangesAsync();
 
             return shelter;
         }
@@ -178,7 +174,7 @@ namespace Api_PetApp.Controllers
 
         private bool ShelterExists(int id)
         {
-            return _context.Shelter.Any(e => e.Id == id);
+            return _repository.ShelterExists(id);
         }
     }
 }
