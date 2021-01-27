@@ -1,4 +1,4 @@
-﻿@model IEnumerable<PetApp.Models.Animal>
+﻿@model PetApp.Models.ShelterWithLocation
 @{
     ViewData["Title"] = "Home page";
 }
@@ -15,7 +15,7 @@
     <hr />
     <div class="row col-xs-12 margin0">
 
-        @foreach (var animal in Model)
+        @foreach (var animal in Model.Animals)
         {
             <div class="col-xs-12 col-sm-3">
                 <div class="card" style="background:url('/Images/Animals/@animal.Image')">
@@ -27,5 +27,34 @@
             </div>
         }
     </div>
+    <br /><hr /><br />
 
-</div>
+    <div class="row col-xs-12 margin0" >
+        <h5 style="margin-left: 450px;">Find us here!</h5>
+        <br /><div class="row col-xs-12 margin0" id="shelterMap" style="height:200px;width:600px;margin-left:200px;"></div>
+
+    </div>
+
+    @section Scripts
+{
+        <script>
+            function initMap() {
+                let center = { lat: @Model.Latitude, lng: @Model.Longitude },
+                    map = new google.maps.Map(document.getElementById('shelterMap'), {
+                        zoom: 12,
+                        center: center
+                    });
+                let infowindow = new google.maps.InfoWindow({content:"@Model.ShelterName" });
+                let marker = new google.maps.Marker({
+                    position: center,
+                    map: map,
+                    title: "@Model.ShelterName"
+                });
+                marker.addListener("click", () => {
+                    infowindow.open(map, marker);
+                })
+        }
+        </script>
+        <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCfCwCwyeIkDXKo1oriAgm3SxXKpOzIy54&libraries=&v=weekly&callback=initMap"
+                type="text/javascript"></script>
+    }

@@ -126,7 +126,19 @@ namespace PetApp.Controllers
 
                 }
             }
-            return View(animalsList);
+            List<Shelter> shelterList = new List<Shelter>();
+            using (var httpClient = new HttpClient())
+            {
+                using (var response = await httpClient.GetAsync(_apiPath + "api/Shelter"))
+                {
+                    string apiResponse = await response.Content.ReadAsStringAsync();
+                    shelterList = JsonConvert.DeserializeObject<List<Shelter>>(apiResponse);
+                }
+            }
+            var shelter = shelterList.Where(s => s.Id == animalsList[0].ShelterId).FirstOrDefault();
+
+            ShelterWithLocation shelterWithLocation = new ShelterWithLocation() { Latitude = shelter.Latitude, Longitude = shelter.Longitude, Animals = animalsList, ShelterName = shelter.Name};
+            return View(shelterWithLocation);
         }
 
 
@@ -376,7 +388,33 @@ namespace PetApp.Controllers
 
 
         }
-        
+
+        [Route("/shelter-locations")]
+        public async Task<List<ShelterCoordinates>> GetShelterCoordinates(int id)
+        {
+            List<ShelterCoordinates> shelterCoordinates = new List<ShelterCoordinates>();
+            List<Shelter> shelterList = new List<Shelter>();
+            using (var httpClient = new HttpClient())
+            {
+                using (var response = await httpClient.GetAsync(_apiPath + "api/Shelter"))
+                {
+                    string apiResponse = await response.Content.ReadAsStringAsync();
+                    shelterList = JsonConvert.DeserializeObject<List<Shelter>>(apiResponse);
+                }
+            }
+            foreach (var shelter in shelterList) 
+            {
+                ShelterCoordinates shelterWithCoordinates = new ShelterCoordinates();
+                shelterWithCoordinates.ShelterName = shelter.Name;
+                shelterWithCoordinates.Latitude = shelter.Latitude;
+                shelterWithCoordinates.Longitude = shelter.Longitude;
+                shelterWithCoordinates.ShelterId = shelter.Id;
+                shelterCoordinates.Add(shelterWithCoordinates);
+            }
+            return shelterCoordinates;
+
+        }
+
 
     }
 }

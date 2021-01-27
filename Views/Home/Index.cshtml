@@ -157,6 +157,12 @@
         <i class="fa fa-paw" aria-hidden="true"></i>
     </div>
     <div class="container">
+        <div id="map" style="height:400px;width:800px;margin-left:200px;">
+
+
+
+
+        </div>
         <h2 class="text-black mb-3"><b>OUR SHELTERS</b></h2>
         <section class="customer-logos slider">
             @foreach (var shelter in Model.Shelters)
@@ -166,12 +172,7 @@
         </section>
         <a href="/see-all-shelters" class="boxed-btn3" style="font-size: 12px; margin-left: 480px; margin-top: 40px; margin-bottom: 90px;">See all</a>
         <br /><br />
-              <div id="map" style="height:400px;width:400px;">
 
-
-
-
-              </div>
     </div>
 
 
@@ -187,8 +188,42 @@
     <script src="~/js/site.js"></script>
     <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
     <script src="~/js/home.js"></script>
-    <script src="~/js/maps.js"></script>
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCfCwCwyeIkDXKo1oriAgm3SxXKpOzIy54&callback=initMap&libraries=&v=weekly"
+    <script>
+        let allLocations = [];
+        let loc = []
+        @foreach (var shelter in Model.Shelters) 
+        {
+            @:loc = [];
+            @:loc.push("@shelter.Name");
+            @:loc.push(@shelter.Latitude);
+            @:loc.push(@shelter.Longitude);
+        @:allLocations.push(loc);
+        }
+        function initMap() {
+            let locations = allLocations;
+            let center = { lat: 44.9417468, lng: 26.0236504 },
+                map = new google.maps.Map(document.getElementById('map'), {
+                    zoom: 7,
+                    center: center
+                });
+            let marker;
+            let infowindow = new google.maps.InfoWindow({});
+            for (let count = 0; count < locations.length; count++) {
+                marker = new google.maps.Marker({
+                    position: new google.maps.LatLng(locations[count][1], locations[count][2]),
+                    map: map,
+                    title: locations[count][0]
+                });
+                google.maps.event.addListener(marker, 'click', (function (marker, count) {
+                    return function () {
+                        infowindow.setContent(locations[count][0]);
+                        infowindow.open(map, marker);
+                    }
+                })(marker, count));
+            }
+        }
+    </script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCfCwCwyeIkDXKo1oriAgm3SxXKpOzIy54&libraries=&v=weekly&callback=initMap"
             type="text/javascript"></script>
 }
 

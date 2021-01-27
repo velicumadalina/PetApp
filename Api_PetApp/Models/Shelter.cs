@@ -13,6 +13,8 @@ namespace WebApi_PetApp.Models
         public string Image { get; set; }
         public string Email { get; set; }
         public int Capacity { get; set; }
+        public float Longitude { get; set; }
+        public float Latitude { get; set; }
     }
 
 }
