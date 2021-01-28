@@ -29,15 +29,70 @@
     </div>
     <br /><hr /><br />
 
-    <div class="row col-xs-12 margin0" >
-        <h5 style="margin-left: 450px;">Find us here!</h5>
-        <br /><div class="row col-xs-12 margin0" id="shelterMap" style="height:200px;width:600px;margin-left:200px;"></div>
+    <div class="row">
+        <div class="col-xs-6 justify-content-center" style="margin-right:125px; margin-left:110px">
+            <h5 class=" justify-content-center">Find us here!</h5>
+            <br />
+            <div class="col-xs-6 margin0" id="shelterMap" style="height:400px;width:400px;"></div>
+        </div>
+        <div class="col-xs-6 justify-content-center">
+            <h5>Make a donation!</h5>
+            <div class="donation-container">
 
+                <div class="donation-box">
+                    <div class="title">Donation Information</div>
+
+                    <div class="fields">
+                        <input type="text" id="firstName" placeholder="First Name" style="margin:15px;">
+                        <input type="text" id="lastName" placeholder="Last Name" style="margin:15px;">
+                        <input style="margin:15px;" type="text" id="email" placeholder="Email">
+                    </div>
+
+                    <div class="amount">
+                        <div class="button">$30</div>
+                        <div class="button">$50</div>
+                        <div class="button">$100</div>
+                        <div class="button">$500</div>
+                        <!--<div class="button">-->@*$<input type="text" class="set-amount" placeholder="">*@<!--</div>-->
+                    </div>
+
+                    <div class="switch" style="margin-top:100px;">
+                        <input type="radio" class="switch-input" name="view" value="One-Time" id="one-time" checked="">
+                        <label for="one-time" class="switch-label switch-label-off">One-Time</label>
+                        <input type="radio" class="switch-input" name="view" value="Monthly" id="monthly">
+                        <label for="monthly" class="switch-label switch-label-on">Monthly</label>
+                        <span class="switch-selection"></span>
+                    </div>
+
+                    <div class="confirm">
+
+                    </div>
+
+                    <div class="donate-button" id="pay"><i class="fa fa-credit-card"></i><a href="#popup1" id="paylink"> Donate Now </a></div>
+                </div>
+            </div>
+        </div>
     </div>
+</div>
 
-    @section Scripts
+<div id="popup1" class="overlay">
+
+    <div class="popup">
+        <h2>Pay using:</h2>
+        <a class="close" href="#">&times;</a>
+        <div class="content">
+            <div id="paypal-button-container"></div>
+        </div>
+    </div>
+</div>
+@section Scripts
 {
-        <script>
+    <script defer src="https://www.paypal.com/sdk/js?client-id=sb&currency=USD"></script>
+    <script defer src="~/js/donation.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="https://raw.githubusercontent.com/jerryluk/jquery.autogrow/master/jquery.autogrow-min.js"></script>
+    <script>
             function initMap() {
                 let center = { lat: @Model.Latitude, lng: @Model.Longitude },
                     map = new google.maps.Map(document.getElementById('shelterMap'), {
@@ -54,7 +109,7 @@
                     infowindow.open(map, marker);
                 })
         }
-        </script>
-        <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCfCwCwyeIkDXKo1oriAgm3SxXKpOzIy54&libraries=&v=weekly&callback=initMap"
-                type="text/javascript"></script>
-    }
+    </script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCfCwCwyeIkDXKo1oriAgm3SxXKpOzIy54&libraries=&v=weekly&callback=initMap"
+            type="text/javascript"></script>
+}
