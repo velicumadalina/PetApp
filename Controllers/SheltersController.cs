@@ -20,13 +20,15 @@ namespace PetApp.Controllers
         }
         [Route("/add-shelter")]
         [HttpPost]
-        public async Task<ActionResult<Relation>> RegisterShelter(string userId, string shelterName, string shelterEmail, string shelterImage, int capacity)
+        public async Task<ActionResult<Relation>> RegisterShelter(string userId, string shelterName, string shelterEmail, string shelterImage, int capacity, float lat, float lng)
         {
             var shelter = new Shelter();
             shelter.Name = shelterName;
             shelter.Image = shelterImage;
             shelter.Email = shelterEmail;
             shelter.Capacity = capacity;
+            shelter.Latitude = lat;
+            shelter.Longitude = lng;
             _context.Shelter.Add(shelter);
             try
             {
