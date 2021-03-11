@@ -2,6 +2,7 @@
 A pet adoption website written in C# using the ASP.NET CORE Framework, Entity Framework and SQL Server.
 
 ![](imgForREADME/homepage.gif)
+
 # Main features:
 
 ### Browsing through all the animals
