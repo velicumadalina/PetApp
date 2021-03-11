@@ -2,7 +2,6 @@
 A pet adoption website written in C# using the ASP.NET CORE Framework, Entity Framework and SQL Server.
 
 ![](imgForREADME/homepage.gif)
-
 # Main features:
 
 ### Browsing through all the animals
@@ -19,7 +18,7 @@ A pet adoption website written in C# using the ASP.NET CORE Framework, Entity Fr
 
 ### Shelter Registration
 
-![](imgForREADME/register_shelter.jpg)
+![](imgForREADME/register_shelter.png)
 
 ### Login
 
@@ -37,6 +36,10 @@ A pet adoption website written in C# using the ASP.NET CORE Framework, Entity Fr
 
 ![](imgForREADME/quiz.gif)
 
+### If you feel lucky, you can choose a random animal for adoption
+
+![](imgForREADME/random.gif)
+
 ### Favorites functionality
 
 ![](imgForREADME/favorite.gif)
@@ -44,6 +47,10 @@ A pet adoption website written in C# using the ASP.NET CORE Framework, Entity Fr
 ### Favorites page from user profile
 
 ![](imgForREADME/favorites_page.gif)
+
+### You can make donations with paypal or credit card
+
+![](imgForREADME/donation.gif)
 
 ### Animal details page with adoption form
 
